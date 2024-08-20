@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "318936429177",
+    "project_id": "austism3030",
+    "storage_bucket": "austism3030.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:318936429177:android:87658f2e905fbe770c1aa8",
+        "android_client_info": {
+          "package_name": "com.example.austism"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpRlH3RqaUmLfDc9scg2OQAQOxeUFRthk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
