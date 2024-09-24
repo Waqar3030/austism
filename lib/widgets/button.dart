@@ -1,4 +1,3 @@
-// import 'package:autistic/Helper/Colors.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,9 +29,10 @@ class CustomButton extends StatelessWidget {
       height: 50,
       decoration: BoxDecoration(
           color: buttonColor,
-          borderRadius: BorderRadius.all(Radius.circular(5.r)),
-          border:
-              isBorder ? Border.all(color: Color(0xff9B59B6), width: 1) : null),
+          borderRadius: BorderRadius.all(Radius.circular(15.r)),
+          border: isBorder
+              ? Border.all(color: const Color(0xff9B59B6), width: 1)
+              : null),
       child: Padding(
         padding: const EdgeInsets.all(13.0),
         child: Row(
@@ -54,7 +54,7 @@ class CustomButton extends StatelessWidget {
                 style: TextStyle(
                   color: textColor,
                   fontSize: 16,
-                  fontWeight: FontWeight.w200,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),

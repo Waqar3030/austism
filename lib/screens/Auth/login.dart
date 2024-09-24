@@ -2,19 +2,12 @@ import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/auth_controller.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/Auth/forgot_password.dart';
-import 'package:austism/screens/Auth/navigator.dart';
-// import 'package:austism/screens/Auth/main/main_screen.dart';
 import 'package:austism/screens/auth/signup.dart';
 import 'package:austism/widgets/button.dart';
 import 'package:austism/widgets/textfield.dart';
-// import 'package:autistic/Helper/Colors.dart';
-// import 'package:autistic/Widget/button.dart';
-// import 'package:autistic/Widget/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-// import '../../Helper/Global.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -42,31 +35,16 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           leading: GestureDetector(
-            onTap: () {
-              // Get.toNamed('/SocialLoginScreen');
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              // child: Container(
-              //   height: 20.h,
-              //   width: 20.w,
-              //   decoration: const BoxDecoration(
-              //     shape: BoxShape.circle,
-              //     color: Colors.white,
-              //   ),
-              //   child: Image.asset(
-              //     Appassets.arrowback,
-              //     scale: 1.5,
-              //     color: kprimaryColor,
-              //   ),
-              // ),
+            onTap: () {},
+            child: const Padding(
+              padding: EdgeInsets.all(12.0),
             ),
           ),
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
         body: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             width: double.infinity,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 64.w),
@@ -89,37 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(() => SignupScreen());
-                    },
-                    child: RichText(
-                      text: const TextSpan(
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'Login below or',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          TextSpan(
-                            text: ' create an account',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.white,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 35.h,
-                  ),
+                  30.h.verticalSpace,
                   AuthTextField(
                     controller: emailController,
                     hinttext: "Email",
@@ -128,9 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     widthh: 0.9.sw,
                     isPassword: false,
                   ),
-                  SizedBox(
-                    height: 5.h,
-                  ),
+                  20.h.verticalSpace,
                   AuthTextField(
                     controller: passController,
                     hinttext: "Password",
@@ -140,29 +86,27 @@ class _LoginScreenState extends State<LoginScreen> {
                     isPassword: false,
                   ),
                   SizedBox(
-                    height: 5.h,
+                    height: 10.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Get.to(() => ForgotScreen());
+                          Get.to(() => const ForgotScreen());
                         },
                         child: Text(
                           "Forgot Password?",
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.w300,
+                            color: Colors.black,
+                            fontSize: 26.sp,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
+                  30.h.verticalSpace,
                   GestureDetector(
                     onTap: () {
                       // Get.to(() => NavigatorScreen());
@@ -178,6 +122,33 @@ class _LoginScreenState extends State<LoginScreen> {
                       buttonColor: Colors.white,
                     ),
                   ),
+                  30.h.verticalSpace,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Dont't have an account? ",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26.h,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => const SignupScreen());
+                        },
+                        child: Text(
+                          "SignUp",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30.h,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),

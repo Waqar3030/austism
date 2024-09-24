@@ -14,12 +14,12 @@ class CustomDialogbox {
           false, // Set to true if you want the dialog to be dismissible by tapping outside
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(
+          title: const Text(
             'Logout',
             textAlign: TextAlign.center,
             style: TextStyle(color: kprimaryColor),
           ),
-          content: Text(
+          content: const Text(
             'Are you sure you want to \nlogout?',
             textAlign: TextAlign.center,
           ),
@@ -43,7 +43,7 @@ class CustomDialogbox {
                 GestureDetector(
                   onTap: () {
                     Get.close(2);
-                    Get.to(() => LoginScreen());
+                    Get.to(() => const LoginScreen());
                   },
                   child: CustomButton(
                     textButton: "Yes",

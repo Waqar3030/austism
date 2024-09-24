@@ -1,18 +1,18 @@
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/colors.dart';
-import 'package:austism/screens/Auth/create_new_password.dart';
 import 'package:austism/screens/Auth/profile/create_profile.dart';
 import 'package:austism/widgets/button.dart';
-// import 'package:autistic/Helper/Colors.dart';
-// import 'package:autistic/Widget/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class OTPScreen1 extends StatefulWidget {
-  const OTPScreen1({super.key});
+  final String verificationId; // Receive verification ID from AuthController
+  const OTPScreen1({super.key, required this.verificationId});
 
   @override
   State<OTPScreen1> createState() => _OTPScreen1State();
@@ -20,6 +20,8 @@ class OTPScreen1 extends StatefulWidget {
 
 class _OTPScreen1State extends State<OTPScreen1> {
   OtpFieldController otpController = OtpFieldController();
+  String otpCode = "";
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -94,7 +96,7 @@ class _OTPScreen1State extends State<OTPScreen1> {
                   ),
                   OTPTextField(
                     controller: otpController,
-                    length: 4,
+                    length: 6,
                     width: MediaQuery.of(context).size.width,
                     textFieldAlignment: MainAxisAlignment.spaceBetween,
                     fieldWidth: 55,
@@ -110,10 +112,10 @@ class _OTPScreen1State extends State<OTPScreen1> {
                     obscureText: true,
                     style: TextStyle(fontSize: 29.sp, color: Colors.white),
                     onChanged: (pin) {
-                      print("Changed: " + pin);
+                      otpCode = pin; // Save OTP code
                     },
                     onCompleted: (pin) {
-                      print("Completed: " + pin);
+                      otpCode = pin;
                     },
                   ),
                   SizedBox(
@@ -121,7 +123,7 @@ class _OTPScreen1State extends State<OTPScreen1> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.to(() => const SetProfileScreen());
+                      verifyOTP(); // Call verify OTP when pressed
                     },
                     child: CustomButton(
                       textButton: "CONTINUE",
@@ -131,7 +133,7 @@ class _OTPScreen1State extends State<OTPScreen1> {
                       isBorder: true,
                       buttonColor: Colors.white,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -139,5 +141,28 @@ class _OTPScreen1State extends State<OTPScreen1> {
         ),
       ),
     );
+  }
+
+  void verifyOTP() async {
+    if (otpCode.isEmpty) {
+      Fluttertoast.showToast(msg: "Please enter OTP");
+      return;
+    }
+
+    try {
+      // Create a PhoneAuthCredential with the OTP
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: widget.verificationId,
+        smsCode: otpCode,
+      );
+
+      // Sign the user in with the credential
+      await FirebaseAuth.instance.signInWithCredential(credential);
+
+      Fluttertoast.showToast(msg: "OTP Verified");
+      Get.to(() => const SetProfileScreen()); // Navigate to the next screen
+    } catch (e) {
+      Fluttertoast.showToast(msg: "Invalid OTP, please try again");
+    }
   }
 }
