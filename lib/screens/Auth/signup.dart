@@ -21,6 +21,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final emailController = TextEditingController();
   final passController = TextEditingController();
   final phoneNumberController = TextEditingController();
+  bool _obscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +109,16 @@ class _SignupScreenState extends State<SignupScreen> {
                     underlineColor: Colors.white,
                     hintColor: Colors.white,
                     widthh: 0.9.sw,
-                    isPassword: true,
+                    isPassword: _obscure,
+                    suffixicon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _obscure = !_obscure;
+                          });
+                        },
+                        icon: Icon(_obscure
+                            ? Icons.visibility
+                            : Icons.visibility_off)),
                   ),
                   SizedBox(
                     height: 15.h,

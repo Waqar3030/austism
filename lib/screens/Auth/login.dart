@@ -19,6 +19,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passController = TextEditingController();
+  bool _isObscure = true;
 
   final _controller = Get.put(AuthController());
   @override
@@ -83,7 +84,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     underlineColor: Colors.white,
                     hintColor: Colors.white,
                     widthh: 0.9.sw,
-                    isPassword: false,
+                    isPassword: _isObscure,
+                    suffixicon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _isObscure = !_isObscure;
+                          });
+                        },
+                        icon: Icon(_isObscure
+                            ? Icons.visibility
+                            : Icons.visibility_off)),
                   ),
                   SizedBox(
                     height: 10.h,

@@ -11,7 +11,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class OTPScreen1 extends StatefulWidget {
-  final String verificationId; // Receive verification ID from AuthController
+  final String verificationId;
   const OTPScreen1({super.key, required this.verificationId});
 
   @override

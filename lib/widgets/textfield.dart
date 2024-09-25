@@ -9,6 +9,7 @@ class AuthTextField extends StatelessWidget {
   final hintColor;
   final underlineColor;
   final controller;
+  final suffixicon;
 
   const AuthTextField({
     Key? key,
@@ -18,6 +19,7 @@ class AuthTextField extends StatelessWidget {
     required this.widthh,
     required this.isPassword,
     this.controller,
+    this.suffixicon,
   }) : super(key: key);
 
   @override
@@ -38,16 +40,17 @@ class AuthTextField extends StatelessWidget {
             fontSize: 15,
             fontWeight: FontWeight.w200,
           ),
+          suffixIcon: suffixicon,
           border: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.white, width: 1),
+              borderSide: const BorderSide(color: Colors.white, width: 1),
               borderRadius: BorderRadius.circular(10.r)),
           enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Colors.white,
               ),
               borderRadius: BorderRadius.circular(10.r)),
           focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Colors.white,
               ),
               borderRadius: BorderRadius.circular(10.r)),
