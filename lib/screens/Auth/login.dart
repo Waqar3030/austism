@@ -1,10 +1,10 @@
+import 'package:austism/components/button.dart';
+import 'package:austism/components/textfield.dart';
+import 'package:austism/controller/auth_controller.dart';
 import 'package:austism/resources/appAssets.dart';
-import 'package:austism/resources/auth_controller.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/Auth/forgot_password.dart';
 import 'package:austism/screens/auth/signup.dart';
-import 'package:austism/widgets/button.dart';
-import 'package:austism/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

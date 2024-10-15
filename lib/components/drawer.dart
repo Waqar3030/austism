@@ -1,12 +1,11 @@
+import 'package:austism/components/custom_dialogbox.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/Auth/navigator.dart';
 import 'package:austism/screens/diet_plan.dart';
-import 'package:austism/widgets/custom_dialogbox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({super.key});
@@ -21,7 +20,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
     return Material(
       child: SingleChildScrollView(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: bprimaryColor,
           ),
           width: double.infinity,
@@ -36,7 +35,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   Get.back();
                 },
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -47,7 +46,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                               // Get.toNamed('/MainScreen');
                             },
                             child: Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                               ),
                               width: 108.w,
@@ -58,15 +57,11 @@ class _DrawerScreenState extends State<DrawerScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
+                          10.h.verticalSpace,
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
-                                height: 30,
-                              ),
+                              30.h.verticalSpace,
                               Text(
                                 "Adeel Akram",
                                 style: TextStyle(
@@ -101,7 +96,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                             scale: 3.8,
                             color: kprimaryColor,
                           ),
-                          Container(
+                          const SizedBox(
                             width: 0,
                             height: 40,
                           )
@@ -117,14 +112,14 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Get.to(() => NavigatorScreen());
+                      Get.to(() => const NavigatorScreen());
                     },
                     child: button("Home"),
                   ),
                   15.h.verticalSpace,
                   GestureDetector(
                     onTap: () {
-                      Get.to(() => DietPlan());
+                      Get.to(() => const DietPlan());
                     },
                     child: button("Diet Plan"),
                   ),
@@ -159,7 +154,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.only(left: 20.0),
+            padding: const EdgeInsets.only(left: 20.0),
             child: Row(
               children: [
                 Text(

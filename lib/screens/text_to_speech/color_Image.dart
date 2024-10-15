@@ -1,17 +1,16 @@
+import 'package:austism/components/speech.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/colors.dart';
-import 'package:austism/widgets/custom_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+// ignore: must_be_immutable
 class ColoursScreen extends StatelessWidget {
   ColoursScreen({super.key});
 
   final List<String> colorImages = [
     Appassets.black,
-    Appassets.blue,
     Appassets.brown,
     Appassets.green,
     // Appassets.orange1,
@@ -22,8 +21,21 @@ class ColoursScreen extends StatelessWidget {
     Appassets.white,
     Appassets.yellow,
   ];
-
-  final PageController _controller = PageController();
+  List<Map<String, String>> products = [
+    {
+      'name': 'Black',
+      'image': Appassets.black,
+    },
+    {'name': 'Blue', 'image': Appassets.blue},
+    {'name': 'Brown', 'image': Appassets.brown},
+    {'name': 'Green', 'image': Appassets.green},
+    {'name': 'Pink', 'image': Appassets.pink},
+    {'name': 'Purple', 'image': Appassets.purple},
+    {'name': 'Red', 'image': Appassets.red},
+    {'name': 'Violet', 'image': Appassets.violet},
+    {'name': 'White', 'image': Appassets.white},
+    {'name': 'Yellow', 'image': Appassets.yellow},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +50,7 @@ class ColoursScreen extends StatelessWidget {
             child: Container(
               height: 20.h,
               width: 20.w,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white,
               ),
@@ -51,6 +63,7 @@ class ColoursScreen extends StatelessWidget {
           ),
         ),
         backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
         title: Text(
@@ -66,26 +79,8 @@ class ColoursScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // 20.h.verticalSpace,
-          Expanded(
-            child: PageView.builder(
-              controller: _controller,
-              itemCount: colorImages.length,
-              itemBuilder: (context, index) {
-                return CustomCart(path: colorImages[index]);
-              },
-            ),
-          ),
-          20.h.verticalSpace,
-          SmoothPageIndicator(
-            controller: _controller,
-            count: colorImages.length,
-            effect: WormEffect(
-              dotHeight: 10.h,
-              dotWidth: 10.w,
-              activeDotColor: kprimaryColor,
-              dotColor: Colors.grey,
-            ),
-          ),
+          SizedBox(
+              height: Get.height * .80, child: ProductGrid(products: products)),
         ],
       ).paddingOnly(left: 20.w, right: 20.w, top: 20.h, bottom: 50.h),
     );

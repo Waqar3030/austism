@@ -168,7 +168,7 @@ class _AustismDetailState extends State<AustismDetail> {
           child: Container(
             height: 20.h,
             width: 20.w,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.white,
             ),

@@ -1,6 +1,6 @@
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/colors.dart';
-import 'package:austism/widgets/appBar.dart';
+import 'package:austism/components/appBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -52,7 +52,7 @@ class _ChildProfileState extends State<ChildProfile> {
             children: [
               CircleAvatar(
                 radius: 80.r,
-                backgroundImage: AssetImage(
+                backgroundImage: const AssetImage(
                   Appassets.parentPic,
                 ),
               )

@@ -1,9 +1,8 @@
+import 'package:austism/components/button.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/Auth/create_new_password.dart';
-import 'package:austism/widgets/button.dart';
-// import 'package:autistic/Helper/Colors.dart';
-// import 'package:autistic/Widget/button.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -57,7 +56,7 @@ class _OTPScreenState extends State<OTPScreen> {
           elevation: 0,
         ),
         body: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             width: double.infinity,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 64.w),
@@ -109,10 +108,14 @@ class _OTPScreenState extends State<OTPScreen> {
                     obscureText: true,
                     style: TextStyle(fontSize: 29.sp, color: Colors.white),
                     onChanged: (pin) {
-                      print("Changed: " + pin);
+                      if (kDebugMode) {
+                        print("Changed: " + pin);
+                      }
                     },
                     onCompleted: (pin) {
-                      print("Completed: " + pin);
+                      if (kDebugMode) {
+                        print("Completed: " + pin);
+                      }
                     },
                   ),
                   SizedBox(

@@ -1,10 +1,9 @@
 import 'dart:io';
 
+import 'package:austism/components/button.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/Auth/navigator.dart';
-import 'package:austism/screens/Auth/profile/add_child.dart';
-import 'package:austism/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -34,7 +33,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: bprimaryColor,
       ),
       child: Scaffold(
@@ -66,7 +65,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
           elevation: 0,
         ),
         body: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             width: double.infinity,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -76,7 +75,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
                     height: 0.07.sh,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Stack(
                         alignment: Alignment.bottomRight,
@@ -85,7 +84,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
                           CircleAvatar(
                             radius: 100.r, // Adjust the size as needed
                             backgroundImage: _imageFile == null
-                                ? AssetImage(Appassets.parentPic)
+                                ? const AssetImage(Appassets.parentPic)
                                 : FileImage(File(_imageFile!.path))
                                     as ImageProvider,
                             backgroundColor: Colors.transparent,
@@ -100,7 +99,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
                               child: Container(
                                 height: 25,
                                 width: 25,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: Colors.white,
                                   shape: BoxShape.circle,
                                 ),
@@ -163,7 +162,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.to(() => NavigatorScreen());
+                      Get.to(() => const NavigatorScreen());
                     },
                     child: CustomButton(
                       textButton: "DONE",

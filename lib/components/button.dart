@@ -29,7 +29,7 @@ class CustomButton extends StatelessWidget {
       height: 50,
       decoration: BoxDecoration(
           color: buttonColor,
-          borderRadius: BorderRadius.all(Radius.circular(15.r)),
+          borderRadius: BorderRadius.all(Radius.circular(25.r)),
           border: isBorder
               ? Border.all(color: const Color(0xff9B59B6), width: 1)
               : null),
@@ -53,7 +53,7 @@ class CustomButton extends StatelessWidget {
                 textButton,
                 style: TextStyle(
                   color: textColor,
-                  fontSize: 16,
+                  fontSize: 26.sp,
                   fontWeight: FontWeight.w700,
                 ),
               ),

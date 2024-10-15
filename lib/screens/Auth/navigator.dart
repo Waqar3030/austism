@@ -37,7 +37,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
             Container(
               decoration: BoxDecoration(
                 color: isSelected
-                    ? Color.fromARGB(33, 255, 255, 255)
+                    ? const Color.fromARGB(33, 255, 255, 255)
                     : Colors.transparent,
                 shape: BoxShape.circle,
               ),

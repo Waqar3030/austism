@@ -1,9 +1,9 @@
+import 'package:austism/components/button.dart';
+import 'package:austism/components/textfield.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/auth/login.dart';
 import 'package:austism/screens/auth/otp.dart';
-import 'package:austism/widgets/button.dart';
-import 'package:austism/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -54,7 +54,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
           elevation: 0,
         ),
         body: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             width: double.infinity,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 64.w),
@@ -100,7 +100,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.to(() => OTPScreen());
+                      Get.to(() => const OTPScreen());
                     },
                     child: CustomButton(
                       textButton: "CONTINUE",

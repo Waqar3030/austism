@@ -19,20 +19,20 @@ class _SplashScreen extends State<SplashScreen> {
   void initState() {
     super.initState();
     print('run');
-    Timer(Duration(seconds: 3), () => Get.to(() => LoginScreen()));
+    Timer(Duration(seconds: 3), () => Get.to(() => const LoginScreen()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(Appassets.splash),
           fit: BoxFit.cover,
         ),
       ),
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(Appassets.austismLogo),
             scale: 1,

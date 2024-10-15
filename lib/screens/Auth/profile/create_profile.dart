@@ -1,14 +1,10 @@
-import 'dart:io';
-
+import 'package:austism/components/button.dart';
+import 'package:austism/controller/create_profile_controller.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/colors.dart';
-import 'package:austism/screens/Auth/profile/add_child.dart';
-import 'package:austism/screens/auth/login.dart';
-import 'package:austism/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 
 class SetProfileScreen extends StatefulWidget {
   const SetProfileScreen({super.key});
@@ -18,23 +14,17 @@ class SetProfileScreen extends StatefulWidget {
 }
 
 class _SetProfileScreenState extends State<SetProfileScreen> {
-  final ImagePicker _picker = ImagePicker();
-  XFile? _imageFile;
-
-  Future<void> _pickImage(ImageSource source) async {
-    final XFile? selectedImage = await _picker.pickImage(source: source);
-    if (selectedImage != null) {
-      setState(() {
-        _imageFile = selectedImage;
-      });
-    }
-  }
+  final userController = Get.put(UserController());
+  TextEditingController nameController = TextEditingController();
+  TextEditingController locController = TextEditingController();
+  TextEditingController contactController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: bprimaryColor,
       ),
       child: Scaffold(
@@ -66,116 +56,116 @@ class _SetProfileScreenState extends State<SetProfileScreen> {
           elevation: 0,
         ),
         body: SingleChildScrollView(
-          child: Container(
-            width: double.infinity,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 0.07.sh,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Stack(
-                        alignment: Alignment.bottomRight,
-                        clipBehavior: Clip.none,
-                        children: [
-                          CircleAvatar(
-                            radius: 100.r, // Adjust the size as needed
-                            backgroundImage: _imageFile == null
-                                ? AssetImage(Appassets.parentPic)
-                                : FileImage(File(_imageFile!.path))
-                                    as ImageProvider,
-                            backgroundColor: Colors.transparent,
-                          ),
-                          Positioned(
-                            // top: 15,
-                            // left: 33,
-                            child: GestureDetector(
-                              onTap: () {
-                                _showImageSourceActionSheet(context);
-                              },
-                              child: Container(
-                                height: 25,
-                                width: 25,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Image.asset(
-                                  Appassets.camera,
-                                  scale: 1.3,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Column(
+              children: [
+                SizedBox(height: 0.07.sh),
+                GetBuilder(
+                  init: userController,
+                  builder: (controller) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Stack(
+                          alignment: Alignment.bottomRight,
+                          clipBehavior: Clip.none,
+                          children: [
+                            CircleAvatar(
+                              radius: 100.r, // Adjust the size as needed
+                              backgroundImage: controller.selectedImage == null
+                                  ? const AssetImage(Appassets.parentPic)
+                                  : FileImage(controller.selectedImage!)
+                                      as ImageProvider,
+                              backgroundColor: Colors.transparent,
+                            ),
+                            Positioned(
+                              child: GestureDetector(
+                                onTap: () {
+                                  _showImageSourceActionSheet(
+                                      context, controller);
+                                },
+                                child: Container(
+                                  height: 25,
+                                  width: 25,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.asset(
+                                    Appassets.camera,
+                                    scale: 1.3,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 0.03.sh,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Set Profile",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 28.sp,
-                          fontWeight: FontWeight.w600,
+                          ],
                         ),
+                      ],
+                    );
+                  },
+                ),
+                SizedBox(height: 0.03.sh),
+                Row(
+                  children: [
+                    Text(
+                      "Set Profile",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 28.sp,
+                        fontWeight: FontWeight.w600,
                       ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Fill out the Details",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 22.sp,
-                          fontWeight: FontWeight.w200,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 0.05.sh,
-                  ),
-                  txtfield("Full Name", 1.sw),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  txtfield("Location", 1.sw),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  txtfield("Contact Info", 1.sw),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  txtfield("Email", 1.sw),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(() => AddChildScreen());
-                    },
-                    child: CustomButton(
-                      textButton: "CONTINUE",
-                      textColor: Colors.white,
-                      widthh: 1.sw,
-                      isIcon: false,
-                      isBorder: false,
-                      buttonColor: kprimaryColor,
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Fill out the Details",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 22.sp,
+                        fontWeight: FontWeight.w200,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 0.05.sh),
+                txtfield("Full Name", 1.sw, nameController),
+                SizedBox(height: 5.h),
+                txtfield("Location", 1.sw, locController),
+                SizedBox(height: 5.h),
+                txtfield("Contact Info", 1.sw, contactController),
+                SizedBox(height: 5.h),
+                txtfield("Email", 1.sw, emailController),
+                SizedBox(height: 50.h),
+                GetBuilder(
+                  init: userController,
+                  builder: (controller) {
+                    return controller.isloading
+                        ? const Center(child: CircularProgressIndicator())
+                        : GestureDetector(
+                            onTap: () async {
+                              userController.createUser(
+                                nameController.text,
+                                locController.text,
+                                contactController.text,
+                                emailController.text,
+                                userController.image ?? "",
+                              );
+                            },
+                            child: CustomButton(
+                              textButton: "CONTINUE",
+                              textColor: Colors.white,
+                              widthh: 1.sw,
+                              isIcon: false,
+                              isBorder: false,
+                              buttonColor: kprimaryColor,
+                            ),
+                          );
+                  },
+                ),
+              ],
             ),
           ),
         ),
@@ -183,7 +173,8 @@ class _SetProfileScreenState extends State<SetProfileScreen> {
     );
   }
 
-  void _showImageSourceActionSheet(BuildContext context) {
+  void _showImageSourceActionSheet(
+      BuildContext context, UserController controller) {
     showModalBottomSheet(
       context: context,
       builder: (context) => SafeArea(
@@ -194,7 +185,7 @@ class _SetProfileScreenState extends State<SetProfileScreen> {
               title: const Text('Camera'),
               onTap: () {
                 Navigator.of(context).pop();
-                _pickImage(ImageSource.camera);
+                controller.pickAndUploadImage();
               },
             ),
             ListTile(
@@ -202,7 +193,7 @@ class _SetProfileScreenState extends State<SetProfileScreen> {
               title: const Text('Gallery'),
               onTap: () {
                 Navigator.of(context).pop();
-                _pickImage(ImageSource.gallery);
+                controller.pickAndUploadImage();
               },
             ),
           ],
@@ -211,14 +202,12 @@ class _SetProfileScreenState extends State<SetProfileScreen> {
     );
   }
 
-  Widget txtfield(String txt, double width) {
+  Widget txtfield(String txt, double width, TextEditingController controller) {
     return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: 20.w,
-      ),
-      // height: 50.h,
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
       width: width,
       child: TextFormField(
+        controller: controller,
         style: const TextStyle(color: Colors.black),
         cursorColor: Colors.white,
         decoration: InputDecoration(
@@ -231,18 +220,17 @@ class _SetProfileScreenState extends State<SetProfileScreen> {
             fontWeight: FontWeight.w200,
           ),
           border: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.white, width: 1),
-              borderRadius: BorderRadius.circular(10.r)),
+            borderSide: const BorderSide(color: Colors.white, width: 1),
+            borderRadius: BorderRadius.circular(15.r),
+          ),
           enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: Colors.white,
-              ),
-              borderRadius: BorderRadius.circular(10.r)),
+            borderSide: const BorderSide(color: Colors.white),
+            borderRadius: BorderRadius.circular(15.r),
+          ),
           focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: Colors.white,
-              ),
-              borderRadius: BorderRadius.circular(10.r)),
+            borderSide: const BorderSide(color: Colors.white),
+            borderRadius: BorderRadius.circular(15.r),
+          ),
         ),
       ),
     );

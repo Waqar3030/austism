@@ -34,6 +34,8 @@ dependencies:
   firebase_auth: ^4.16.0
   cloud_firestore: ^4.8.0
   fluttertoast: ^8.2.8
+  
+  # flutter_tts: ^4.0.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -54,6 +56,8 @@ dependencies:
   dottedcarasoulslider: ^0.0.6
   smooth_page_indicator: ^1.2.0+3
   image_picker: ^1.1.2
+  flutter_tts: ^4.0.2
+  firebase_storage: ^11.6.5
 
 dev_dependencies:
   flutter_test:

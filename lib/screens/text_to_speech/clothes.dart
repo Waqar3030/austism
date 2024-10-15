@@ -1,6 +1,7 @@
+import 'package:austism/components/custom_cart.dart';
+import 'package:austism/components/speech.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/colors.dart';
-import 'package:austism/widgets/custom_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -21,8 +22,20 @@ class ClothesScreen extends StatelessWidget {
     Appassets.underwear,
     Appassets.backpack,
   ];
+  List<Map<String, String>> products = [
+    {'name': 'Cap', 'image': Appassets.cap},
+    {'name': 'Gloves', 'image': Appassets.gloves},
+    {'name': 'Hat', 'image': Appassets.hat},
+    {'name': 'Jacket', 'image': Appassets.jacket},
+    {'name': 'Scarf', 'image': Appassets.scarf},
+    {'name': 'Shirt', 'image': Appassets.shirt},
+    {'name': 'Socks', 'image': Appassets.socks},
+    {'name': 'T-Shirt', 'image': Appassets.t_shirt},
+    {'name': 'Underwear', 'image': Appassets.underwear},
+    {'name': 'Backpack', 'image': Appassets.backpack},
+  ];
 
-  final PageController _controller = PageController();
+  // final PageController _controller = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -65,26 +78,29 @@ class ClothesScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // 20.h.verticalSpace,
-          Expanded(
-            child: PageView.builder(
-              controller: _controller,
-              itemCount: clothesImages.length,
-              itemBuilder: (context, index) {
-                return CustomCart(path: clothesImages[index]);
-              },
-            ),
-          ),
-          20.h.verticalSpace,
-          SmoothPageIndicator(
-            controller: _controller,
-            count: clothesImages.length,
-            effect: WormEffect(
-              dotHeight: 10.h,
-              dotWidth: 10.w,
-              activeDotColor: kprimaryColor,
-              dotColor: Colors.grey,
-            ),
-          ),
+          30.h.verticalSpace,
+          SizedBox(
+              height: Get.height * .85, child: ProductGrid(products: products)),
+          // Expanded(
+          //   child: PageView.builder(
+          //     controller: _controller,
+          //     itemCount: clothesImages.length,
+          //     itemBuilder: (context, index) {
+          //       return CustomCart(path: clothesImages[index]);
+          //     },
+          //   ),
+          // ),
+          // 20.h.verticalSpace,
+          // SmoothPageIndicator(
+          //   controller: _controller,
+          //   count: clothesImages.length,
+          //   effect: WormEffect(
+          //     dotHeight: 10.h,
+          //     dotWidth: 10.w,
+          //     activeDotColor: kprimaryColor,
+          //     dotColor: Colors.grey,
+          //   ),
+          // ),
         ],
       ).paddingOnly(left: 20.w, right: 20.w, top: 20.h, bottom: 50.h),
     );

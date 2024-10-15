@@ -1,6 +1,7 @@
+import 'package:austism/components/custom_cart.dart';
+import 'package:austism/components/speech.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/colors.dart';
-import 'package:austism/widgets/custom_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -20,8 +21,19 @@ class SportsScreen extends StatelessWidget {
     Appassets.cycling,
     Appassets.driving,
   ];
+  List<Map<String, String>> products = [
+    {'name': 'Cricket', 'image': Appassets.cricket},
+    {'name': 'Basketball', 'image': Appassets.basketball},
+    {'name': 'Baseball', 'image': Appassets.baseball},
+    {'name': 'Boxing', 'image': Appassets.boxing},
+    {'name': 'Swimming', 'image': Appassets.swimming},
+    {'name': 'Tennis', 'image': Appassets.tennis},
+    {'name': 'Volleyball', 'image': Appassets.volleyball},
+    {'name': 'Cycling', 'image': Appassets.cycling},
+    {'name': 'Driving', 'image': Appassets.driving},
+  ];
 
-  final PageController _controller = PageController();
+  // final PageController _controller = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +48,7 @@ class SportsScreen extends StatelessWidget {
             child: Container(
               height: 20.h,
               width: 20.w,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white,
               ),
@@ -64,26 +76,29 @@ class SportsScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // 20.h.verticalSpace,
-          Expanded(
-            child: PageView.builder(
-              controller: _controller,
-              itemCount: sportImages.length,
-              itemBuilder: (context, index) {
-                return CustomCart(path: sportImages[index]);
-              },
-            ),
-          ),
-          20.h.verticalSpace,
-          SmoothPageIndicator(
-            controller: _controller,
-            count: sportImages.length,
-            effect: WormEffect(
-              dotHeight: 10.h,
-              dotWidth: 10.w,
-              activeDotColor: kprimaryColor,
-              dotColor: Colors.grey,
-            ),
-          ),
+          30.h.verticalSpace,
+          SizedBox(
+              height: Get.height * .85, child: ProductGrid(products: products)),
+          // Expanded(
+          //   child: PageView.builder(
+          //     controller: _controller,
+          //     itemCount: sportImages.length,
+          //     itemBuilder: (context, index) {
+          //       return CustomCart(path: sportImages[index]);
+          //     },
+          //   ),
+          // ),
+          // 20.h.verticalSpace,
+          // SmoothPageIndicator(
+          //   controller: _controller,
+          //   count: sportImages.length,
+          //   effect: WormEffect(
+          //     dotHeight: 10.h,
+          //     dotWidth: 10.w,
+          //     activeDotColor: kprimaryColor,
+          //     dotColor: Colors.grey,
+          //   ),
+          // ),
         ],
       ).paddingOnly(left: 20.w, right: 20.w, top: 20.h, bottom: 50.h),
     );

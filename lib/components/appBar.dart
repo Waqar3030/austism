@@ -1,10 +1,8 @@
-import 'package:austism/resources/appAssets.dart';
+import 'package:austism/components/drawer.dart';
 import 'package:austism/resources/colors.dart';
-import 'package:austism/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class CustomAppbar extends StatelessWidget {
   final String text;
@@ -18,14 +16,14 @@ class CustomAppbar extends StatelessWidget {
       automaticallyImplyLeading: false,
       leading: GestureDetector(
         onTap: () {
-          Get.to(() => DrawerScreen());
+          Get.to(() => const DrawerScreen());
         },
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Container(
             height: 20.h,
             width: 20.w,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.white,
             ),

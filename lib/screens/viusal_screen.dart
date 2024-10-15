@@ -1,6 +1,6 @@
 import 'package:austism/resources/colors.dart';
-import 'package:austism/widgets/appBar.dart';
-import 'package:austism/widgets/button.dart';
+import 'package:austism/components/appBar.dart';
+import 'package:austism/components/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

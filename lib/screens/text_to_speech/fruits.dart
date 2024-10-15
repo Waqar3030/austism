@@ -1,10 +1,9 @@
+import 'package:austism/components/speech.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/colors.dart';
-import 'package:austism/widgets/custom_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class FruitsScreen extends StatelessWidget {
   FruitsScreen({super.key});
@@ -17,8 +16,15 @@ class FruitsScreen extends StatelessWidget {
     Appassets.strawberry,
     Appassets.orangef,
   ];
+  List<Map<String, String>> products = [
+    {'name': 'Apple', 'image': Appassets.apple},
+    {'name': 'Banana', 'image': Appassets.banana},
+    {'name': 'Pineapple', 'image': Appassets.pineapple},
+    {'name': 'Strawberry', 'image': Appassets.strawberry},
+    {'name': 'Orange', 'image': Appassets.orangef},
+  ];
 
-  final PageController _controller = PageController();
+  // final PageController _controller = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -61,26 +67,29 @@ class FruitsScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // 20.h.verticalSpace,
-          Expanded(
-            child: PageView.builder(
-              controller: _controller,
-              itemCount: fruitImages.length,
-              itemBuilder: (context, index) {
-                return CustomCart(path: fruitImages[index]);
-              },
-            ),
-          ),
-          20.h.verticalSpace,
-          SmoothPageIndicator(
-            controller: _controller,
-            count: fruitImages.length,
-            effect: WormEffect(
-              dotHeight: 10.h,
-              dotWidth: 10.w,
-              activeDotColor: kprimaryColor,
-              dotColor: Colors.grey,
-            ),
-          ),
+          30.h.verticalSpace,
+          SizedBox(
+              height: Get.height * .85, child: ProductGrid(products: products)),
+          // Expanded(
+          //   child: PageView.builder(
+          //     controller: _controller,
+          //     itemCount: fruitImages.length,
+          //     itemBuilder: (context, index) {
+          //       return CustomCart(path: fruitImages[index]);
+          //     },
+          //   ),
+          // ),
+          // 20.h.verticalSpace,
+          // SmoothPageIndicator(
+          //   controller: _controller,
+          //   count: fruitImages.length,
+          //   effect: WormEffect(
+          //     dotHeight: 10.h,
+          //     dotWidth: 10.w,
+          //     activeDotColor: kprimaryColor,
+          //     dotColor: Colors.grey,
+          //   ),
+          // ),
         ],
       ).paddingOnly(left: 20.w, right: 20.w, top: 20.h, bottom: 50.h),
     );
