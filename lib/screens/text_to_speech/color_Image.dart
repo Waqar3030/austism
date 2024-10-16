@@ -9,18 +9,6 @@ import 'package:get/get.dart';
 class ColoursScreen extends StatelessWidget {
   ColoursScreen({super.key});
 
-  final List<String> colorImages = [
-    Appassets.black,
-    Appassets.brown,
-    Appassets.green,
-    // Appassets.orange1,
-    Appassets.pink,
-    Appassets.purple,
-    Appassets.red,
-    Appassets.violet,
-    Appassets.white,
-    Appassets.yellow,
-  ];
   List<Map<String, String>> products = [
     {
       'name': 'Black',
@@ -40,49 +28,27 @@ class ColoursScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {
-            Get.back();
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Container(
-              height: 20.h,
-              width: 20.w,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
-              ),
-              child: Image.asset(
-                Appassets.arrowback,
-                scale: 1.5,
-                color: kprimaryColor,
-              ),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          elevation: 0,
+          centerTitle: true,
+          title: Text(
+            "Colours",
+            style: TextStyle(
+              color: kprimaryColor,
+              fontWeight: FontWeight.w800,
+              fontSize: 35.sp,
             ),
           ),
         ),
-        backgroundColor: Colors.transparent,
-        surfaceTintColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          "Colours",
-          style: TextStyle(
-            color: kprimaryColor,
-            fontWeight: FontWeight.w800,
-            fontSize: 35.sp,
-          ),
-        ),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // 20.h.verticalSpace,
-          SizedBox(
-              height: Get.height * .80, child: ProductGrid(products: products)),
-        ],
-      ).paddingOnly(left: 20.w, right: 20.w, top: 20.h, bottom: 50.h),
-    );
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+                height: Get.height * .80,
+                child: ProductGrid(products: products)),
+          ],
+        ).paddingSymmetric(horizontal: 20.w));
   }
 }

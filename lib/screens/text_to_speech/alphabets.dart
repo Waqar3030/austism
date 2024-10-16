@@ -40,29 +40,7 @@ class EnglishAlphabets extends StatelessWidget {
     ];
     return Scaffold(
       appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {
-            Get.back();
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Container(
-              height: 20.h,
-              width: 20.w,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
-              ),
-              child: Image.asset(
-                Appassets.arrowback,
-                scale: 1.5,
-                color: kprimaryColor,
-              ),
-            ),
-          ),
-        ),
         backgroundColor: Colors.transparent,
-        elevation: 0,
         centerTitle: true,
         title: Text(
           "Alphabets",
@@ -81,7 +59,7 @@ class EnglishAlphabets extends StatelessWidget {
                 height: Get.height * .85,
                 child: ProductGrid(products: products)),
           ],
-        ).paddingSymmetric(horizontal: 10.w),
+        ).paddingSymmetric(horizontal: 20.w),
       ),
     );
   }

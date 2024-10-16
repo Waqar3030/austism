@@ -27,6 +27,7 @@ class AuthTextField extends StatelessWidget {
     return Container(
       height: 50,
       child: TextFormField(
+        onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
         style: TextStyle(color: hintColor),
         cursorColor: Colors.white,
         obscureText: isPassword,

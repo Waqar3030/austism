@@ -17,6 +17,10 @@ class AddChildScreen extends StatefulWidget {
 }
 
 class _AddChildScreenState extends State<AddChildScreen> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController dobController = TextEditingController();
+  TextEditingController guardianContactController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   final ImagePicker _picker = ImagePicker();
   XFile? _imageFile;
 
@@ -144,19 +148,20 @@ class _AddChildScreenState extends State<AddChildScreen> {
                   SizedBox(
                     height: 0.05.sh,
                   ),
-                  txtfield("Full Name", 1.sw),
+                  txtfield("Full Name", 1.sw, nameController),
                   SizedBox(
                     height: 5.h,
                   ),
-                  txtfield("Date of Birth", 1.sw),
+                  txtfield("Date of Birth", 1.sw, dobController),
                   SizedBox(
                     height: 5.h,
                   ),
-                  txtfield("Guardian Phone Number", 1.sw),
+                  txtfield(
+                      "Guardian Phone Number", 1.sw, guardianContactController),
                   SizedBox(
                     height: 5.h,
                   ),
-                  txtfield("Email", 1.sw),
+                  txtfield("Email", 1.sw, emailController),
                   SizedBox(
                     height: 10.h,
                   ),
@@ -210,7 +215,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
     );
   }
 
-  Widget txtfield(String txt, double width) {
+  Widget txtfield(String txt, double width, TextEditingController controller) {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 20.w,
@@ -218,6 +223,8 @@ class _AddChildScreenState extends State<AddChildScreen> {
       // height: 50.h,
       width: width,
       child: TextFormField(
+        onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
+        controller: controller,
         style: const TextStyle(color: Colors.black),
         cursorColor: Colors.white,
         decoration: InputDecoration(

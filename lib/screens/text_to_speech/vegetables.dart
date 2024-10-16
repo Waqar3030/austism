@@ -32,29 +32,7 @@ class VegetablesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {
-            Get.back();
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Container(
-              height: 20.h,
-              width: 20.w,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
-              ),
-              child: Image.asset(
-                Appassets.arrowback,
-                scale: 1.5,
-                color: kprimaryColor,
-              ),
-            ),
-          ),
-        ),
         backgroundColor: Colors.transparent,
-        elevation: 0,
         centerTitle: true,
         title: Text(
           "Vegetables",
@@ -68,32 +46,11 @@ class VegetablesScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // 20.h.verticalSpace,
           30.h.verticalSpace,
           SizedBox(
               height: Get.height * .85, child: ProductGrid(products: products)),
-          // Expanded(
-          //   child: PageView.builder(
-          //     controller: _controller,
-          //     itemCount: vegImages.length,
-          //     itemBuilder: (context, index) {
-          //       return CustomCart(path: vegImages[index]);
-          //     },
-          //   ),
-          // ),
-          // 20.h.verticalSpace,
-          // SmoothPageIndicator(
-          //   controller: _controller,
-          //   count: vegImages.length,
-          //   effect: WormEffect(
-          //     dotHeight: 10.h,
-          //     dotWidth: 10.w,
-          //     activeDotColor: kprimaryColor,
-          //     dotColor: Colors.grey,
-          //   ),
-          // ),
         ],
-      ).paddingOnly(left: 20.w, right: 20.w, top: 20.h, bottom: 50.h),
+      ).paddingSymmetric(horizontal: 20.w),
     );
   }
 }

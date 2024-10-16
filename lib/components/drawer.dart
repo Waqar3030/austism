@@ -18,123 +18,120 @@ class _DrawerScreenState extends State<DrawerScreen> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: SingleChildScrollView(
-        child: Container(
-          decoration: const BoxDecoration(
-            color: bprimaryColor,
-          ),
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 48.h,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.back();
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              // Get.toNamed('/MainScreen');
-                            },
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              width: 108.w,
-                              height: 108.h,
-                              child: Image.asset(
-                                Appassets.parentPic,
-                                scale: 1.5,
-                              ),
-                            ),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
+        decoration: const BoxDecoration(
+          color: bprimaryColor,
+        ),
+        // width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            80.h.verticalSpace,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      Appassets.parentPic,
+                      scale: 2.5,
+                    ),
+                    20.w.horizontalSpace,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Adeel Akram",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 20.sp,
                           ),
-                          10.h.verticalSpace,
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              30.h.verticalSpace,
-                              Text(
-                                "Adeel Akram",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 26.sp,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 6.h,
-                              ),
-                              Text(
-                                "mark@example.com",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 17.sp,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 36.h,
-                              ),
-                            ],
+                        ),
+                        5.h.verticalSpace,
+                        Text(
+                          "mark@example.com",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15.sp,
                           ),
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            Appassets.cross_black,
-                            scale: 3.8,
-                            color: kprimaryColor,
-                          ),
-                          const SizedBox(
-                            width: 0,
-                            height: 40,
-                          )
-                        ],
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Image.asset(
+                    Appassets.cross_black,
+                    scale: 3.8,
+                    color: kprimaryColor,
                   ),
                 ),
-              ),
-              40.h.verticalSpace,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(() => const NavigatorScreen());
-                    },
-                    child: button("Home"),
-                  ),
-                  15.h.verticalSpace,
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(() => const DietPlan());
-                    },
-                    child: button("Diet Plan"),
-                  ),
-                  15.h.verticalSpace,
-                  button("Setting"),
-                  70.h.verticalSpace,
-                  GestureDetector(
+              ],
+            ).paddingOnly(left: 40.w, right: 30.w),
+            40.h.verticalSpace,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => const NavigatorScreen());
+                  },
+                  child: button("Home"),
+                ),
+                15.h.verticalSpace,
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => const DietPlan());
+                  },
+                  child: button("Diet Plan"),
+                ),
+                15.h.verticalSpace,
+                button("Setting"),
+                80.h.verticalSpace,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    GestureDetector(
                       onTap: () {
                         CustomDialogbox.logout(context);
                       },
-                      child: button("Logout")),
-                ],
-              )
-            ],
-          ),
+                      child: Container(
+                        height: 63.h,
+                        width: 0.5.sw,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: kprimaryColor),
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(30.r),
+                            bottomRight: Radius.circular(30.r),
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Logout",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20.sp,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );
@@ -145,7 +142,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
       children: [
         Container(
           height: 63.h,
-          width: 0.9.sw,
+          width: 0.7.sw,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(

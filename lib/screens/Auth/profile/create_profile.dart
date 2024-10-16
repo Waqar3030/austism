@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class SetProfileScreen extends StatefulWidget {
-  const SetProfileScreen({super.key});
+class CreateProfileScreen extends StatefulWidget {
+  const CreateProfileScreen({super.key});
 
   @override
-  State<SetProfileScreen> createState() => _SetProfileScreenState();
+  State<CreateProfileScreen> createState() => _CreateProfileScreenState();
 }
 
-class _SetProfileScreenState extends State<SetProfileScreen> {
+class _CreateProfileScreenState extends State<CreateProfileScreen> {
   final userController = Get.put(UserController());
   TextEditingController nameController = TextEditingController();
   TextEditingController locController = TextEditingController();
@@ -207,6 +207,7 @@ class _SetProfileScreenState extends State<SetProfileScreen> {
       padding: EdgeInsets.symmetric(horizontal: 20.w),
       width: width,
       child: TextFormField(
+        onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
         controller: controller,
         style: const TextStyle(color: Colors.black),
         cursorColor: Colors.white,

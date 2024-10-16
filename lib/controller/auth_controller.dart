@@ -31,7 +31,7 @@ class AuthController extends GetxController {
       Fluttertoast.showToast(
         msg: "Email and Password cannot be empty",
         toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
+        gravity: ToastGravity.TOP,
         backgroundColor: Colors.red,
         textColor: Colors.white,
         fontSize: 16.0,
@@ -57,7 +57,7 @@ class AuthController extends GetxController {
         msg:
             "A verification email has been sent to your email address. Please verify before logging in.",
         toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
+        gravity: ToastGravity.TOP,
         backgroundColor: Colors.green,
         textColor: Colors.white,
         fontSize: 16.0,
@@ -70,7 +70,7 @@ class AuthController extends GetxController {
       Fluttertoast.showToast(
         msg: "Registration failed. Please try again.",
         toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
+        gravity: ToastGravity.TOP,
         backgroundColor: Colors.red,
         textColor: Colors.white,
         fontSize: 16.0,
@@ -86,17 +86,17 @@ class AuthController extends GetxController {
         Fluttertoast.showToast(
           msg: "Email verified successfully. You can now log in.",
           toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
+          gravity: ToastGravity.TOP,
           backgroundColor: Colors.green,
           textColor: Colors.white,
           fontSize: 16.0,
         );
-        Get.to(() => const SetProfileScreen());
+        Get.to(() => const CreateProfileScreen());
       } else {
         Fluttertoast.showToast(
           msg: "Please verify your email before logging in.",
           toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
+          gravity: ToastGravity.TOP,
           backgroundColor: Colors.red,
           textColor: Colors.white,
           fontSize: 16.0,
@@ -107,7 +107,7 @@ class AuthController extends GetxController {
       Fluttertoast.showToast(
         msg: "Email verification check failed. Please try again.",
         toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
+        gravity: ToastGravity.TOP,
         backgroundColor: Colors.red,
         textColor: Colors.white,
         fontSize: 16.0,
@@ -121,7 +121,7 @@ class AuthController extends GetxController {
       Fluttertoast.showToast(
         msg: "Email or Password cannot be empty",
         toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
+        gravity: ToastGravity.TOP,
         backgroundColor: Colors.red,
         textColor: Colors.white,
         fontSize: 16.0,
@@ -144,7 +144,7 @@ class AuthController extends GetxController {
         Fluttertoast.showToast(
           msg: "Please verify your email before logging in.",
           toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
+          gravity: ToastGravity.TOP,
           backgroundColor: Colors.red,
           textColor: Colors.white,
           fontSize: 16.0,
@@ -155,7 +155,7 @@ class AuthController extends GetxController {
       Fluttertoast.showToast(
         msg: "Login failed. Please check your credentials.",
         toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
+        gravity: ToastGravity.TOP,
         backgroundColor: Colors.red,
         textColor: Colors.white,
         fontSize: 16.0,
