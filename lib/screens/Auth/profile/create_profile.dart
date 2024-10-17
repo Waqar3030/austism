@@ -109,7 +109,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 Row(
                   children: [
                     Text(
-                      "Set Profile",
+                      "Set Parent Profile",
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 28.sp,
