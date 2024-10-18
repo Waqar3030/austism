@@ -1,10 +1,15 @@
+import 'dart:io';
+
 import 'package:austism/components/button.dart';
 import 'package:austism/controller/create_profile_controller.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/colors.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CreateProfileScreen extends StatefulWidget {
   const CreateProfileScreen({super.key});
@@ -19,6 +24,31 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
   TextEditingController locController = TextEditingController();
   TextEditingController contactController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+
+  // String? imageUrl;
+  // final ImagePicker _imagePicker = ImagePicker();
+
+  // pickImage() async {
+  //   XFile? res = await _imagePicker.pickImage(source: ImageSource.gallery);
+  //   if (res != null) {
+  //     uploadToFirebase(File(res.path));
+  //   }
+  // }
+
+  // uploadToFirebase(image) async {
+  //   try {
+  //     Reference sr = FirebaseStorage.instance
+  //         .ref()
+  //         .child("Images/${DateTime.now().microsecondsSinceEpoch}.png");
+  //     await sr.putFile(image).whenComplete(
+  //         () => {Fluttertoast.showToast(msg: "Image uploaded to Firebase")});
+
+  //     imageUrl = await sr.getDownloadURL();
+  //     setState(() {});
+  //   } catch (e) {
+  //     print("Error occured $e");
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +102,9 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                           clipBehavior: Clip.none,
                           children: [
                             CircleAvatar(
-                              radius: 100.r, // Adjust the size as needed
+                              radius: 100.r,
+                              // backgroundImage: AssetImage(Appassets
+                              //     .parentPic), // Adjust the size as needed
                               backgroundImage: controller.selectedImage == null
                                   ? const AssetImage(Appassets.parentPic)
                                   : FileImage(controller.selectedImage!)
@@ -146,6 +178,9 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                         ? const Center(child: CircularProgressIndicator())
                         : GestureDetector(
                             onTap: () async {
+                              if (userController.selectedImage != null) {
+                                await userController.uploadImage();
+                              }
                               userController.createUser(
                                 nameController.text,
                                 locController.text,
@@ -194,6 +229,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               onTap: () {
                 Navigator.of(context).pop();
                 controller.pickAndUploadImage();
+                // pickImage();
               },
             ),
           ],

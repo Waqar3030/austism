@@ -9,6 +9,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 class UserController extends GetxController {
   String? image;
+  String? imageURL;
   bool isuploading = false;
   final authController = Get.put(AuthController());
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
