@@ -33,7 +33,7 @@ class ClothesScreen extends StatelessWidget {
         title: Text(
           "Clothes",
           style: TextStyle(
-            color: kprimaryColor,
+            color: greenColor,
             fontWeight: FontWeight.w800,
             fontSize: 30.sp,
           ),

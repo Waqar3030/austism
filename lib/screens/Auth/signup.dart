@@ -26,9 +26,11 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(Appassets.background),
+          image: AssetImage(
+            Appassets.background,
+          ),
           fit: BoxFit.fill,
         ),
       ),
@@ -72,8 +74,8 @@ class _SignupScreenState extends State<SignupScreen> {
                       SizedBox(height: 20.h),
                       Center(
                         child: Image.asset(
-                          Appassets.austismLogo,
-                          scale: 2,
+                          "assets/images/app_icon.png",
+                          scale: 3.8,
                         ),
                       ),
                       Text(

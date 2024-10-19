@@ -26,7 +26,7 @@ class FruitsScreen extends StatelessWidget {
         title: Text(
           "Fruits",
           style: TextStyle(
-            color: kprimaryColor,
+            color: greenColor,
             fontWeight: FontWeight.w800,
             fontSize: 35.sp,
           ),

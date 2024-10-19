@@ -45,7 +45,7 @@ class EnglishAlphabets extends StatelessWidget {
         title: Text(
           "Alphabets",
           style: TextStyle(
-            color: kprimaryColor,
+            color: greenColor,
             fontWeight: FontWeight.w800,
             fontSize: 35.sp,
           ),

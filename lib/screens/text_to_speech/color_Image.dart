@@ -36,7 +36,7 @@ class ColoursScreen extends StatelessWidget {
           title: Text(
             "Colours",
             style: TextStyle(
-              color: kprimaryColor,
+              color: greenColor,
               fontWeight: FontWeight.w800,
               fontSize: 35.sp,
             ),

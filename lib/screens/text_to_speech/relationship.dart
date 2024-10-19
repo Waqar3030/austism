@@ -45,7 +45,7 @@ class RelationshipScreen extends StatelessWidget {
         title: Text(
           "Relationship",
           style: TextStyle(
-            color: kprimaryColor,
+            color: greenColor,
             fontWeight: FontWeight.w800,
             fontSize: 35.sp,
           ),

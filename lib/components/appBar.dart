@@ -28,9 +28,9 @@ class CustomAppbar extends StatelessWidget {
               color: Colors.white,
             ),
             child: Image.asset(
-              "assets/images/Group 18.png",
-              scale: 1.5,
-              color: kprimaryColor,
+              "assets/images/Menu.png",
+              scale: 2.0,
+              // color: kprimaryColor,
             ),
           ),
         ),
@@ -44,7 +44,7 @@ class CustomAppbar extends StatelessWidget {
       title: Text(
         text,
         style: TextStyle(
-          color: kprimaryColor,
+          color: greenColor,
           fontWeight: FontWeight.w800,
           fontSize: 35.sp,
         ),

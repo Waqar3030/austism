@@ -28,7 +28,7 @@ class DairyScreen extends StatelessWidget {
         title: Text(
           "Dairy",
           style: TextStyle(
-            color: kprimaryColor,
+            color: greenColor,
             fontWeight: FontWeight.w800,
             fontSize: 35.sp,
           ),

@@ -82,10 +82,10 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                   ),
                 ],
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15.r),
-                  topRight: Radius.circular(15.r),
+                  topLeft: Radius.circular(25.r),
+                  topRight: Radius.circular(25.r),
                 ),
-                color: kprimaryColor,
+                color: greenColor,
               ),
             ),
           ),

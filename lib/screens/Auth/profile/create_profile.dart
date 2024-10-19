@@ -1,13 +1,10 @@
-import 'dart:io';
-
 import 'package:austism/components/button.dart';
 import 'package:austism/controller/create_profile_controller.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/colors.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:austism/screens/Auth/profile/add_child.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -20,35 +17,6 @@ class CreateProfileScreen extends StatefulWidget {
 
 class _CreateProfileScreenState extends State<CreateProfileScreen> {
   final userController = Get.put(UserController());
-  TextEditingController nameController = TextEditingController();
-  TextEditingController locController = TextEditingController();
-  TextEditingController contactController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-
-  // String? imageUrl;
-  // final ImagePicker _imagePicker = ImagePicker();
-
-  // pickImage() async {
-  //   XFile? res = await _imagePicker.pickImage(source: ImageSource.gallery);
-  //   if (res != null) {
-  //     uploadToFirebase(File(res.path));
-  //   }
-  // }
-
-  // uploadToFirebase(image) async {
-  //   try {
-  //     Reference sr = FirebaseStorage.instance
-  //         .ref()
-  //         .child("Images/${DateTime.now().microsecondsSinceEpoch}.png");
-  //     await sr.putFile(image).whenComplete(
-  //         () => {Fluttertoast.showToast(msg: "Image uploaded to Firebase")});
-
-  //     imageUrl = await sr.getDownloadURL();
-  //     setState(() {});
-  //   } catch (e) {
-  //     print("Error occured $e");
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -105,10 +73,10 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                               radius: 100.r,
                               // backgroundImage: AssetImage(Appassets
                               //     .parentPic), // Adjust the size as needed
-                              backgroundImage: controller.selectedImage == null
+                              backgroundImage: controller.selectedParentImage ==
+                                      null
                                   ? const AssetImage(Appassets.parentPic)
-                                  : FileImage(controller.selectedImage!)
-                                      as ImageProvider,
+                                  : FileImage(controller.selectedParentImage!),
                               backgroundColor: Colors.transparent,
                             ),
                             Positioned(
@@ -163,13 +131,14 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                   ],
                 ),
                 SizedBox(height: 0.05.sh),
-                txtfield("Full Name", 1.sw, nameController),
+                txtfield("Full Name", 1.sw, userController.nameController),
                 SizedBox(height: 5.h),
-                txtfield("Location", 1.sw, locController),
+                txtfield("Location", 1.sw, userController.parentlocController),
                 SizedBox(height: 5.h),
-                txtfield("Contact Info", 1.sw, contactController),
+                txtfield("Contact Info", 1.sw,
+                    userController.parentcontactController),
                 SizedBox(height: 5.h),
-                txtfield("Email", 1.sw, emailController),
+                txtfield("Email", 1.sw, userController.parentemailController),
                 SizedBox(height: 50.h),
                 GetBuilder(
                   init: userController,
@@ -178,16 +147,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                         ? const Center(child: CircularProgressIndicator())
                         : GestureDetector(
                             onTap: () async {
-                              if (userController.selectedImage != null) {
-                                await userController.uploadImage();
-                              }
-                              userController.createUser(
-                                nameController.text,
-                                locController.text,
-                                contactController.text,
-                                emailController.text,
-                                userController.image ?? "",
-                              );
+                              Get.to(() => const AddChildScreen());
                             },
                             child: CustomButton(
                               textButton: "CONTINUE",
@@ -220,7 +180,9 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               title: const Text('Camera'),
               onTap: () {
                 Navigator.of(context).pop();
-                controller.pickAndUploadImage();
+                controller.pickImage(
+                    selectedImage: controller.selectedParentImage,
+                    source: ImageSource.camera);
               },
             ),
             ListTile(
@@ -228,8 +190,9 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               title: const Text('Gallery'),
               onTap: () {
                 Navigator.of(context).pop();
-                controller.pickAndUploadImage();
-                // pickImage();
+                controller.pickImage(
+                    selectedImage: controller.selectedParentImage,
+                    source: ImageSource.gallery);
               },
             ),
           ],

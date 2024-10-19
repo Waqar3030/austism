@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class OTPScreen1 extends StatelessWidget {
-  OTPScreen1({super.key});
+class EmailVerificationScreen extends StatelessWidget {
+  EmailVerificationScreen({super.key});
 
   final AuthController authController = Get.put(AuthController());
 
@@ -58,8 +58,8 @@ class OTPScreen1 extends StatelessWidget {
                   SizedBox(height: 20.h),
                   Center(
                     child: Image.asset(
-                      Appassets.austismLogo,
-                      scale: 1,
+                      "assets/images/app_icon.png",
+                      scale: 3.8,
                     ),
                   ),
                   Text(

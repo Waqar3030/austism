@@ -64,8 +64,8 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                   ),
                   Center(
                     child: Image.asset(
-                      Appassets.austismLogo,
-                      scale: 1,
+                      "assets/images/app_icon.png",
+                      scale: 3.8,
                     ),
                   ),
                   Text(

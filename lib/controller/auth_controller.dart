@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'package:austism/screens/Auth/navigator.dart';
-import 'package:austism/screens/Auth/otp1.dart';
+import 'package:austism/screens/Auth/email_verification_screen.dart';
 import 'package:austism/screens/Auth/profile/create_profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +64,7 @@ class AuthController extends GetxController {
       );
 
       // Navigate to OTP screen (email verification screen in this case)
-      Get.to(() => OTPScreen1());
+      Get.to(() => EmailVerificationScreen());
     } catch (firebaseAuthException) {
       log("Registration failed: ${firebaseAuthException.toString()}");
       Fluttertoast.showToast(

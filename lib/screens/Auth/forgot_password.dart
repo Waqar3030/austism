@@ -65,8 +65,8 @@ class _ForgotScreenState extends State<ForgotScreen> {
                   ),
                   Center(
                     child: Image.asset(
-                      Appassets.austismLogo,
-                      scale: 1,
+                      "assets/images/app_icon.png",
+                      scale: 3.8,
                     ),
                   ),
                   Text(
