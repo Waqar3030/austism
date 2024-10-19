@@ -103,24 +103,45 @@ class UserController extends GetxController {
   }
 
   // Method to upload the selected image to Firebase Storage
-  Future uploadImage(
-      {required File? selectedImage, required String? imageurl}) async {
+  // Future uploadImage(
+  //     {required File? selectedImage, required String? imageurl}) async {
+  //   if (selectedImage != null) {
+  //     try {
+  //       final imagesRef =
+  //           FirebaseStorage.instance.ref('profileImages/${DateTime.now()}.png');
+  //       final uploadTask = imagesRef.putFile(selectedImage!);
+
+  //       final taskSnapshot = await uploadTask;
+
+  //       final imageURL = await taskSnapshot.ref.getDownloadURL();
+  //       return imageURL;
+  //       // imageurl = imageURL;
+  //       // update();
+  //     } catch (e) {
+  //       log('Error uploading image: ${e.toString()}');
+  //     }
+  //   } else {
+  //     log('No image selected');
+  //   }
+  // }
+
+  Future<String?> uploadImage(
+      {required File? selectedImage, String? imageurl}) async {
     if (selectedImage != null) {
       try {
         final imagesRef =
             FirebaseStorage.instance.ref('profileImages/${DateTime.now()}.png');
-        final uploadTask = imagesRef.putFile(selectedImage!);
-
+        final uploadTask = imagesRef.putFile(selectedImage);
         final taskSnapshot = await uploadTask;
-
         final imageURL = await taskSnapshot.ref.getDownloadURL();
-        imageurl = imageURL;
-        update();
+        return imageURL; // Return the uploaded image URL
       } catch (e) {
         log('Error uploading image: ${e.toString()}');
+        return null; // Return null on error
       }
     } else {
       log('No image selected');
+      return null; // Return null if no image is selected
     }
   }
 
@@ -131,7 +152,8 @@ class UserController extends GetxController {
 
       if (pickedFile != null) {
         log('Image selected at path: ${pickedFile.path}');
-        selectedImage = File(pickedFile.path);
+        selectedParentImage = File(pickedFile.path);
+        // selectedImage = File(pickedFile.path);
         update();
       } else {
         log('No image selected.');

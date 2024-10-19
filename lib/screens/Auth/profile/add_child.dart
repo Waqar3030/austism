@@ -163,15 +163,33 @@ class _AddChildScreenState extends State<AddChildScreen> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          if (controller.selectedParentImage != null ||
-                              controller.selectedChildImage != null) {
-                            await controller.uploadImage(
-                                selectedImage: controller.selectedParentImage,
-                                imageurl: controller.parentimage);
-                            await controller.uploadImage(
-                                selectedImage: controller.selectedChildImage,
-                                imageurl: controller.childimage);
+                          if (controller.selectedParentImage != null) {
+                            controller.parentimage =
+                                await controller.uploadImage(
+                                    selectedImage:
+                                        controller.selectedParentImage,
+                                    imageurl: controller.parentimage);
                           }
+                          if (controller.selectedChildImage != null) {
+                            controller.childimage =
+                                await controller.uploadImage(
+                                    selectedImage:
+                                        controller.selectedChildImage,
+                                    imageurl: controller.childimage);
+                          }
+                          // String? parentImageUrl = await controller.uploadImage(
+                          //     selectedImage: controller.selectedParentImage);
+                          // String? childImageUrl = await controller.uploadImage(
+                          //     selectedImage: controller.selectedChildImage);
+                          // if (controller.selectedParentImage != null ||
+                          //     controller.selectedChildImage != null) {
+                          //   await controller.uploadImage(
+                          //       selectedImage: controller.selectedParentImage,
+                          //       imageurl: controller.parentimage);
+                          //   await controller.uploadImage(
+                          //       selectedImage: controller.selectedChildImage,
+                          //       imageurl: controller.childimage);
+                          // }
                           controller.createUser(
                             name: controller.parentnameController.text,
                             childName: controller.nameController.text,
