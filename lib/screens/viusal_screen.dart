@@ -142,7 +142,6 @@ class _ViusalScreenState extends State<ViusalScreen> {
                   textColor: Colors.white,
                   widthh: 0.9.sw,
                   isIcon: false,
-                  isBorder: false,
                   buttonColor: greenColor,
                 ),
               ),

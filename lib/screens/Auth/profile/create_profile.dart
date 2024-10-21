@@ -154,7 +154,6 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                               textColor: Colors.white,
                               widthh: 1.sw,
                               isIcon: false,
-                              isBorder: false,
                               buttonColor: kprimaryColor,
                             ),
                           );

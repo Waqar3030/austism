@@ -1,10 +1,7 @@
 import 'dart:async';
-
-import 'package:austism/resources/appAssets.dart';
 import 'package:austism/screens/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class SplashScreen extends StatefulWidget {
   SplashScreen({
@@ -19,23 +16,29 @@ class _SplashScreen extends State<SplashScreen> {
   void initState() {
     super.initState();
     print('run');
-    Timer(Duration(seconds: 3), () => Get.to(() => const LoginScreen()));
+    Timer(Duration(seconds: 3), () => Get.offAll(() => const LoginScreen()));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(Appassets.splash),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Container(
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Container(
+        height: Get.height,
+        width: Get.width,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(Appassets.austismLogo),
-            scale: 1,
+            // image: AssetImage(Appassets.splash),
+            image: AssetImage("assets/images/file.png"),
+            fit: BoxFit.fill,
+          ),
+        ),
+        child: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/app_icon.png"),
+              scale: 3.8,
+            ),
           ),
         ),
       ),

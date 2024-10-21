@@ -1,4 +1,6 @@
+import 'package:austism/components/textfield.dart';
 import 'package:austism/resources/appAssets.dart';
+import 'package:austism/resources/apptext.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/auth/login.dart';
 import 'package:austism/components/button.dart';
@@ -15,175 +17,130 @@ class CreateNewPasswordScreen extends StatefulWidget {
 }
 
 class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
+  final passController = TextEditingController();
+  final repeatPassController = TextEditingController();
+  bool _isObscure = true;
+  bool _isObscure1 = true;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(Appassets.background),
-          fit: BoxFit.fill,
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        leading: GestureDetector(
+          onTap: () {
+            Get.toNamed('/OTPScreen');
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Container(
+              height: 20.h,
+              width: 20.w,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+              ),
+              child: Image.asset(
+                Appassets.arrowback,
+                scale: 1.5,
+                color: kprimaryColor,
+              ),
+            ),
+          ),
         ),
-      ),
-      child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          leading: GestureDetector(
-            onTap: () {
-              Get.toNamed('/OTPScreen');
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Container(
-                height: 20.h,
-                width: 20.w,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                ),
-                child: Image.asset(
-                  Appassets.arrowback,
-                  scale: 1.5,
-                  color: kprimaryColor,
-                ),
-              ),
-            ),
+        elevation: 0,
+      ),
+      body: Container(
+        width: Get.width,
+        height: Get.height,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(Appassets.splash1),
+            fit: BoxFit.fill,
           ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            width: double.infinity,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 64.w),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  Center(
-                    child: Image.asset(
-                      "assets/images/app_icon.png",
-                      scale: 3.8,
-                    ),
-                  ),
-                  Text(
-                    "Create New Pasword",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 28.h,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  Text(
-                    "Enter your new password",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14.h,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 35.h,
-                  ),
-                  Container(
-                    height: 50,
-                    child: TextFormField(
-                      style: const TextStyle(color: Colors.white),
-                      cursorColor: Colors.white,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        fillColor: Colors.transparent,
-                        filled: true,
-                        hintText: "Password",
-                        hintStyle: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w200,
-                        ),
-                        suffixIcon: const Icon(
-                          Icons.remove_red_eye,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                        border: OutlineInputBorder(
-                            borderSide:
-                                const BorderSide(color: Colors.white, width: 1),
-                            borderRadius: BorderRadius.circular(10.r)),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Colors.white,
-                            ),
-                            borderRadius: BorderRadius.circular(10.r)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Colors.white,
-                            ),
-                            borderRadius: BorderRadius.circular(10.r)),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  Container(
-                    height: 50,
-                    child: TextFormField(
-                      style: const TextStyle(color: Colors.white),
-                      cursorColor: Colors.white,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        fillColor: Colors.transparent,
-                        filled: true,
-                        hintText: "Repeat Password",
-                        hintStyle: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w200,
-                        ),
-                        suffixIcon: const Icon(
-                          Icons.remove_red_eye,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                        border: OutlineInputBorder(
-                            borderSide:
-                                const BorderSide(color: Colors.white, width: 1),
-                            borderRadius: BorderRadius.circular(10.r)),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Colors.white,
-                            ),
-                            borderRadius: BorderRadius.circular(10.r)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Colors.white,
-                            ),
-                            borderRadius: BorderRadius.circular(10.r)),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 12.h,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(() => const LoginScreen());
-                    },
-                    child: CustomButton(
-                      textButton: "CONTINUE",
-                      textColor: kprimaryColor,
-                      widthh: 0.9.sw,
-                      isIcon: false,
-                      isBorder: true,
-                      buttonColor: Colors.white,
-                    ),
-                  )
-                ],
+        child: SafeArea(
+          child: Column(
+            children: [
+              30.h.verticalSpace,
+              Center(
+                child: Image.asset(
+                  "assets/images/app_icon.png",
+                  scale: 3.8,
+                ),
               ),
-            ),
-          ),
+              20.h.verticalSpace,
+              Text(
+                "Create New Pasword",
+                style: AppTextStyle.heading.copyWith(
+                  color: Colors.white,
+                  fontSize: 30.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Text(
+                "Enter your new password",
+                style: AppTextStyle.small.copyWith(
+                  color: Colors.white,
+                  fontSize: 18.h,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              20.h.verticalSpace,
+              AuthTextField(
+                controller: passController,
+                hinttext: "Password",
+                underlineColor: Colors.white,
+                hintColor: Colors.white,
+                widthh: 0.9.sw,
+                isPassword: _isObscure,
+                suffixicon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _isObscure = !_isObscure;
+                      });
+                    },
+                    icon: Icon(
+                        _isObscure ? Icons.visibility : Icons.visibility_off,
+                        color: white)),
+              ),
+              20.h.verticalSpace,
+              AuthTextField(
+                controller: repeatPassController,
+                hinttext: "Password",
+                underlineColor: Colors.white,
+                hintColor: Colors.white,
+                widthh: 0.9.sw,
+                isPassword: _isObscure1,
+                suffixicon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _isObscure1 = !_isObscure1;
+                      });
+                    },
+                    icon: Icon(
+                        _isObscure1
+                            ? Icons.remove_red_eye
+                            : Icons.visibility_off,
+                        color: white)),
+              ),
+              30.h.verticalSpace,
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => const LoginScreen());
+                },
+                child: CustomButton(
+                  textButton: "CONTINUE",
+                  textColor: kprimaryColor,
+                  widthh: 0.9.sw,
+                  isIcon: false,
+                  buttonColor: Colors.white,
+                ),
+              )
+            ],
+          ).paddingSymmetric(horizontal: 40.w),
         ),
       ),
     );

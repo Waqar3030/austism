@@ -58,7 +58,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 textColor: Colors.white,
                 widthh: 0.70.sw,
                 isIcon: false,
-                isBorder: true,
                 buttonColor: kprimaryColor,
               ),
             ),

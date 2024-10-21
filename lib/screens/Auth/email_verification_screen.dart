@@ -17,7 +17,7 @@ class EmailVerificationScreen extends StatelessWidget {
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(Appassets.background),
+          image: AssetImage(Appassets.splash1),
           fit: BoxFit.fill,
         ),
       ),
@@ -89,7 +89,6 @@ class EmailVerificationScreen extends StatelessWidget {
                       textColor: kprimaryColor,
                       widthh: 0.9.sw,
                       isIcon: false,
-                      isBorder: true,
                       buttonColor: Colors.white,
                     ),
                   ),

@@ -24,7 +24,7 @@ class _OTPScreenState extends State<OTPScreen> {
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(Appassets.background),
+          image: AssetImage(Appassets.splash1),
           fit: BoxFit.fill,
         ),
       ),
@@ -130,7 +130,6 @@ class _OTPScreenState extends State<OTPScreen> {
                       textColor: kprimaryColor,
                       widthh: 0.9.sw,
                       isIcon: false,
-                      isBorder: true,
                       buttonColor: Colors.white,
                     ),
                   )
