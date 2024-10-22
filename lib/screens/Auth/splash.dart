@@ -24,13 +24,12 @@ class _SplashScreen extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
-        height: Get.height,
-        width: Get.width,
         decoration: const BoxDecoration(
           image: DecorationImage(
             // image: AssetImage(Appassets.splash),
             image: AssetImage("assets/images/file.png"),
-            fit: BoxFit.fill,
+            filterQuality: FilterQuality.low,
+            fit: BoxFit.cover,
           ),
         ),
         child: Container(

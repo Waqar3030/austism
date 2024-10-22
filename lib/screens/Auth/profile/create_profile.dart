@@ -131,7 +131,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                   ],
                 ),
                 SizedBox(height: 0.05.sh),
-                txtfield("Full Name", 1.sw, userController.nameController),
+                txtfield(
+                    "Full Name", 1.sw, userController.parentnameController),
                 SizedBox(height: 5.h),
                 txtfield("Location", 1.sw, userController.parentlocController),
                 SizedBox(height: 5.h),
@@ -179,9 +180,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               title: const Text('Camera'),
               onTap: () {
                 Navigator.of(context).pop();
-                controller.pickImage(
-                    selectedImage: controller.selectedParentImage,
-                    source: ImageSource.camera);
+                controller.pickParentImage(source: ImageSource.camera);
+                controller.update();
               },
             ),
             ListTile(
@@ -189,9 +189,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               title: const Text('Gallery'),
               onTap: () {
                 Navigator.of(context).pop();
-                controller.pickImage(
-                    selectedImage: controller.selectedParentImage,
-                    source: ImageSource.gallery);
+                controller.pickParentImage(source: ImageSource.gallery);
+                controller.update();
               },
             ),
           ],

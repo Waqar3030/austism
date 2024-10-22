@@ -14,10 +14,10 @@ class UserController extends GetxController {
   TextEditingController parentemailController = TextEditingController();
   TextEditingController locController = TextEditingController();
 
-  TextEditingController nameController = TextEditingController();
+  TextEditingController childnameController = TextEditingController();
   TextEditingController dobController = TextEditingController();
   TextEditingController guardianContactController = TextEditingController();
-  TextEditingController genderContactController = TextEditingController();
+  TextEditingController genderController = TextEditingController();
   String? parentimage;
   String? childimage;
 
@@ -25,42 +25,32 @@ class UserController extends GetxController {
   final authController = Get.put(AuthController());
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final ImagePicker _picker = ImagePicker();
-  bool isloading = false;
 
   File? selectedParentImage;
   File? selectedChildImage;
 
+  bool isloading = false;
   setLoading(bool value) {
     isloading = value;
     update();
   }
 
   // Method to create a new user document with image URL
-  Future<String> createUser({
-    required String name,
-    required String location,
-    required String contactInfo,
-    required String email,
-    required String imageUrl,
-    required String childName,
-    required String childdob,
-    required String childimageUrl,
-    required String gender,
-  }) async {
+  Future<String> createUser() async {
     String userId = authController.firebaseUser.value?.uid ?? "";
     try {
       setLoading(true);
       await _firestore.collection('users').doc(userId).set({
-        "name": name,
-        "location": location,
-        "contactInfo": contactInfo,
-        "email": email,
-        "image": imageUrl,
+        "name": parentnameController.text,
+        "location": locController.text,
+        "contactInfo": guardianContactController.text,
+        "email": parentemailController.text,
+        "image": parentimage,
         "userId": userId,
-        "childName": childName,
-        "childdob": childdob,
-        "childImageUrl": childimageUrl,
-        "gender": gender,
+        "childName": childnameController.text,
+        "childdob": dobController.text,
+        "childImageUrl": childimage,
+        "gender": genderController.text,
       });
 
       return 'User $userId created successfully.';
@@ -81,18 +71,16 @@ class UserController extends GetxController {
 
       if (userDoc.exists) {
         Map<String, dynamic> data = userDoc.data() as Map<String, dynamic>;
-
         parentnameController.text = data["name"] ?? "";
         parentlocController.text = data["location"] ?? "";
         parentcontactController.text = data["contactInfo"] ?? "";
         parentemailController.text = data["email"] ?? "";
-        nameController.text = data["childName"] ?? "";
+        childnameController.text = data["childName"] ?? "";
         dobController.text = data["childdob"] ?? "";
         guardianContactController.text = data["contactInfo"] ?? "";
-        genderContactController.text = data["gender"] ?? "";
+        genderController.text = data["gender"] ?? "";
         parentimage = data["image"] ?? "";
         childimage = data["childImageUrl"] ?? "";
-
         update();
       }
     } catch (e) {
@@ -134,6 +122,7 @@ class UserController extends GetxController {
         final uploadTask = imagesRef.putFile(selectedImage);
         final taskSnapshot = await uploadTask;
         final imageURL = await taskSnapshot.ref.getDownloadURL();
+        update();
         return imageURL; // Return the uploaded image URL
       } catch (e) {
         log('Error uploading image: ${e.toString()}');
@@ -145,15 +134,29 @@ class UserController extends GetxController {
     }
   }
 
-  Future<void> pickImage(
-      {required File? selectedImage, required ImageSource source}) async {
+  Future<void> pickParentImage({required ImageSource source}) async {
     try {
       final pickedFile = await _picker.pickImage(source: source);
 
       if (pickedFile != null) {
         log('Image selected at path: ${pickedFile.path}');
         selectedParentImage = File(pickedFile.path);
-        // selectedImage = File(pickedFile.path);
+        update();
+      } else {
+        log('No image selected.');
+      }
+    } catch (e) {
+      log('Error picking image: ${e.toString()}');
+    }
+  }
+
+  Future<void> pickChildImage({required ImageSource source}) async {
+    try {
+      final pickedFile = await _picker.pickImage(source: source);
+
+      if (pickedFile != null) {
+        log('Image selected at path: ${pickedFile.path}');
+        selectedChildImage = File(pickedFile.path);
         update();
       } else {
         log('No image selected.');

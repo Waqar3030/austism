@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:austism/controller/child_controller.dart';
 import 'package:austism/screens/Auth/navigator.dart';
 import 'package:austism/screens/Auth/email_verification_screen.dart';
 import 'package:austism/screens/Auth/profile/create_profile.dart';
@@ -6,6 +7,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+
+final ChildController childcontroller = Get.put(ChildController());
 
 class AuthController extends GetxController {
   bool fromemail = true;
@@ -140,6 +143,8 @@ class AuthController extends GetxController {
       // Check if the email is verified
       if (firebaseUser.value?.emailVerified == true) {
         Get.to(() => const NavigatorScreen()); // Navigate to the next screen
+        //
+        childcontroller.fetchUserData();
       } else {
         Fluttertoast.showToast(
           msg: "Please verify your email before logging in.",

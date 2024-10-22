@@ -65,12 +65,9 @@ flutter_launcher_icons:
   android: true
   ios: true
   image_path: "assets/images/app_icon_square.png"
-  min_sdk_android: 21 # android min sdk min:16, default 21
   web:
     generate: true
     image_path: "assets/images/app_icon_square.png"
-    background_color: "#hexcode"
-    theme_color: "#hexcode"
   windows:
     generate: true
     image_path: "assets/images/app_icon_square.png"
@@ -108,7 +105,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
-    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -134,4 +130,5 @@ flutter:
   #         weight: 700
   #
   # For details regarding fonts from package dependencies,
+
   # see https://flutter.dev/custom-fonts/#from-packages

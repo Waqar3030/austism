@@ -23,203 +23,209 @@ class _AddChildScreenState extends State<AddChildScreen> {
   void initState() {
     super.initState();
     // Fetch user data when the screen is initialized
-    userController.fetchUserData();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      userController.fetchUserData();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<UserController>(
-      builder: (controller) {
-        return Container(
-          width: double.infinity,
-          decoration: const BoxDecoration(
-            color: bprimaryColor,
-          ),
-          child: Scaffold(
-            backgroundColor: Colors.transparent,
-            appBar: AppBar(
-              surfaceTintColor: Colors.transparent,
-              leading: GestureDetector(
-                onTap: () {
-                  Get.back();
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Container(
-                    height: 20.h,
-                    width: 20.w,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white,
-                    ),
-                    child: Image.asset(
-                      Appassets.arrowback,
-                      scale: 1.5,
-                      color: kprimaryColor,
-                    ),
-                  ),
+    return Container(
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        color: bprimaryColor,
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          surfaceTintColor: Colors.transparent,
+          leading: GestureDetector(
+            onTap: () {
+              Get.back();
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Container(
+                height: 20.h,
+                width: 20.w,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+                child: Image.asset(
+                  Appassets.arrowback,
+                  scale: 1.5,
+                  color: kprimaryColor,
                 ),
               ),
-              backgroundColor: Colors.transparent,
-              elevation: 0,
             ),
-            body: SingleChildScrollView(
-              child: SizedBox(
-                width: double.infinity,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 0.07.sh,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Stack(
-                            alignment: Alignment.bottomRight,
-                            clipBehavior: Clip.none,
-                            children: [
-                              CircleAvatar(
-                                radius: 100.r,
-                                backgroundImage: controller.parentimage == null
-                                    ? const AssetImage(Appassets.parentPic)
-                                    : NetworkImage(controller.parentimage!)
-                                        as ImageProvider,
-                                backgroundColor: Colors.transparent,
-                              ),
-                              Positioned(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    _showImageSourceActionSheet(
-                                        context, controller);
-                                  },
-                                  child: Container(
-                                    height: 25,
-                                    width: 25,
-                                    decoration: const BoxDecoration(
-                                      color: Colors.white,
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.asset(
-                                      Appassets.camera,
-                                      scale: 1.3,
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+        body: GetBuilder(
+            init: userController,
+            builder: (controller) {
+              return SingleChildScrollView(
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 0.07.sh,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Stack(
+                              alignment: Alignment.bottomRight,
+                              clipBehavior: Clip.none,
+                              children: [
+                                CircleAvatar(
+                                  radius: 100.r,
+                                  backgroundImage: controller
+                                              .selectedChildImage ==
+                                          null
+                                      ? const AssetImage(Appassets.parentPic)
+                                      : FileImage(
+                                              controller.selectedChildImage!)
+                                          as ImageProvider,
+                                  backgroundColor: Colors.transparent,
+                                ),
+                                Positioned(
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      _showImageSourceActionSheet(
+                                          context, controller);
+                                    },
+                                    child: Container(
+                                      height: 25,
+                                      width: 25,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.white,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.asset(
+                                        Appassets.camera,
+                                        scale: 1.3,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 0.03.sh,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "Set Child Profile",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 28.sp,
-                              fontWeight: FontWeight.w600,
+                              ],
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "Fill out the Details",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 22.sp,
-                              fontWeight: FontWeight.w200,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 0.05.sh,
-                      ),
-                      txtfield("Full Name", 1.sw, controller.nameController),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      txtfield("Date of Birth", 1.sw, controller.dobController),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      txtfield("Guardian Phone Number", 1.sw,
-                          controller.guardianContactController),
-                      txtfield(
-                          "Gender", 1.sw, controller.genderContactController),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      txtfield("Email", 1.sw, emailController),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      GestureDetector(
-                        onTap: () async {
-                          if (controller.selectedParentImage != null) {
-                            controller.parentimage =
-                                await controller.uploadImage(
-                                    selectedImage:
-                                        controller.selectedParentImage,
-                                    imageurl: controller.parentimage);
-                          }
-                          if (controller.selectedChildImage != null) {
-                            controller.childimage =
-                                await controller.uploadImage(
-                                    selectedImage:
-                                        controller.selectedChildImage,
-                                    imageurl: controller.childimage);
-                          }
-                          // String? parentImageUrl = await controller.uploadImage(
-                          //     selectedImage: controller.selectedParentImage);
-                          // String? childImageUrl = await controller.uploadImage(
-                          //     selectedImage: controller.selectedChildImage);
-                          // if (controller.selectedParentImage != null ||
-                          //     controller.selectedChildImage != null) {
-                          //   await controller.uploadImage(
-                          //       selectedImage: controller.selectedParentImage,
-                          //       imageurl: controller.parentimage);
-                          //   await controller.uploadImage(
-                          //       selectedImage: controller.selectedChildImage,
-                          //       imageurl: controller.childimage);
-                          // }
-                          controller.createUser(
-                            name: controller.parentnameController.text,
-                            childName: controller.nameController.text,
-                            childdob: controller.dobController.text,
-                            contactInfo:
-                                controller.guardianContactController.text,
-                            email: emailController.text,
-                            imageUrl: controller.parentimage ?? "",
-                            childimageUrl: controller.childimage ?? "",
-                            location: controller.locController.text,
-                            gender: controller.genderContactController.text,
-                          );
-                          Get.to(() => const NavigatorScreen());
-                        },
-                        child: CustomButton(
-                          textButton: "DONE",
-                          textColor: Colors.white,
-                          widthh: 1.sw,
-                          isIcon: false,
-                          buttonColor: kprimaryColor,
+                          ],
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          height: 0.03.sh,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "Set Child Profile",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 28.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "Fill out the Details",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 22.sp,
+                                fontWeight: FontWeight.w200,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 0.05.sh,
+                        ),
+                        txtfield(
+                            "Full Name", 1.sw, controller.childnameController),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        txtfield(
+                            "Date of Birth", 1.sw, controller.dobController),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        txtfield("Guardian Phone Number", 1.sw,
+                            controller.guardianContactController),
+                        txtfield("Gender", 1.sw, controller.genderController),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        GestureDetector(
+                          onTap: () async {
+                            if (controller.selectedParentImage != null &&
+                                controller.selectedChildImage != null) {
+                              controller.parentimage =
+                                  await controller.uploadImage(
+                                selectedImage: controller.selectedParentImage,
+                                imageurl: controller.parentimage,
+                              );
+                              controller.childimage =
+                                  await controller.uploadImage(
+                                selectedImage: controller.selectedChildImage,
+                                imageurl: controller.childimage,
+                              );
+                            } else {
+                              if (controller.selectedParentImage != null) {
+                                controller.parentimage =
+                                    await controller.uploadImage(
+                                  selectedImage: controller.selectedParentImage,
+                                  imageurl: controller.parentimage,
+                                );
+                              }
+                              if (controller.selectedChildImage != null) {
+                                controller.childimage =
+                                    await controller.uploadImage(
+                                  selectedImage: controller.selectedChildImage,
+                                  imageurl: controller.childimage,
+                                );
+                              }
+                            }
+
+                            // String? parentImageUrl = await controller.uploadImage(
+                            //     selectedImage: controller.selectedParentImage);
+                            // String? childImageUrl = await controller.uploadImage(
+                            //     selectedImage: controller.selectedChildImage);
+                            // if (controller.selectedParentImage != null ||
+                            //     controller.selectedChildImage != null) {
+                            //   await controller.uploadImage(
+                            //       selectedImage: controller.selectedParentImage,
+                            //       imageurl: controller.parentimage);
+                            //   await controller.uploadImage(
+                            //       selectedImage: controller.selectedChildImage,
+                            //       imageurl: controller.childimage);
+                            // }
+                            controller.createUser();
+                            Get.to(() => const NavigatorScreen());
+                          },
+                          child: CustomButton(
+                            textButton: "DONE",
+                            textColor: Colors.white,
+                            widthh: 1.sw,
+                            isIcon: false,
+                            buttonColor: kprimaryColor,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ),
-        );
-      },
+              );
+            }),
+      ),
     );
   }
 
@@ -235,9 +241,9 @@ class _AddChildScreenState extends State<AddChildScreen> {
               title: const Text('Camera'),
               onTap: () {
                 Navigator.of(context).pop();
-                userController.pickImage(
-                    source: ImageSource.camera,
-                    selectedImage: userController.selectedChildImage);
+                userController.pickChildImage(
+                  source: ImageSource.camera,
+                );
               },
             ),
             ListTile(
@@ -245,9 +251,9 @@ class _AddChildScreenState extends State<AddChildScreen> {
               title: const Text('Gallery'),
               onTap: () {
                 Navigator.of(context).pop();
-                userController.pickImage(
-                    source: ImageSource.gallery,
-                    selectedImage: userController.selectedChildImage);
+                userController.pickChildImage(
+                  source: ImageSource.gallery,
+                );
               },
             ),
           ],
