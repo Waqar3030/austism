@@ -1,4 +1,5 @@
 import 'package:austism/resources/appAssets.dart';
+import 'package:austism/resources/apptext.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:austism/resources/controller.dart';
 import 'package:austism/screens/Auth/profile/child_profile.dart';
@@ -31,7 +32,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
       onTap: () =>
           _bottomController.navBarChange(listofUserBottomItems.indexOf(item)),
       child: Container(
-        padding: EdgeInsets.only(top: 20.h),
+        padding: EdgeInsets.only(top: 10.h),
         child: Column(
           children: [
             Container(
@@ -41,16 +42,13 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                     : Colors.transparent,
                 shape: BoxShape.circle,
               ),
-              child: Padding(
-                padding: EdgeInsets.all(18.r),
-                child: item.image,
-              ),
+              child: item.image,
             ),
-            SizedBox(height: 0.h),
+            2.h.verticalSpace,
             Text(
               item.title,
-              style: TextStyle(
-                fontSize: 18.sp,
+              style: AppTextStyle.small.copyWith(
+                fontSize: 12.sp,
                 color: Colors.white,
               ),
             ),
@@ -64,7 +62,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
   Widget _buildMyNavBar(BuildContext context) {
     return Container(
       width: 1.sw,
-      height: 130.h,
+      height: 90.h,
       color: Colors.transparent,
       child: Stack(
         clipBehavior: Clip.none,
@@ -72,7 +70,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 150.h,
+              // height: 140.h,
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
@@ -129,28 +127,36 @@ final List<UserCustomBottomBarItem> listofUserBottomItems = [
     title: "Home",
     image: Image.asset(
       Appassets.home,
-      width: 30.w,
+      fit: BoxFit.scaleDown,
+      height: 25.h,
+      width: 25.w,
     ),
   ),
   UserCustomBottomBarItem(
     title: "Visual",
     image: Image.asset(
       Appassets.visualSchedule,
-      width: 30.w,
+      fit: BoxFit.scaleDown,
+      height: 25.h,
+      width: 25.w,
     ),
   ),
   UserCustomBottomBarItem(
     title: "Learning",
     image: Image.asset(
       Appassets.learning_icon,
-      width: 30.w,
+      fit: BoxFit.scaleDown,
+      height: 25.h,
+      width: 25.w,
     ),
   ),
   UserCustomBottomBarItem(
     title: "Profile",
     image: Image.asset(
       Appassets.profile,
-      width: 30.w,
+      fit: BoxFit.scaleDown,
+      height: 25.h,
+      width: 25.w,
     ),
   ),
 ];

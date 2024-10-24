@@ -1,3 +1,4 @@
+import 'package:austism/resources/apptext.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/text_to_speech/alphabets.dart';
 import 'package:austism/screens/text_to_speech/clothes.dart';
@@ -109,25 +110,18 @@ Widget item({
       margin: EdgeInsets.only(top: 10.h),
       padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.h),
       decoration: BoxDecoration(
-          color: kprimaryColor, borderRadius: BorderRadius.circular(30.r)),
+          color: light_green, borderRadius: BorderRadius.circular(30.r)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          // Image.asset(
-          //   image,
-          //   fit: BoxFit.cover,
-          //   height: 60.h,
-          //   width: 60.w,
-          //   // scale: 25.5,
-          // ),
           20.w.horizontalSpace,
           Text(
             text,
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: 30.sp,
+            style: AppTextStyle.small.copyWith(
+                fontSize: 18.sp,
                 fontWeight: FontWeight.w600,
-                color: Colors.white),
+                color: greenColor),
           ),
         ],
       ),

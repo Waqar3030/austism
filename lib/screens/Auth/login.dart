@@ -52,9 +52,9 @@ class _LoginScreenState extends State<LoginScreen> {
               30.h.verticalSpace,
               Text(
                 "Welcome back!",
-                style: AppTextStyle.heading.copyWith(
+                style: AppTextStyle.medium.copyWith(
                   color: Colors.white,
-                  fontSize: 30.h,
+                  fontSize: 28.h,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -85,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         _isObscure ? Icons.visibility : Icons.visibility_off,
                         color: white)),
               ),
-              15.h.verticalSpace,
+              10.h.verticalSpace,
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       "Forgot Password?",
                       style: AppTextStyle.small.copyWith(
                         color: black,
-                        fontSize: 26.sp,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -127,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     "Dont't have an account? ",
                     style: AppTextStyle.small.copyWith(
                       color: Colors.white,
-                      fontSize: 26.h,
+                      fontSize: 20.h,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -139,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       "SignUp",
                       style: AppTextStyle.medium.copyWith(
                         color: Colors.white,
-                        fontSize: 30.h,
+                        fontSize: 22.h,
                         // fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -147,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ).paddingOnly(bottom: 30.h)
             ],
-          ).paddingSymmetric(horizontal: 40.w),
+          ).paddingSymmetric(horizontal: 20.w),
         ),
       ),
     );

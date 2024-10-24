@@ -74,9 +74,9 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
               20.h.verticalSpace,
               Text(
                 "Create New Pasword",
-                style: AppTextStyle.heading.copyWith(
+                style: AppTextStyle.medium.copyWith(
                   color: Colors.white,
-                  fontSize: 30.sp,
+                  fontSize: 28.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -140,7 +140,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                 ),
               )
             ],
-          ).paddingSymmetric(horizontal: 40.w),
+          ).paddingSymmetric(horizontal: 20.w),
         ),
       ),
     );

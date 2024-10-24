@@ -80,9 +80,9 @@ class _SignupScreenState extends State<SignupScreen> {
                   30.h.verticalSpace,
                   Text(
                     "Create account",
-                    style: AppTextStyle.heading.copyWith(
+                    style: AppTextStyle.medium.copyWith(
                       color: Colors.white,
-                      fontSize: 30.h,
+                      fontSize: 28.h,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -135,7 +135,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         "Already have an account? ",
                         style: AppTextStyle.small.copyWith(
                           color: Colors.white,
-                          fontSize: 26.h,
+                          fontSize: 20.h,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -147,14 +147,14 @@ class _SignupScreenState extends State<SignupScreen> {
                           "Login",
                           style: AppTextStyle.medium.copyWith(
                             color: Colors.white,
-                            fontSize: 30.h,
+                            fontSize: 22.h,
                           ),
                         ),
                       ),
                     ],
                   ).paddingOnly(bottom: 30.h),
                 ],
-              ).paddingSymmetric(horizontal: 40.w),
+              ).paddingSymmetric(horizontal: 20.w),
             );
           },
         ),

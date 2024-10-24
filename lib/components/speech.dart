@@ -16,6 +16,8 @@ class ProductGrid extends StatefulWidget {
 
 class _ProductGridState extends State<ProductGrid> {
   final FlutterTts flutterTts = FlutterTts();
+  String selectedProduct = '';
+  double cardScale = 1.0;
 
   @override
   void dispose() {
@@ -33,10 +35,10 @@ class _ProductGridState extends State<ProductGrid> {
   Widget build(BuildContext context) {
     return GridView.builder(
       shrinkWrap: true,
+      padding: EdgeInsets.all(15.w),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        mainAxisExtent: 270.h,
-        // childAspectRatio: 3 / 4,
+        mainAxisExtent: 280.h,
       ),
       itemCount: widget.products.length,
       itemBuilder: (context, index) {
@@ -45,29 +47,98 @@ class _ProductGridState extends State<ProductGrid> {
 
         return MouseRegion(
           onEnter: (_) {
-            // Handle hover effect if required
+            setState(() {
+              cardScale = 1.05; // Scale up slightly on hover
+            });
+          },
+          onExit: (_) {
+            setState(() {
+              cardScale = 1.0; // Scale back to normal when not hovered
+            });
           },
           child: GestureDetector(
             onTap: () {
+              setState(() {
+                selectedProduct = productName;
+              });
               speak(productName);
             },
-            child: Card(
-              elevation: 5,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    productImage,
-                    height: 100.h,
-                    width: 115.w,
-                    fit: BoxFit.cover,
-                  ),
-                  10.h.verticalSpace,
-                  Text(
-                    productName,
-                    style: const TextStyle(color: Colors.transparent),
-                  ),
-                ],
+            child: AnimatedScale(
+              scale: cardScale,
+              duration: Duration(milliseconds: 200),
+              curve: Curves.easeInOut,
+              child: Card(
+                elevation: 8,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.r),
+                ),
+                shadowColor: Colors.grey.withOpacity(0.3),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // Image with rounded corners
+                    Container(
+                      margin: EdgeInsets.all(15.w),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.r),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 10,
+                            offset: Offset(0, 5),
+                          ),
+                        ],
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15.r),
+                        child: Image.asset(
+                          productImage,
+                          height: 120.h,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    // Product name with speaker icon
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          productName,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold,
+                            color: selectedProduct == productName
+                                ? Colors.blueAccent
+                                : Colors.black.withOpacity(0.7),
+                          ),
+                        ),
+                        SizedBox(width: 5.w),
+                        // Speaker icon for TTS indication
+                        Icon(
+                          Icons.volume_up,
+                          color: selectedProduct == productName
+                              ? Colors.blueAccent
+                              : Colors.grey,
+                          size: 20.sp,
+                        ),
+                      ],
+                    ),
+                    // Speaking indicator text
+                    if (selectedProduct == productName)
+                      Padding(
+                        padding: EdgeInsets.only(top: 5.h),
+                        child: Text(
+                          "Speaking...",
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            color: Colors.blueAccent.withOpacity(0.7),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ),
           ),

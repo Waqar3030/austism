@@ -1,4 +1,5 @@
 import 'package:austism/components/drawer.dart';
+import 'package:austism/resources/apptext.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,28 +12,17 @@ class CustomAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
-      surfaceTintColor: Colors.white,
+      backgroundColor: Colors.transparent,
+      surfaceTintColor: Colors.transparent,
       automaticallyImplyLeading: false,
       leading: GestureDetector(
         onTap: () {
           Get.to(() => const DrawerScreen());
         },
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Container(
-            height: 20.h,
-            width: 20.w,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white,
-            ),
-            child: Image.asset(
-              "assets/images/Menu.png",
-              scale: 2.0,
-              // color: kprimaryColor,
-            ),
-          ),
+        child: Image.asset(
+          "assets/images/Menu.png",
+          scale: 3.5,
+          // color: kprimaryColor,
         ),
       ),
       // leading: Image.asset(
@@ -43,10 +33,10 @@ class CustomAppbar extends StatelessWidget {
       centerTitle: true,
       title: Text(
         text,
-        style: TextStyle(
+        style: AppTextStyle.small.copyWith(
           color: greenColor,
-          fontWeight: FontWeight.w800,
-          fontSize: 35.sp,
+          fontWeight: FontWeight.w600,
+          fontSize: 22.sp,
         ),
       ),
     );

@@ -46,10 +46,10 @@ class CustomButton extends StatelessWidget {
           Center(
             child: Text(
               textButton,
-              style: AppTextStyle.heading.copyWith(
+              style: AppTextStyle.medium.copyWith(
                 color: white,
-                fontSize: 28.sp,
-                fontWeight: FontWeight.w700,
+                fontSize: 20.sp,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
