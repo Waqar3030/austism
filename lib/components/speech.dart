@@ -1,13 +1,16 @@
+import 'package:austism/resources/appColors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 class ProductGrid extends StatefulWidget {
-  final List<Map<String, String>> products; // Dynamic products list
+  final List<Map<String, String>> products;
+  final double? imageHeight; // Dynamic products list
 
   const ProductGrid({
     Key? key,
     required this.products,
+    this.imageHeight,
   }) : super(key: key);
 
   @override
@@ -35,7 +38,7 @@ class _ProductGridState extends State<ProductGrid> {
   Widget build(BuildContext context) {
     return GridView.builder(
       shrinkWrap: true,
-      padding: EdgeInsets.all(15.w),
+      // padding: EdgeInsets.all(15.w),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisExtent: 280.h,
@@ -68,11 +71,12 @@ class _ProductGridState extends State<ProductGrid> {
               duration: Duration(milliseconds: 200),
               curve: Curves.easeInOut,
               child: Card(
+                color: AppColors.kWhite,
                 elevation: 8,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.r),
                 ),
-                shadowColor: Colors.grey.withOpacity(0.3),
+                shadowColor: AppColors.kWhite,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -93,7 +97,7 @@ class _ProductGridState extends State<ProductGrid> {
                         borderRadius: BorderRadius.circular(15.r),
                         child: Image.asset(
                           productImage,
-                          height: 120.h,
+                          height: widget.imageHeight ?? 170.r,
                           width: double.infinity,
                           fit: BoxFit.cover,
                         ),
@@ -103,17 +107,17 @@ class _ProductGridState extends State<ProductGrid> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          productName,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.bold,
-                            color: selectedProduct == productName
-                                ? Colors.blueAccent
-                                : Colors.black.withOpacity(0.7),
-                          ),
-                        ),
+                        // Text(
+                        //   productName,
+                        //   textAlign: TextAlign.center,
+                        //   style: TextStyle(
+                        //     fontSize: 18.sp,
+                        //     fontWeight: FontWeight.bold,
+                        //     color: selectedProduct == productName
+                        //         ? Colors.blueAccent
+                        //         : Colors.black.withOpacity(0.7),
+                        //   ),
+                        // ),
                         SizedBox(width: 5.w),
                         // Speaker icon for TTS indication
                         Icon(

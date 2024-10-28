@@ -19,8 +19,11 @@ class FruitsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
         title: Text(
@@ -32,14 +35,28 @@ class FruitsScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          30.h.verticalSpace,
-          SizedBox(
-              height: Get.height * .85, child: ProductGrid(products: products)),
-        ],
-      ).paddingSymmetric(horizontal: 20.w),
+      body: Container(
+        height: Get.height,
+        width: Get.width,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Colors.blue[50]!,
+            Colors.blueAccent,
+            Colors.purple[300]!
+          ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+        ),
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              30.h.verticalSpace,
+              SizedBox(
+                  height: Get.height * .82,
+                  child: ProductGrid(products: products)),
+            ],
+          ).paddingSymmetric(horizontal: 10.w),
+        ),
+      ),
     );
   }
 }

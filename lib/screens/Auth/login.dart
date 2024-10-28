@@ -143,6 +143,7 @@ import 'dart:ui';
 
 import 'package:austism/components/auth_field.dart';
 import 'package:austism/components/primary_button.dart';
+import 'package:austism/controller/auth_controller.dart';
 import 'package:austism/resources/appColors.dart';
 import 'package:austism/screens/Auth/forgot_password.dart';
 import 'package:austism/screens/Auth/signup.dart';
@@ -164,6 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
   // final TextEditingController _passwordController = TextEditingController();
   final emailController = TextEditingController();
   final passController = TextEditingController();
+  final _controller = Get.put(AuthController());
   bool isRemember = false;
   @override
   Widget build(BuildContext context) {
@@ -211,14 +213,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       title: 'Email Address',
                       hintText: 'Enter your email address',
                       controller: emailController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Email is required';
-                        } else if (!value.isEmail) {
-                          return 'Invalid email address';
-                        }
-                        return null;
-                      },
+                      // validator: (value) {
+                      //   if (value == null || value.isEmpty) {
+                      //     return 'Email is required';
+                      //   } else if (!value.isEmail) {
+                      //     return 'Invalid email address';
+                      //   }
+                      //   return null;
+                      // },
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                     ),
@@ -228,14 +230,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       title: 'Password',
                       hintText: 'Enter your password',
                       controller: passController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Password is required';
-                        } else if (value.length < 8) {
-                          return 'Password should be at least 8 characters long';
-                        }
-                        return null;
-                      },
+                      // validator: (value) {
+                      //   if (value == null || value.isEmpty) {
+                      //     return 'Password is required';
+                      //   } else if (value.length < 8) {
+                      //     return 'Password should be at least 8 characters long';
+                      //   }
+                      //   return null;
+                      // },
                       isPassword: true,
                       keyboardType: TextInputType.visiblePassword,
                       textInputAction: TextInputAction.done,
@@ -261,7 +263,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 15),
                     PrimaryButton(
                       onTap: () {
-                        if (_formKey.currentState!.validate()) {}
+                        _controller.login(
+                            emailController.text, passController.text);
                       },
                       text: 'Sign In',
                     ),

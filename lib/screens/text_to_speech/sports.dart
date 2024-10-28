@@ -1,5 +1,6 @@
 import 'package:austism/components/speech.dart';
 import 'package:austism/resources/appAssets.dart';
+import 'package:austism/resources/apptext.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,26 +37,43 @@ class SportsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
         centerTitle: true,
         title: Text(
           "Sports",
-          style: TextStyle(
+          style: AppTextStyle.medium.copyWith(
             color: greenColor,
             fontWeight: FontWeight.w800,
-            fontSize: 35.sp,
+            fontSize: 24.r,
           ),
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          30.h.verticalSpace,
-          SizedBox(
-              height: Get.height * .85, child: ProductGrid(products: products)),
-        ],
-      ).paddingSymmetric(horizontal: 20.w),
+      body: Container(
+        height: Get.height,
+        width: Get.width,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Colors.blue[50]!,
+            Colors.blueAccent,
+            Colors.purple[300]!
+          ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+        ),
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              30.h.verticalSpace,
+              SizedBox(
+                  height: Get.height * .83,
+                  child: ProductGrid(products: products)),
+            ],
+          ).paddingSymmetric(horizontal: 20.w),
+        ),
+      ),
     );
   }
 }
