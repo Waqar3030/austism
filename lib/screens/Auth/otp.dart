@@ -22,9 +22,9 @@ class _OTPScreenState extends State<OTPScreen> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(Appassets.splash1),
+          image: AssetImage(Appassets.splash),
           fit: BoxFit.fill,
         ),
       ),

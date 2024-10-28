@@ -1,8 +1,8 @@
 class Appassets {
-  static const String splash1 = "assets/images/file.png";
-  static const String splash = "assets/images/splash.png";
+  // static const String splash1 = "assets/images/file.png";
+  static const String splash = "assets/images/178.png";
   static const String austismLogo = "assets/images/Autism logo-01.png";
-  static const String background = "assets/images/bg.png";
+  static const String background = "assets/images/184.png";
   static const String arrowback = "assets/images/Path 11.png";
   static const String parentPic = "assets/images/Mask Group 1.png";
   static const String arrowUp = "assets/images/Group 254.png";

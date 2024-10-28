@@ -1,7 +1,7 @@
-import 'package:austism/components/button.dart';
+import 'package:austism/components/primary_button.dart';
 import 'package:austism/controller/auth_controller.dart';
 import 'package:austism/resources/appAssets.dart';
-import 'package:austism/resources/colors.dart';
+import 'package:austism/resources/appColors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -17,37 +17,19 @@ class EmailVerificationScreen extends StatelessWidget {
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(Appassets.splash1),
+          image: AssetImage(Appassets.splash),
           fit: BoxFit.fill,
         ),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          leading: GestureDetector(
-            onTap: () {
-              Get.back();
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Container(
-                height: 20.h,
-                width: 20.w,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                ),
-                child: Image.asset(
-                  Appassets.arrowback,
-                  scale: 1.5,
-                  color: kprimaryColor,
-                ),
-              ),
-            ),
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
+            backgroundColor: Colors.transparent,
+            surfaceTintColor: Colors.transparent,
+            elevation: 0,
+            leading: const BackButton(
+              color: AppColors.kPrimary,
+            )),
         body: SingleChildScrollView(
           child: SizedBox(
             width: double.infinity,
@@ -79,18 +61,11 @@ class EmailVerificationScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 35.h),
-                  GestureDetector(
+                  PrimaryButton(
                     onTap: () {
-                      authController
-                          .verifyEmail(); // Call to verify email status
+                      authController.verifyEmail();
                     },
-                    child: CustomButton(
-                      textButton: "VERIFY EMAIL",
-                      textColor: kprimaryColor,
-                      widthh: 0.9.sw,
-                      isIcon: false,
-                      buttonColor: Colors.white,
-                    ),
+                    text: "Verify Email",
                   ),
                 ],
               ),

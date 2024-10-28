@@ -1,5 +1,8 @@
+import 'package:austism/components/auth_field.dart';
+import 'package:austism/components/primary_button.dart';
 import 'package:austism/components/textfield.dart';
 import 'package:austism/resources/appAssets.dart';
+import 'package:austism/resources/appColors.dart';
 import 'package:austism/resources/apptext.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/auth/login.dart';
@@ -28,36 +31,18 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
       backgroundColor: Colors.transparent,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {
-            Get.toNamed('/OTPScreen');
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Container(
-              height: 20.h,
-              width: 20.w,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
-              ),
-              child: Image.asset(
-                Appassets.arrowback,
-                scale: 1.5,
-                color: kprimaryColor,
-              ),
-            ),
-          ),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          elevation: 0,
+          leading: const BackButton(
+            color: AppColors.kPrimary,
+          )),
       body: Container(
         width: Get.width,
         height: Get.height,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(Appassets.splash1),
+            image: AssetImage(Appassets.background),
             fit: BoxFit.fill,
           ),
         ),
@@ -89,55 +74,57 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                 ),
               ),
               20.h.verticalSpace,
-              AuthTextField(
-                controller: passController,
-                hinttext: "Password",
-                underlineColor: Colors.white,
-                hintColor: Colors.white,
-                widthh: 0.9.sw,
-                isPassword: _isObscure,
-                suffixicon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _isObscure = !_isObscure;
-                      });
-                    },
-                    icon: Icon(
-                        _isObscure ? Icons.visibility : Icons.visibility_off,
-                        color: white)),
-              ),
+              AuthField(
+                  title: "New Password",
+                  hintText: "Enter Password",
+                  controller: passController),
+              // AuthTextField(
+              //   controller: passController,
+              //   hinttext: "Password",
+              //   underlineColor: Colors.white,
+              //   hintColor: Colors.white,
+              //   widthh: 0.9.sw,
+              //   isPassword: _isObscure,
+              //   suffixicon: IconButton(
+              //       onPressed: () {
+              //         setState(() {
+              //           _isObscure = !_isObscure;
+              //         });
+              //       },
+              //       icon: Icon(
+              //           _isObscure ? Icons.visibility : Icons.visibility_off,
+              //           color: white)),
+              // ),
               20.h.verticalSpace,
-              AuthTextField(
-                controller: repeatPassController,
-                hinttext: "Password",
-                underlineColor: Colors.white,
-                hintColor: Colors.white,
-                widthh: 0.9.sw,
-                isPassword: _isObscure1,
-                suffixicon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _isObscure1 = !_isObscure1;
-                      });
-                    },
-                    icon: Icon(
-                        _isObscure1
-                            ? Icons.remove_red_eye
-                            : Icons.visibility_off,
-                        color: white)),
-              ),
+              AuthField(
+                  title: "Confirm New Password",
+                  hintText: "Enter your Password",
+                  controller: repeatPassController),
+              // AuthTextField(
+              //   controller: repeatPassController,
+              //   hinttext: "Password",
+              //   underlineColor: Colors.white,
+              //   hintColor: Colors.white,
+              //   widthh: 0.9.sw,
+              //   isPassword: _isObscure1,
+              //   suffixicon: IconButton(
+              //       onPressed: () {
+              //         setState(() {
+              //           _isObscure1 = !_isObscure1;
+              //         });
+              //       },
+              //       icon: Icon(
+              //           _isObscure1
+              //               ? Icons.remove_red_eye
+              //               : Icons.visibility_off,
+              //           color: white)),
+              // ),
               30.h.verticalSpace,
-              GestureDetector(
+              PrimaryButton(
                 onTap: () {
                   Get.to(() => const LoginScreen());
                 },
-                child: CustomButton(
-                  textButton: "CONTINUE",
-                  textColor: kprimaryColor,
-                  widthh: 0.9.sw,
-                  isIcon: false,
-                  buttonColor: Colors.white,
-                ),
+                text: "Continue",
               )
             ],
           ).paddingSymmetric(horizontal: 20.w),

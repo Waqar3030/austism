@@ -144,6 +144,7 @@ import 'dart:ui';
 import 'package:austism/components/auth_field.dart';
 import 'package:austism/components/primary_button.dart';
 import 'package:austism/resources/appColors.dart';
+import 'package:austism/screens/Auth/forgot_password.dart';
 import 'package:austism/screens/Auth/signup.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -174,131 +175,129 @@ class _LoginScreenState extends State<LoginScreen> {
       //     leading: const BackButton(
       //       color: AppColors.kPrimary,
       //     )),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.all(20),
-          child: Form(
-            key: _formKey,
-            child: Center(
-              child: Column(
-                children: [
-                  // Background(),
-                  const Text('Let’s Sign you in',
-                      style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black)),
-                  const SizedBox(height: 5),
-                  const Text(
-                    'Lorem ipsum dolor sit amet, consectetur',
-                    style: TextStyle(fontSize: 14, color: AppColors.kGrey60),
-                  ),
-                  const SizedBox(height: 30),
-                  // Email Field.
-                  AuthField(
-                    title: 'Email Address',
-                    hintText: 'Enter your email address',
-                    controller: emailController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Email is required';
-                      } else if (!value.isEmail) {
-                        return 'Invalid email address';
-                      }
-                      return null;
-                    },
-                    keyboardType: TextInputType.emailAddress,
-                    textInputAction: TextInputAction.next,
-                  ),
-                  const SizedBox(height: 15),
-                  // Password Field.
-                  AuthField(
-                    title: 'Password',
-                    hintText: 'Enter your password',
-                    controller: passController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Password is required';
-                      } else if (value.length < 8) {
-                        return 'Password should be at least 8 characters long';
-                      }
-                      return null;
-                    },
-                    isPassword: true,
-                    keyboardType: TextInputType.visiblePassword,
-                    textInputAction: TextInputAction.done,
-                  ),
-                  const SizedBox(height: 5),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Forgot Password",
+      body: Container(
+        height: Get.height,
+        width: Get.width,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/184.png"),
+            // filterQuality: FilterQuality.low,
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.all(20),
+            child: Form(
+              key: _formKey,
+              child: Center(
+                child: Column(
+                  children: [
+                    // Background(),
+                    const Text('Let’s Sign you in',
                         style: TextStyle(
-                          color: Colors.red,
-                          fontSize: 14.sp,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 15),
-                  PrimaryButton(
-                    onTap: () {
-                      if (_formKey.currentState!.validate()) {}
-                    },
-                    text: 'Sign In',
-                  ),
-                  50.h.verticalSpace,
-                  RichText(
-                    text: TextSpan(
-                      text: 'Don’t have an account? ',
-                      style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.kGrey70),
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black)),
+                    const SizedBox(height: 5),
+                    const Text(
+                      'Lorem ipsum dolor sit amet, consectetur',
+                      style: TextStyle(fontSize: 14, color: AppColors.kGrey60),
+                    ),
+                    const SizedBox(height: 30),
+                    // Email Field.
+                    AuthField(
+                      title: 'Email Address',
+                      hintText: 'Enter your email address',
+                      controller: emailController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Email is required';
+                        } else if (!value.isEmail) {
+                          return 'Invalid email address';
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.next,
+                    ),
+                    const SizedBox(height: 15),
+                    // Password Field.
+                    AuthField(
+                      title: 'Password',
+                      hintText: 'Enter your password',
+                      controller: passController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Password is required';
+                        } else if (value.length < 8) {
+                          return 'Password should be at least 8 characters long';
+                        }
+                        return null;
+                      },
+                      isPassword: true,
+                      keyboardType: TextInputType.visiblePassword,
+                      textInputAction: TextInputAction.done,
+                    ),
+                    const SizedBox(height: 5),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        TextSpan(
-                          text: 'Sign Up',
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Get.to(() => const SignupScreen());
-                            },
-                          style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.kPrimary),
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(() => ForgotScreen());
+                          },
+                          child: Text(
+                            "Forgot Password",
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 14.sp,
+                            ),
+                          ),
                         ),
                       ],
                     ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 20),
+                    const SizedBox(height: 15),
+                    PrimaryButton(
+                      onTap: () {
+                        if (_formKey.currentState!.validate()) {}
+                      },
+                      text: 'Sign In',
+                    ),
+                    50.h.verticalSpace,
+                    RichText(
+                      text: TextSpan(
+                        text: 'Don’t have an account? ',
+                        style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.kGrey70),
+                        children: [
+                          TextSpan(
+                            text: 'Sign Up',
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Get.to(() => const SignupScreen());
+                              },
+                            style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.kPrimary),
+                          ),
+                        ],
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 20),
 
-                  const SizedBox(height: 20),
-                ],
+                    const SizedBox(height: 20),
+                  ],
+                ),
               ),
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class Background extends StatelessWidget {
-  const Background({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            colors: [Colors.blue[50]!, Colors.blueAccent, Colors.purple[300]!],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter),
       ),
     );
   }

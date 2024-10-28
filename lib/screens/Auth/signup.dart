@@ -154,6 +154,7 @@
 import 'package:austism/components/auth_field.dart';
 import 'package:austism/components/primary_button.dart';
 import 'package:austism/controller/auth_controller.dart';
+import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/appColors.dart';
 import 'package:austism/screens/Auth/login.dart';
 import 'package:flutter/gestures.dart';
@@ -169,7 +170,6 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
@@ -179,125 +179,137 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.kWhite,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-          backgroundColor: AppColors.kWhite,
-          surfaceTintColor: AppColors.kWhite,
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
           elevation: 0,
           leading: const BackButton(
             color: AppColors.kPrimary,
           )),
-      body: GetBuilder<AuthController>(
-          init: authController,
-          builder: (controller) {
-            return SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.all(20),
-              child: Form(
-                key: _formKey,
-                child: Center(
-                  child: Column(
-                    children: [
-                      const Text('Create Account',
-                          style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black)),
-                      const SizedBox(height: 5),
-                      const Text('Lorem ipsum dolor sit amet, consectetur',
-                          style: TextStyle(
-                              fontSize: 14, color: AppColors.kGrey60)),
-                      const SizedBox(height: 30),
-                      // FullName.
-                      AuthField(
-                        title: 'Full Name',
-                        hintText: 'Enter your name',
-                        controller: _nameController,
-                        // validator: (value) {
-                        //   if (value == null || value.isEmpty) {
-                        //     return 'Name is required';
-                        //   } else if (!RegExp(r'^[a-zA-Z ]+ $')
-                        //       .hasMatch(value)) {
-                        //     return 'Please enter a valid name';
-                        //   }
-                        //   return null;
-                        // },
-                        keyboardType: TextInputType.name,
-                        textInputAction: TextInputAction.next,
-                      ),
-                      const SizedBox(height: 15),
-                      // Email Field.
-                      AuthField(
-                        title: 'E-mail',
-                        hintText: 'Enter your email address',
-                        controller: emailController,
-                        // validator: (value) {
-                        //   if (value == null || value.isEmpty) {
-                        //     return 'Email is required';
-                        //   } else if (!value.isEmail) {
-                        //     return 'Invalid email address';
-                        //   }
-                        //   return null;
-                        // },
-                        keyboardType: TextInputType.emailAddress,
-                        textInputAction: TextInputAction.next,
-                      ),
-                      const SizedBox(height: 15),
-                      // Password Field.
-                      AuthField(
-                        title: 'Password',
-                        hintText: 'Enter your password',
-                        controller: passController,
-                        // validator: (value) {
-                        //   if (value == null || value.isEmpty) {
-                        //     return 'Password is required';
-                        //   } else if (value.length < 8) {
-                        //     return 'Password should be at least 8 characters long';
-                        //   }
-                        //   return null;
-                        // },
-                        isPassword: true,
-                        keyboardType: TextInputType.visiblePassword,
-                        textInputAction: TextInputAction.done,
-                      ),
-                      const SizedBox(height: 30),
-                      PrimaryButton(
-                        onTap: () {
-                          // if (_formKey.currentState!.validate()) {}
-                          controller.register(
-                              emailController.text, passController.text);
-                        },
-                        text: 'Create An Account',
-                      ),
-                      50.h.verticalSpace,
-                      RichText(
-                        text: TextSpan(
-                          text: 'Don’t have an account? ',
-                          style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.kGrey70),
-                          children: [
-                            TextSpan(
-                              text: 'Login',
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  Get.to(() => const LoginScreen());
-                                },
+      body: Container(
+        height: Get.height,
+        width: Get.width,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(Appassets.background),
+            fit: BoxFit.cover,
+            // image: AssetImage(Appassets.background),
+          ),
+        ),
+        child: GetBuilder<AuthController>(
+            init: authController,
+            builder: (controller) {
+              return SingleChildScrollView(
+                padding: const EdgeInsets.all(20),
+                child: SafeArea(
+                  child: Form(
+                    child: Center(
+                      child: Column(
+                        children: [
+                          const Text('Create Account',
+                              style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black)),
+                          const SizedBox(height: 5),
+                          const Text('Lorem ipsum dolor sit amet, consectetur',
+                              style: TextStyle(
+                                  fontSize: 14, color: AppColors.kGrey60)),
+                          const SizedBox(height: 30),
+                          // FullName.
+                          AuthField(
+                            title: 'Full Name',
+                            hintText: 'Enter your name',
+                            controller: _nameController,
+                            // validator: (value) {
+                            //   if (value == null || value.isEmpty) {
+                            //     return 'Name is required';
+                            //   } else if (!RegExp(r'^[a-zA-Z ]+ $')
+                            //       .hasMatch(value)) {
+                            //     return 'Please enter a valid name';
+                            //   }
+                            //   return null;
+                            // },
+                            keyboardType: TextInputType.name,
+                            textInputAction: TextInputAction.next,
+                          ),
+                          const SizedBox(height: 15),
+                          // Email Field.
+                          AuthField(
+                            title: 'E-mail',
+                            hintText: 'Enter your email address',
+                            controller: emailController,
+                            // validator: (value) {
+                            //   if (value == null || value.isEmpty) {
+                            //     return 'Email is required';
+                            //   } else if (!value.isEmail) {
+                            //     return 'Invalid email address';
+                            //   }
+                            //   return null;
+                            // },
+                            keyboardType: TextInputType.emailAddress,
+                            textInputAction: TextInputAction.next,
+                          ),
+                          const SizedBox(height: 15),
+                          // Password Field.
+                          AuthField(
+                            title: 'Password',
+                            hintText: 'Enter your password',
+                            controller: passController,
+                            // validator: (value) {
+                            //   if (value == null || value.isEmpty) {
+                            //     return 'Password is required';
+                            //   } else if (value.length < 8) {
+                            //     return 'Password should be at least 8 characters long';
+                            //   }
+                            //   return null;
+                            // },
+                            isPassword: true,
+                            keyboardType: TextInputType.visiblePassword,
+                            textInputAction: TextInputAction.done,
+                          ),
+                          const SizedBox(height: 30),
+                          PrimaryButton(
+                            onTap: () {
+                              // if (_formKey.currentState!.validate()) {}
+                              controller.register(
+                                  emailController.text, passController.text);
+                            },
+                            text: 'Create An Account',
+                          ),
+                          50.h.verticalSpace,
+                          RichText(
+                            text: TextSpan(
+                              text: 'Don’t have an account? ',
                               style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w700,
-                                  color: AppColors.kPrimary),
+                                  color: AppColors.kGrey70),
+                              children: [
+                                TextSpan(
+                                  text: 'Login',
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      Get.to(() => const LoginScreen());
+                                    },
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w700,
+                                      color: AppColors.kPrimary),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        textAlign: TextAlign.center,
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
-            );
-          }),
+              );
+            }),
+      ),
     );
   }
 }

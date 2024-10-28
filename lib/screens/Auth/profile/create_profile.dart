@@ -1,6 +1,9 @@
+import 'package:austism/components/auth_field.dart';
 import 'package:austism/components/button.dart';
+import 'package:austism/components/primary_button.dart';
 import 'package:austism/controller/create_profile_controller.dart';
 import 'package:austism/resources/appAssets.dart';
+import 'package:austism/resources/appColors.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/Auth/profile/add_child.dart';
 import 'package:flutter/material.dart';
@@ -20,45 +23,30 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: const BoxDecoration(
-        color: bprimaryColor,
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          surfaceTintColor: Colors.transparent,
-          leading: GestureDetector(
-            onTap: () {
-              Get.back();
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Container(
-                height: 20.h,
-                width: 20.w,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                ),
-                child: Image.asset(
-                  Appassets.arrowback,
-                  scale: 1.5,
-                  color: kprimaryColor,
-                ),
-              ),
-            ),
-          ),
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
           backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
           elevation: 0,
+          leading: const BackButton(
+            color: AppColors.kPrimary,
+          )),
+      body: Container(
+        height: Get.height,
+        width: Get.width,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(Appassets.background),
+            fit: BoxFit.cover,
+          ),
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.all(20.r),
             child: Column(
               children: [
-                SizedBox(height: 0.07.sh),
                 GetBuilder(
                   init: userController,
                   builder: (controller) {
@@ -70,7 +58,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                           clipBehavior: Clip.none,
                           children: [
                             CircleAvatar(
-                              radius: 100.r,
+                              radius: 70.r,
                               // backgroundImage: AssetImage(Appassets
                               //     .parentPic), // Adjust the size as needed
                               backgroundImage: controller.selectedParentImage ==
@@ -80,14 +68,16 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                               backgroundColor: Colors.transparent,
                             ),
                             Positioned(
+                              right: 8.w,
+                              bottom: 5.h,
                               child: GestureDetector(
                                 onTap: () {
                                   _showImageSourceActionSheet(
                                       context, controller);
                                 },
                                 child: Container(
-                                  height: 25,
-                                  width: 25,
+                                  height: 25.h,
+                                  width: 25.w,
                                   decoration: const BoxDecoration(
                                     color: Colors.white,
                                     shape: BoxShape.circle,
@@ -111,8 +101,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                     Text(
                       "Set Parent Profile",
                       style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 28.sp,
+                        color: AppColors.kWhite,
+                        fontSize: 24.sp,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -123,7 +113,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                     Text(
                       "Fill out the Details",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: AppColors.kWhite,
                         fontSize: 22.sp,
                         fontWeight: FontWeight.w200,
                       ),
@@ -131,32 +121,42 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                   ],
                 ),
                 SizedBox(height: 0.05.sh),
-                txtfield(
-                    "Full Name", 1.sw, userController.parentnameController),
+                AuthField(
+                    title: "Parent Name",
+                    hintText: "Enter Name",
+                    controller: userController.parentnameController),
+                // txtfield(
+                //     "Full Name", 1.sw, userController.parentnameController),
                 SizedBox(height: 5.h),
-                txtfield("Location", 1.sw, userController.parentlocController),
+                AuthField(
+                    title: "Location",
+                    hintText: "Enter Location",
+                    controller: userController.parentlocController),
+                // txtfield("Location", 1.sw, userController.parentlocController),
                 SizedBox(height: 5.h),
-                txtfield("Contact Info", 1.sw,
-                    userController.parentcontactController),
+                AuthField(
+                    title: "Contact",
+                    hintText: "Enter Contact Number",
+                    controller: userController.parentcontactController),
+                // txtfield("Contact Info", 1.sw,
+                //     userController.parentcontactController),
                 SizedBox(height: 5.h),
-                txtfield("Email", 1.sw, userController.parentemailController),
+                AuthField(
+                    title: "Email",
+                    hintText: "Enter Email",
+                    controller: userController.parentemailController),
+                // txtfield("Email", 1.sw, userController.parentemailController),
                 SizedBox(height: 50.h),
                 GetBuilder(
                   init: userController,
                   builder: (controller) {
                     return controller.isloading
                         ? const Center(child: CircularProgressIndicator())
-                        : GestureDetector(
+                        : PrimaryButton(
                             onTap: () async {
                               Get.to(() => const AddChildScreen());
                             },
-                            child: CustomButton(
-                              textButton: "CONTINUE",
-                              textColor: Colors.white,
-                              widthh: 1.sw,
-                              isIcon: false,
-                              buttonColor: kprimaryColor,
-                            ),
+                            text: "Continue",
                           );
                   },
                 ),
