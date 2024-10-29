@@ -1,5 +1,6 @@
 import 'package:austism/components/speech.dart';
 import 'package:austism/resources/appAssets.dart';
+import 'package:austism/resources/apptext.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,16 +25,25 @@ class FruitsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
-        elevation: 0,
         centerTitle: true,
         title: Text(
           "Fruits",
-          style: TextStyle(
-            color: greenColor,
+          style: AppTextStyle.medium.copyWith(
+            color: Colors.indigo[700]!,
             fontWeight: FontWeight.w800,
-            fontSize: 35.sp,
+            fontSize: 24.sp,
           ),
         ),
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: Icon(
+              Icons.keyboard_backspace_sharp,
+              color: Colors.indigo[700]!,
+              size: 30.sp,
+            )),
       ),
       body: Container(
         height: Get.height,

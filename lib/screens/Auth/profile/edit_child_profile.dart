@@ -1,4 +1,5 @@
 import 'package:austism/components/auth_field.dart';
+import 'package:austism/components/primary_button.dart';
 import 'package:austism/controller/create_profile_controller.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/apptext.dart';
@@ -36,11 +37,21 @@ class _EditChildProfileState extends State<EditChildProfile> {
         title: Text(
           "Edit Child Profile",
           style: AppTextStyle.medium.copyWith(
-            color: greenColor,
+            color: Colors.indigo[700]!,
             fontWeight: FontWeight.w800,
             fontSize: 24.sp,
           ),
         ),
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: Icon(
+              Icons.keyboard_backspace_sharp,
+              color: Colors.indigo[700]!,
+              size: 30.sp,
+            )),
       ),
       body: Container(
         height: Get.height,
@@ -138,6 +149,9 @@ class _EditChildProfileState extends State<EditChildProfile> {
                         hintText: "Enter Child Location",
                         controller: childLocationController,
                       ),
+                      20.r.verticalSpace,
+                      PrimaryButton(onTap: () {}, text: "Update"),
+                      10.r.verticalSpace,
                     ],
                   ).paddingSymmetric(horizontal: 10.r),
                 ),

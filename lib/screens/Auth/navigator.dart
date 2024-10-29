@@ -33,27 +33,42 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
       onTap: () =>
           _bottomController.navBarChange(listofUserBottomItems.indexOf(item)),
       child: Container(
-        padding: EdgeInsets.only(top: 10.h),
+        height: 60.r,
+        padding: EdgeInsets.only(right: 7.r, left: 7.r),
+        margin: EdgeInsets.only(top: 10.r),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.r),
+            gradient: isSelected
+                ? LinearGradient(colors: [Colors.yellow, Colors.orange])
+                : LinearGradient(
+                    colors: [Colors.transparent, Colors.transparent])),
+        // color: isSelected ? Colors.yellow : Colors.transparent,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                color: isSelected
-                    ? const Color.fromARGB(33, 255, 255, 255)
-                    : Colors.transparent,
-                shape: BoxShape.circle,
-              ),
-              child: item.image,
+            Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    // color: isSelected
+                    //     ? const Color.fromARGB(33, 255, 255, 255)
+                    //     : Colors.transparent,
+                    shape: BoxShape.circle,
+                  ),
+                  child: item.image,
+                ),
+                10.w.horizontalSpace,
+                Text(
+                  item.title,
+                  style: AppTextStyle.small.copyWith(
+                    fontSize: 12.sp,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
             2.h.verticalSpace,
-            Text(
-              item.title,
-              style: AppTextStyle.small.copyWith(
-                fontSize: 12.sp,
-                color: Colors.white,
-              ),
-            ),
-            if (!isSelected) SizedBox(height: 15.h),
+            // if (!isSelected) SizedBox(height: 15.h),
           ],
         ),
       ),
@@ -84,7 +99,11 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                   topLeft: Radius.circular(25.r),
                   topRight: Radius.circular(25.r),
                 ),
-                color: greenColor,
+                gradient: const LinearGradient(
+                  colors: [Color(0xff0E5C9E), Color(0xff031965)],
+                  end: Alignment.topCenter,
+                  begin: Alignment.bottomCenter,
+                ),
               ),
             ),
           ),
@@ -108,6 +127,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
     return GetBuilder<BottomController>(
       builder: (_) {
         return Scaffold(
+          extendBody: true,
           body: _pages[_bottomController.userNavigationBarIndexValue],
           bottomNavigationBar: _buildMyNavBar(context),
         );

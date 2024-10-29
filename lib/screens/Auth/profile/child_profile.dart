@@ -2,12 +2,14 @@ import 'package:austism/components/drawer.dart';
 import 'package:austism/controller/child_controller.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/appColors.dart';
+import 'package:austism/resources/app_loader.dart';
 import 'package:austism/resources/apptext.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/Auth/profile/edit_child_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ChildProfile extends StatefulWidget {
   const ChildProfile({super.key});
@@ -22,7 +24,8 @@ class _ChildProfileState extends State<ChildProfile> {
   @override
   void initState() {
     super.initState();
-    childcontroller.fetchUserData(); // Fetch user data on init
+    Future.microtask(
+        () => childcontroller.fetchUserData()); // Fetch user data on init
   }
 
   @override
@@ -37,10 +40,10 @@ class _ChildProfileState extends State<ChildProfile> {
             surfaceTintColor: Colors.transparent,
             title: Text(
               "Child Profile",
-              style: AppTextStyle.small.copyWith(
-                color: greenColor,
-                fontWeight: FontWeight.w600,
-                fontSize: 22.sp,
+              style: AppTextStyle.medium.copyWith(
+                color: Colors.indigo[700]!,
+                fontWeight: FontWeight.w800,
+                fontSize: 24.sp,
               ),
             ),
             centerTitle: true,
@@ -51,7 +54,7 @@ class _ChildProfileState extends State<ChildProfile> {
               child: Image.asset(
                 "assets/images/Menu.png",
                 scale: 3.5,
-                // color: kprimaryColor,
+                color: Colors.indigo[700]!,
               ),
             ),
             actions: [
@@ -60,7 +63,7 @@ class _ChildProfileState extends State<ChildProfile> {
                   Get.to(() => EditChildProfile());
                 },
                 child: Image.asset(
-                  "assets/images/edit_profile.png",
+                  "assets/images/Frame 11577.png",
                   scale: 4.5,
                 ),
               )
@@ -71,7 +74,7 @@ class _ChildProfileState extends State<ChildProfile> {
             init: childcontroller,
             builder: (controller) {
               if (controller.isloading) {
-                return Center(child: CircularProgressIndicator());
+                return Center(child: AppLoader.spinkit);
               }
 
               return Container(
@@ -93,9 +96,9 @@ class _ChildProfileState extends State<ChildProfile> {
                         children: [
                           CircleAvatar(
                             radius: 70.r,
-                            backgroundImage: controller.parentimage.isNotEmpty
+                            backgroundImage: controller.childimage.isNotEmpty
                                 ? NetworkImage(controller
-                                    .parentimage) // Use parent image URL
+                                    .childimage) // Use parent image URL
                                 : const AssetImage(Appassets.parentPic)
                                     as ImageProvider,
                           )

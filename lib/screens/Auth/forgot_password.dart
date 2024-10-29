@@ -35,13 +35,13 @@ class _ForgotScreenState extends State<ForgotScreen> {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(Appassets.background),
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
         child: SafeArea(
           child: Column(
             children: [
-              20.h.verticalSpace,
+              30.r.verticalSpace,
               Center(
                 child: Image.asset(
                   "assets/images/app_icon.png",
@@ -51,17 +51,17 @@ class _ForgotScreenState extends State<ForgotScreen> {
               Text(
                 "Forgot Password?",
                 style: AppTextStyle.medium.copyWith(
-                  color: Colors.white,
-                  fontSize: 28.h,
+                  color: AppColors.kWhite,
+                  fontSize: 28.r,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              10.h.verticalSpace,
+              10.r.verticalSpace,
               Text(
                 "Enter your email",
                 style: AppTextStyle.small.copyWith(
-                  color: Colors.white,
-                  fontSize: 20.h,
+                  color: AppColors.kWhite,
+                  fontSize: 20.r,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -70,14 +70,14 @@ class _ForgotScreenState extends State<ForgotScreen> {
                   title: "Email",
                   hintText: "Enter your Email",
                   controller: emailController),
-              30.h.verticalSpace,
+              30.r.verticalSpace,
               PrimaryButton(
                   onTap: () {
                     Get.to(() => const CreateNewPasswordScreen());
                   },
                   text: 'Continue')
             ],
-          ).paddingSymmetric(horizontal: 20.w),
+          ).paddingSymmetric(horizontal: 20.r),
         ),
       ),
     );

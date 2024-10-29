@@ -1,12 +1,9 @@
 import 'package:austism/components/auth_field.dart';
 import 'package:austism/components/primary_button.dart';
-import 'package:austism/components/textfield.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/appColors.dart';
 import 'package:austism/resources/apptext.dart';
-import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/auth/login.dart';
-import 'package:austism/components/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -49,31 +46,31 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              30.h.verticalSpace,
+              30.r.verticalSpace,
               Center(
                 child: Image.asset(
                   "assets/images/app_icon.png",
                   scale: 3.8,
                 ),
               ),
-              20.h.verticalSpace,
+              20.r.verticalSpace,
               Text(
                 "Create New Pasword",
                 style: AppTextStyle.medium.copyWith(
-                  color: Colors.white,
-                  fontSize: 28.sp,
+                  color: AppColors.kWhite,
+                  fontSize: 26.r,
                   fontWeight: FontWeight.w600,
                 ),
               ),
               Text(
                 "Enter your new password",
                 style: AppTextStyle.small.copyWith(
-                  color: Colors.white,
-                  fontSize: 18.h,
+                  color: AppColors.kWhite,
+                  fontSize: 16.r,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              20.h.verticalSpace,
+              20.r.verticalSpace,
               AuthField(
                   title: "New Password",
                   hintText: "Enter Password",
@@ -95,7 +92,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
               //           _isObscure ? Icons.visibility : Icons.visibility_off,
               //           color: white)),
               // ),
-              20.h.verticalSpace,
+              20.r.verticalSpace,
               AuthField(
                   title: "Confirm New Password",
                   hintText: "Enter your Password",
@@ -119,7 +116,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
               //               : Icons.visibility_off,
               //           color: white)),
               // ),
-              30.h.verticalSpace,
+              30.r.verticalSpace,
               PrimaryButton(
                 onTap: () {
                   Get.to(() => const LoginScreen());
@@ -127,7 +124,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                 text: "Continue",
               )
             ],
-          ).paddingSymmetric(horizontal: 20.w),
+          ).paddingSymmetric(horizontal: 20.r),
         ),
       ),
     );

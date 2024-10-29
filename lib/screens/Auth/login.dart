@@ -145,6 +145,7 @@ import 'package:austism/components/auth_field.dart';
 import 'package:austism/components/primary_button.dart';
 import 'package:austism/controller/auth_controller.dart';
 import 'package:austism/resources/appColors.dart';
+import 'package:austism/resources/app_loader.dart';
 import 'package:austism/resources/apptext.dart';
 import 'package:austism/screens/Auth/forgot_password.dart';
 import 'package:austism/screens/Auth/signup.dart';
@@ -171,13 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.kWhite,
-      // appBar: AppBar(
-      //     backgroundColor: AppColors.kWhite,
-      //     elevation: 0,
-      //     leading: const BackButton(
-      //       color: AppColors.kPrimary,
-      //     )),
+      backgroundColor: Colors.transparent,
       body: Container(
         height: Get.height,
         width: Get.width,
@@ -185,7 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
           image: DecorationImage(
             image: AssetImage("assets/images/184.png"),
             // filterQuality: FilterQuality.low,
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
         child: SafeArea(
@@ -197,23 +192,18 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Center(
                 child: Column(
                   children: [
+                    30.r.verticalSpace,
                     Image.asset(
                       "assets/images/app_icon.png",
                       scale: 3.8,
                     ),
-                    10.h.verticalSpace,
+                    10.r.verticalSpace,
                     Text('Let’s Sign you in',
                         style: AppTextStyle.medium.copyWith(
-                            fontSize: 24.sp,
+                            fontSize: 26.r,
                             fontWeight: FontWeight.bold,
                             color: AppColors.kWhite)),
-                    const SizedBox(height: 5),
-                    const Text(
-                      'Lorem ipsum dolor sit amet, consectetur',
-                      style: TextStyle(fontSize: 14, color: AppColors.kGrey60),
-                    ),
-                    const SizedBox(height: 30),
-                    // Email Field.
+                    30.r.verticalSpace,
                     AuthField(
                       title: 'Email Address',
                       hintText: 'Enter your email address',
@@ -229,7 +219,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                     ),
-                    const SizedBox(height: 15),
+                    15.r.verticalSpace,
                     // Password Field.
                     AuthField(
                       title: 'Password',
@@ -247,7 +237,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       keyboardType: TextInputType.visiblePassword,
                       textInputAction: TextInputAction.done,
                     ),
-                    const SizedBox(height: 5),
+                    5.r.verticalSpace,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -256,31 +246,36 @@ class _LoginScreenState extends State<LoginScreen> {
                             Get.to(() => ForgotScreen());
                           },
                           child: Text(
-                            "Forgot Password",
-                            style: TextStyle(
+                            "Forgot Password?",
+                            style: AppTextStyle.small.copyWith(
                               color: Colors.red,
-                              fontSize: 14.sp,
+                              fontSize: 18.r,
                             ),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 15),
-                    PrimaryButton(
-                      onTap: () {
-                        _controller.login(
-                            emailController.text, passController.text);
-                      },
-                      text: 'Sign In',
+                    30.r.verticalSpace,
+                    GetBuilder<AuthController>(
+                      init: _controller,
+                      builder: (_) => _controller.isLoading
+                          ? AppLoader.spinkit
+                          : PrimaryButton(
+                              onTap: () {
+                                _controller.login(
+                                    emailController.text, passController.text);
+                              },
+                              text: 'Sign In',
+                            ),
                     ),
-                    50.h.verticalSpace,
+                    50.r.verticalSpace,
                     RichText(
                       text: TextSpan(
                         text: 'Don’t have an account? ',
-                        style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.kGrey70),
+                        style: AppTextStyle.small.copyWith(
+                            fontSize: 18.r,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.kWhite),
                         children: [
                           TextSpan(
                             text: 'Sign Up',
@@ -288,8 +283,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               ..onTap = () {
                                 Get.to(() => const SignupScreen());
                               },
-                            style: const TextStyle(
-                                fontSize: 16,
+                            style: AppTextStyle.small.copyWith(
+                                fontSize: 18.r,
                                 fontWeight: FontWeight.w700,
                                 color: AppColors.kPrimary),
                           ),
@@ -297,9 +292,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 20),
-
-                    const SizedBox(height: 20),
                   ],
                 ),
               ),

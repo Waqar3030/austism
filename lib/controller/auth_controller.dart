@@ -17,6 +17,13 @@ class AuthController extends GetxController {
     update();
   }
 
+  bool isLoading = false;
+
+  void loader(bool value) {
+    isLoading = value;
+    update();
+  }
+
   static AuthController instance = Get.find();
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   late Rx<User?> firebaseUser;
@@ -43,6 +50,7 @@ class AuthController extends GetxController {
     }
 
     try {
+      loader(true);
       // Create a new user with email and password
       await firebaseAuth.createUserWithEmailAndPassword(
         email: email.trim(),
@@ -78,6 +86,8 @@ class AuthController extends GetxController {
         textColor: Colors.white,
         fontSize: 16.0,
       );
+    } finally {
+      loader(false);
     }
   }
 
@@ -133,6 +143,7 @@ class AuthController extends GetxController {
     }
 
     try {
+      loader(true);
       // Login the user with email and password
       await firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
@@ -165,6 +176,8 @@ class AuthController extends GetxController {
         textColor: Colors.white,
         fontSize: 16.0,
       );
+    } finally {
+      loader(false);
     }
   }
 }

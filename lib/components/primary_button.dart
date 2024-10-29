@@ -1,5 +1,7 @@
 import 'package:austism/resources/appColors.dart';
+import 'package:austism/resources/apptext.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PrimaryButton extends StatefulWidget {
   final VoidCallback onTap;
@@ -66,21 +68,25 @@ class _PrimaryButtonState extends State<PrimaryButton>
         child: Card(
           elevation: 5,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(100),
+            borderRadius: BorderRadius.circular(100.r),
           ),
           child: Container(
-            height: widget.height ?? 50,
+            height: widget.height ?? 55.r,
             alignment: Alignment.center,
             width: widget.width ?? double.maxFinite,
             decoration: BoxDecoration(
-              color: widget.color ?? const Color(0xFFD1A661),
-              borderRadius: BorderRadius.circular(widget.borderRadius ?? 20),
+              gradient: LinearGradient(
+                  colors: [Colors.yellow, Colors.orange],
+                  end: Alignment.topCenter,
+                  begin: Alignment.bottomCenter),
+              // color: widget.color ?? const Color(0xFFD1A661),
+              borderRadius: BorderRadius.circular(widget.borderRadius ?? 20.r),
             ),
             child: Text(
               widget.text,
-              style: TextStyle(
+              style: AppTextStyle.small.copyWith(
                   color: widget.color == null ? AppColors.kWhite : Colors.black,
-                  fontSize: widget.fontSize ?? 16,
+                  fontSize: widget.fontSize ?? 22.r,
                   fontWeight: FontWeight.w600),
             ),
           ),

@@ -1,8 +1,12 @@
 import 'package:austism/components/home_intro.dart';
 import 'package:austism/controller/bottom_controller.dart' as bottomController;
 import 'package:austism/components/appBar.dart';
+import 'package:austism/controller/child_controller.dart';
 import 'package:austism/resources/appColors.dart';
+import 'package:austism/resources/app_loader.dart';
 import 'package:austism/resources/apptext.dart';
+import 'package:austism/screens/text_to_speech/alphabets.dart';
+import 'package:austism/screens/text_to_speech/clothes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -15,11 +19,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<String> titles = ["Alphabets", "Numbers", "Colours"];
+  final ChildController childcontroller = Get.put(ChildController());
+  @override
+  initState() {
+    super.initState();
+    Future.microtask(() => childcontroller.fetchUserData());
+  }
+
+  List<String> titles = ["Alphabets", "Numbers", "Clothes"];
   List<String> path = [
     "assets/images/abc.png",
     "assets/images/number-blocks.png",
     "assets/images/brand.png"
+  ];
+  List<Widget> speechCardsNavigate = [
+    EnglishAlphabets(),
+    EnglishAlphabets(),
+    ClothesScreen(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -40,47 +56,55 @@ class _HomeScreenState extends State<HomeScreen> {
             Colors.purple[300]!
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                30.r.verticalSpace,
-                IntroCard(),
-                20.r.verticalSpace,
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 300.r,
-                  child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 3,
-                      itemBuilder: (context, index) {
-                        return speechCards(
-                          title: titles[index],
-                          imagePath: path[index],
-                        );
-                      }),
+        child: GetBuilder<ChildController>(
+          init: childcontroller,
+          builder: (_) => childcontroller.isloading
+              ? AppLoader.spinkit
+              : SafeArea(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        30.r.verticalSpace,
+                        IntroCard(),
+                        20.r.verticalSpace,
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          height: 250.r,
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: 3,
+                              itemBuilder: (context, index) {
+                                return speechCards(
+                                  ontap: () {
+                                    Get.to(() => speechCardsNavigate[index]);
+                                  },
+                                  title: titles[index],
+                                  imagePath: path[index],
+                                );
+                              }),
+                        ),
+                        10.h.verticalSpace,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                final bottomController2 = Get.put(
+                                    bottomController.BottomController());
+                                bottomController2.navBarChange(2);
+                              },
+                              child: Text("Find more",
+                                  style: AppTextStyle.small.copyWith(
+                                      color: AppColors.kWhite,
+                                      fontFamily: "BigBottom",
+                                      fontSize: 20.r)),
+                            ),
+                          ],
+                        )
+                      ],
+                    ).paddingSymmetric(horizontal: 10.r),
+                  ),
                 ),
-                10.h.verticalSpace,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        final bottomController2 =
-                            Get.put(bottomController.BottomController());
-                        bottomController2.navBarChange(2);
-                      },
-                      child: Text("Find more",
-                          style: AppTextStyle.small.copyWith(
-                              color: AppColors.kWhite,
-                              fontFamily: "BigBottom",
-                              fontSize: 20.r)),
-                    ),
-                  ],
-                )
-              ],
-            ).paddingSymmetric(horizontal: 10.r),
-          ),
         ),
       ),
     );
@@ -135,6 +159,7 @@ class SpaceHomeScreen extends StatelessWidget {
                         itemCount: planetCards.length,
                         itemBuilder: (context, index) {
                           return speechCards(
+                            ontap: () {},
                             title: '',
                             imagePath: '',
                           );
@@ -512,59 +537,86 @@ class _PlanetCardWidgetState extends State<PlanetCardWidget> {
   }
 }
 
-Widget speechCards({required String title, required String imagePath}) {
-  return Container(
-    margin: EdgeInsets.only(right: 10.r),
-    padding: EdgeInsets.symmetric(horizontal: 15.r, vertical: 15.r),
-    width: 250.r,
-    // height: 250.r,
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(50.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(.05),
-            offset: const Offset(0, 10),
-            blurRadius: 0,
-            spreadRadius: 0,
-          )
-        ],
-        gradient: const RadialGradient(
-          colors: [Color(0xff0E5C9E), Color(0xff031965)],
-          focal: Alignment.topCenter,
-          radius: .85,
-        )),
-
-    child: Column(
-      children: [
-        Image.asset(
-          imagePath,
-          scale: 4.8,
-        ),
-        Text(title,
-            style: const TextStyle(
-                color: Colors.white, fontFamily: "BigBottom", fontSize: 22)),
-        15.r.verticalSpace,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Container(
-                width: 40.r,
-                height: 40.r,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100.0),
-                  gradient: const LinearGradient(
-                      colors: [Colors.yellow, Colors.orange],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter),
-                ),
-                child: const Icon(
-                  Icons.keyboard_arrow_right,
-                  color: Colors.white,
-                  size: 30,
-                )),
+Widget speechCards(
+    {required String title,
+    required String imagePath,
+    required VoidCallback ontap}) {
+  return GestureDetector(
+    onTap: ontap,
+    child: Container(
+      margin: EdgeInsets.only(right: 10.r),
+      // padding: EdgeInsets.symmetric(horizontal: 15.r, vertical: 15.r),
+      width: 250.r,
+      // height: 250.r,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(.05),
+              offset: const Offset(0, 10),
+              blurRadius: 0,
+              spreadRadius: 0,
+            )
           ],
-        ),
-      ],
+          gradient: const RadialGradient(
+            colors: [Color(0xff0E5C9E), Color(0xff031965)],
+            focal: Alignment.topCenter,
+            radius: .85,
+          )),
+
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Image.asset(
+            imagePath,
+            scale: 4.8,
+          ).paddingOnly(top: 15.r),
+          Text(title,
+              style: const TextStyle(
+                  color: Colors.white, fontFamily: "BigBottom", fontSize: 22)),
+          15.r.verticalSpace,
+          Container(
+            width: double.infinity,
+            height: 60.r,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.white, width: 1.r),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(50.r),
+                bottomRight: Radius.circular(50.r),
+              ),
+              gradient: const LinearGradient(
+                  colors: [Colors.yellow, Colors.orange],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter),
+            ),
+            child: const Icon(
+              Icons.keyboard_arrow_right,
+              color: Colors.white,
+              size: 30,
+            ),
+          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.end,
+          //   children: [
+          //     Container(
+          //         width: 40.r,
+          //         height: 40.r,
+          //         decoration: BoxDecoration(
+          //           borderRadius: BorderRadius.circular(100.0),
+          //           gradient: const LinearGradient(
+          //               colors: [Colors.yellow, Colors.orange],
+          //               begin: Alignment.topCenter,
+          //               end: Alignment.bottomCenter),
+          //         ),
+          //         child: const Icon(
+          //           Icons.keyboard_arrow_right,
+          //           color: Colors.white,
+          //           size: 30,
+          //         )),
+          //   ],
+          // ),
+        ],
+      ),
     ),
   );
 }

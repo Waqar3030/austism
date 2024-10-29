@@ -46,11 +46,21 @@ class SportsScreen extends StatelessWidget {
         title: Text(
           "Sports",
           style: AppTextStyle.medium.copyWith(
-            color: greenColor,
+            color: Colors.indigo[700]!,
             fontWeight: FontWeight.w800,
-            fontSize: 24.r,
+            fontSize: 24.sp,
           ),
         ),
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: Icon(
+              Icons.keyboard_backspace_sharp,
+              color: Colors.indigo[700]!,
+              size: 30.sp,
+            )),
       ),
       body: Container(
         height: Get.height,

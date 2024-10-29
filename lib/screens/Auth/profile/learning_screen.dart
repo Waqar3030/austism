@@ -136,11 +136,10 @@ Widget item({
               spreadRadius: 0,
             )
           ],
-          gradient: const RadialGradient(
-            colors: [Color(0xff0E5C9E), Color(0xff031965)],
-            focal: Alignment.topCenter,
-            radius: .85,
-          )),
+          gradient: const LinearGradient(
+              colors: [Color(0xff0E5C9E), Color(0xff031965)],
+              end: Alignment.centerLeft,
+              begin: Alignment.centerRight)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

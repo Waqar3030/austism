@@ -1,6 +1,7 @@
-import 'package:austism/resources/colors.dart';
+import 'package:austism/components/primary_button.dart';
 import 'package:austism/components/appBar.dart';
-import 'package:austism/components/button.dart';
+import 'package:austism/resources/appColors.dart';
+import 'package:austism/resources/apptext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -21,130 +22,88 @@ class _ViusalScreenState extends State<ViusalScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(kToolbarHeight),
           child: CustomAppbar(
             text: "Visual Schedule",
           )),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          width: double.infinity,
+      body: Container(
+        height: Get.height,
+        width: Get.width,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Colors.blue[50]!,
+            Colors.blueAccent,
+            Colors.purple[300]!
+          ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+        ),
+        child: SafeArea(
           child: Column(
             children: [
+              30.r.verticalSpace,
               Row(
                 children: [
                   Text(
                     "My Schedule",
-                    style: TextStyle(
-                      color: Colors.black,
+                    style: AppTextStyle.medium.copyWith(
+                      color: AppColors.kWhite,
                       fontSize: 22.sp,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                 ],
               ),
-              SizedBox(
-                height: 0.1.sh,
-              ),
-              Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Container(
-                    height: 0.35.sh,
-                    width: 0.9.sw,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(6.r),
-                    ),
-                  ),
-                  Positioned(
-                    left: 0.05.sw,
-                    bottom: -0.05.sh,
-                    child: Container(
-                      height: 0.45.sh,
-                      width: 0.8.sw,
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.2),
-                            spreadRadius: 5,
-                            blurRadius: 7,
-                            offset: Offset(0, 3), // changes position of shadow
-                          ),
-                        ],
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(6.r),
-                      ),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 0.25.sh,
-                          ),
-                          Text(
-                            "7:00 AM",
-                            style: TextStyle(
-                              color: Color(0xff121137),
-                              fontWeight: FontWeight.w300,
-                              fontSize: 24.sp,
-                            ),
-                          ),
-                          Text(
-                            "WAKE UP",
-                            style: TextStyle(
-                              color: Color(0xff121137),
-                              fontWeight: FontWeight.w600,
-                              fontSize: 30.sp,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: 0.1.sh,
-                            width: 0.7.sw,
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.vertical,
-                              child: Text(
-                                "Lorem ipsum dolor sit amet consectetur adipiscing elit suscipit commodo enim tellus et nascetur at leo accumsan, odio habitan",
-                                textAlign: TextAlign.justify,
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 17.sp,
-                                  fontWeight: FontWeight.w300,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 0.2.sw,
-                    top: -0.07.sh,
-                    child: Image.asset(
+              50.r.verticalSpace,
+              Container(
+                // height: 0.43.sh,
+                width: 0.8.sw,
+                padding: EdgeInsets.symmetric(horizontal: 10.r),
+                decoration: BoxDecoration(
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     color: Colors.grey.withOpacity(0.2),
+                  //     spreadRadius: 5,
+                  //     blurRadius: 7,
+                  //     offset: Offset(0, 3), // changes position of shadow
+                  //   ),
+                  // ],
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
+                child: Column(
+                  children: [
+                    Image.asset(
                       "assets/images/Untitled-1.png",
                       scale: 1.5,
                     ),
-                  ),
-                ],
+                    Text(
+                      "7:00 AM",
+                      style: TextStyle(
+                        color: Color(0xff121137),
+                        fontWeight: FontWeight.w300,
+                        fontSize: 24.sp,
+                      ),
+                    ),
+                    Text(
+                      "WAKE UP",
+                      style: TextStyle(
+                        color: Color(0xff121137),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 30.sp,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 0.1.sh,
               ),
-              GestureDetector(
-                onTap: () {
-                  // Get.toNamed('/CreateVisualScheduleScreen');
-                },
-                child: CustomButton(
-                  textButton: "CREATE VISUAL SCHEDULE",
-                  textColor: Colors.white,
-                  widthh: 0.9.sw,
-                  isIcon: false,
-                  buttonColor: greenColor,
-                ),
-              ),
+              PrimaryButton(
+                onTap: () {},
+                text: "Create Schedule",
+              )
             ],
           ).paddingSymmetric(horizontal: 14.w),
         ),

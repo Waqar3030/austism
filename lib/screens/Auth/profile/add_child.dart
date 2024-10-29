@@ -31,6 +31,12 @@ class _AddChildScreenState extends State<AddChildScreen> {
     });
   }
 
+  // @override
+  // void dispose() {
+  //   userController.dispose(); // TODO: implement dispose
+  //   super.dispose();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -211,7 +217,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
                           //       imageurl: controller.childimage);
                           // }
                           controller.createUser();
-                          Get.to(() => const NavigatorScreen());
+                          Get.offAll(() => const NavigatorScreen());
                         },
                         text: "Done",
                       ),

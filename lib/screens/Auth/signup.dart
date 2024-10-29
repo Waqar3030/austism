@@ -1,161 +1,10 @@
-// class SignupScreen extends StatefulWidget {
-//   const SignupScreen({super.key});
-
-//   @override
-//   State<SignupScreen> createState() => _SignupScreenState();
-// }
-
-// class _SignupScreenState extends State<SignupScreen> {
-//   final authController = Get.put(AuthController());
-//   final emailController = TextEditingController();
-//   final passController = TextEditingController();
-//   final phoneNumberController = TextEditingController();
-//   bool _obscure = true;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.transparent,
-//       extendBodyBehindAppBar: true,
-//       appBar: AppBar(
-//         elevation: 0,
-//         backgroundColor: Colors.transparent,
-//         surfaceTintColor: Colors.transparent,
-//         leading: GestureDetector(
-//           onTap: () {
-//             Get.back();
-//           },
-//           child: Padding(
-//             padding: const EdgeInsets.all(12.0),
-//             child: Container(
-//               height: 20.h,
-//               width: 20.w,
-//               decoration: const BoxDecoration(
-//                 shape: BoxShape.circle,
-//                 color: Colors.white,
-//               ),
-//               child: Image.asset(
-//                 Appassets.arrowback,
-//                 scale: 1.5,
-//                 color: kprimaryColor,
-//               ),
-//             ),
-//           ),
-//         ),
-//       ),
-//       body: Container(
-//         width: double.infinity,
-//         decoration: BoxDecoration(
-//           image: DecorationImage(
-//             image: AssetImage(
-//               Appassets.splash1,
-//             ),
-//             fit: BoxFit.fill,
-//           ),
-//         ),
-//         child: GetBuilder<AuthController>(
-//           init: authController,
-//           builder: (controller) {
-//             return SafeArea(
-//               child: Column(
-//                 children: [
-//                   50.h.verticalSpace,
-//                   Center(
-//                     child: Image.asset(
-//                       "assets/images/app_icon.png",
-//                       scale: 3.8,
-//                     ),
-//                   ),
-//                   30.h.verticalSpace,
-//                   Text(
-//                     "Create account",
-//                     style: AppTextStyle.medium.copyWith(
-//                       color: Colors.white,
-//                       fontSize: 28.h,
-//                       fontWeight: FontWeight.w600,
-//                     ),
-//                   ),
-//                   40.h.verticalSpace,
-//                   AuthTextField(
-//                     hinttext: "Email",
-//                     controller: emailController,
-//                     underlineColor: Colors.white,
-//                     hintColor: Colors.white,
-//                     widthh: 0.9.sw,
-//                     isPassword: false,
-//                   ),
-//                   20.h.verticalSpace,
-//                   AuthTextField(
-//                     hinttext: "Password",
-//                     controller: passController,
-//                     underlineColor: Colors.white,
-//                     hintColor: Colors.white,
-//                     widthh: 0.9.sw,
-//                     isPassword: _obscure,
-//                     suffixicon: IconButton(
-//                         onPressed: () {
-//                           setState(() {
-//                             _obscure = !_obscure;
-//                           });
-//                         },
-//                         icon: Icon(
-//                             _obscure ? Icons.visibility : Icons.visibility_off,
-//                             color: white)),
-//                   ),
-//                   50.h.verticalSpace,
-//                   GestureDetector(
-//                     onTap: () {
-//                       controller.register(
-//                           emailController.text, passController.text);
-//                     },
-//                     child: CustomButton(
-//                       textButton: "SIGN UP",
-//                       textColor: kprimaryColor,
-//                       widthh: 0.9.sw,
-//                       isIcon: false,
-//                       buttonColor: Colors.white,
-//                     ),
-//                   ),
-//                   Spacer(),
-//                   Row(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: [
-//                       Text(
-//                         "Already have an account? ",
-//                         style: AppTextStyle.small.copyWith(
-//                           color: Colors.white,
-//                           fontSize: 20.h,
-//                           fontWeight: FontWeight.w400,
-//                         ),
-//                       ),
-//                       GestureDetector(
-//                         onTap: () {
-//                           Get.to(() => const LoginScreen());
-//                         },
-//                         child: Text(
-//                           "Login",
-//                           style: AppTextStyle.medium.copyWith(
-//                             color: Colors.white,
-//                             fontSize: 22.h,
-//                           ),
-//                         ),
-//                       ),
-//                     ],
-//                   ).paddingOnly(bottom: 30.h),
-//                 ],
-//               ).paddingSymmetric(horizontal: 20.w),
-//             );
-//           },
-//         ),
-//       ),
-//     );
-//   }
-// }
 import 'package:austism/components/auth_field.dart';
 import 'package:austism/components/primary_button.dart';
 import 'package:austism/controller/auth_controller.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/appColors.dart';
+import 'package:austism/resources/app_loader.dart';
+import 'package:austism/resources/apptext.dart';
 import 'package:austism/screens/Auth/login.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -205,17 +54,19 @@ class _SignupScreenState extends State<SignupScreen> {
                   child: Form(
                     child: Column(
                       children: [
+                        30.r.verticalSpace,
                         Image.asset(
                           "assets/images/app_icon.png",
-                          scale: 4.5,
+                          scale: 3.8,
                         ),
-                        const Text('Create Account',
-                            style: TextStyle(
-                                fontSize: 24,
+                        10.r.verticalSpace,
+                        Text('Create Account',
+                            style: AppTextStyle.medium.copyWith(
+                                fontSize: 26.r,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.black)),
+                                color: AppColors.kWhite)),
 
-                        const SizedBox(height: 10),
+                        10.r.verticalSpace,
                         // FullName.
                         AuthField(
                           title: 'Full Name',
@@ -233,7 +84,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           keyboardType: TextInputType.name,
                           textInputAction: TextInputAction.next,
                         ),
-                        const SizedBox(height: 15),
+                        10.r.verticalSpace,
                         // Email Field.
                         AuthField(
                           title: 'E-mail',
@@ -250,7 +101,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
                         ),
-                        const SizedBox(height: 15),
+                        10.r.verticalSpace,
                         // Password Field.
                         AuthField(
                           title: 'Password',
@@ -268,23 +119,24 @@ class _SignupScreenState extends State<SignupScreen> {
                           keyboardType: TextInputType.visiblePassword,
                           textInputAction: TextInputAction.done,
                         ),
-                        const SizedBox(height: 30),
-                        PrimaryButton(
-                          onTap: () {
-                            // if (_formKey.currentState!.validate()) {}
-                            controller.register(
-                                emailController.text, passController.text);
-                          },
-                          text: 'Create An Account',
-                        ),
-                        30.h.verticalSpace,
+                        30.r.verticalSpace,
+                        controller.isLoading
+                            ? AppLoader.spinkit
+                            : PrimaryButton(
+                                onTap: () {
+                                  controller.register(emailController.text,
+                                      passController.text);
+                                },
+                                text: 'Create An Account',
+                              ),
+                        50.r.verticalSpace,
                         RichText(
                           text: TextSpan(
                             text: 'Don’t have an account? ',
-                            style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                color: AppColors.kGrey70),
+                            style: AppTextStyle.small.copyWith(
+                                fontSize: 18.r,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.kWhite),
                             children: [
                               TextSpan(
                                 text: 'Login',
@@ -292,8 +144,8 @@ class _SignupScreenState extends State<SignupScreen> {
                                   ..onTap = () {
                                     Get.to(() => const LoginScreen());
                                   },
-                                style: const TextStyle(
-                                    fontSize: 16,
+                                style: AppTextStyle.small.copyWith(
+                                    fontSize: 18.r,
                                     fontWeight: FontWeight.w700,
                                     color: AppColors.kPrimary),
                               ),
@@ -311,16 +163,3 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 }
-// GestureDetector(
-//                     onTap: () {
-//                       controller.register(
-//                           emailController.text, passController.text);
-//                     },
-//                     child: CustomButton(
-//                       textButton: "SIGN UP",
-//                       textColor: kprimaryColor,
-//                       widthh: 0.9.sw,
-//                       isIcon: false,
-//                       buttonColor: Colors.white,
-//                     ),
-//                   ),

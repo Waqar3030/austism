@@ -1,7 +1,9 @@
 import 'package:austism/components/appBar.dart';
 import 'package:austism/resources/appColors.dart';
+import 'package:austism/resources/apptext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class AuthField extends StatefulWidget {
   final String title;
@@ -39,12 +41,12 @@ class _AuthFieldState extends State<AuthField> {
       children: [
         Text(
           widget.title,
-          style: TextStyle(
-              fontSize: 14,
-              color: widget.titleColor ?? const Color(0xFF78828A)),
-        ),
+          style: AppTextStyle.small.copyWith(
+              fontSize: 14.sp, color: widget.titleColor ?? AppColors.kWhite),
+        ).paddingOnly(left: 20.r),
         const SizedBox(height: 5),
         TextFormField(
+          onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
           controller: widget.controller,
           validator: widget.validator,
           maxLines: widget.isPassword ? 1 : widget.maxLines,

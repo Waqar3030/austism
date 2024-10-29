@@ -43,7 +43,7 @@ class IntroCard extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Hi, ${controller.parentname}",
+                        Text("Hi, ${controller.childname}",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 32,

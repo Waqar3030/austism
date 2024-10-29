@@ -1,4 +1,5 @@
 import 'package:austism/components/drawer.dart';
+import 'package:austism/resources/appColors.dart';
 import 'package:austism/resources/apptext.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class CustomAppbar extends StatelessWidget {
         child: Image.asset(
           "assets/images/Menu.png",
           scale: 3.5,
-          // color: kprimaryColor,
+          color: Colors.indigo[700]!,
         ),
       ),
       // leading: Image.asset(
@@ -34,7 +35,7 @@ class CustomAppbar extends StatelessWidget {
       title: Text(
         text,
         style: AppTextStyle.small.copyWith(
-          color: greenColor,
+          color: Colors.indigo[700]!,
           fontWeight: FontWeight.w600,
           fontSize: 22.sp,
         ),
