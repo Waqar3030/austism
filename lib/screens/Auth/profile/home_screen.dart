@@ -15,6 +15,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<String> titles = ["Alphabets", "Numbers", "Colours"];
+  List<String> path = [
+    "assets/images/abc.png",
+    "assets/images/number-blocks.png",
+    "assets/images/brand.png"
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +54,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       scrollDirection: Axis.horizontal,
                       itemCount: 3,
                       itemBuilder: (context, index) {
-                        return PlanetCardWidget2();
+                        return speechCards(
+                          title: titles[index],
+                          imagePath: path[index],
+                        );
                       }),
                 ),
                 10.h.verticalSpace,
@@ -125,7 +134,10 @@ class SpaceHomeScreen extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         itemCount: planetCards.length,
                         itemBuilder: (context, index) {
-                          return PlanetCardWidget2();
+                          return speechCards(
+                            title: '',
+                            imagePath: '',
+                          );
                         }),
                   ),
                   InformationCard(
@@ -139,71 +151,6 @@ class SpaceHomeScreen extends StatelessWidget {
             )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class PlanetCardWidget2 extends StatelessWidget {
-  // final PlanetCard planetCard;
-
-  const PlanetCardWidget2({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 15.0),
-      width: 250.r,
-      height: 290.r,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(.05),
-              offset: const Offset(0, 10),
-              blurRadius: 0,
-              spreadRadius: 0,
-            )
-          ],
-          gradient: const RadialGradient(
-            colors: [Color(0xff0E5C9E), Color(0xff031965)],
-            focal: Alignment.topCenter,
-            radius: .85,
-          )),
-      padding: EdgeInsets.all(15.r),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("planetCard.title",
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontFamily: "BigBottom",
-                          fontSize: 22)),
-                ],
-              ),
-              Container(
-                  width: 40.r,
-                  height: 40.r,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100.0),
-                    gradient: const LinearGradient(
-                        colors: [Colors.yellow, Colors.orange],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter),
-                  ),
-                  child: const Icon(
-                    Icons.keyboard_arrow_right,
-                    color: Colors.white,
-                    size: 30,
-                  )),
-            ],
-          ),
-        ],
       ),
     );
   }
@@ -563,6 +510,63 @@ class _PlanetCardWidgetState extends State<PlanetCardWidget> {
       ),
     );
   }
+}
+
+Widget speechCards({required String title, required String imagePath}) {
+  return Container(
+    margin: EdgeInsets.only(right: 10.r),
+    padding: EdgeInsets.symmetric(horizontal: 15.r, vertical: 15.r),
+    width: 250.r,
+    // height: 250.r,
+    decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(50.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.05),
+            offset: const Offset(0, 10),
+            blurRadius: 0,
+            spreadRadius: 0,
+          )
+        ],
+        gradient: const RadialGradient(
+          colors: [Color(0xff0E5C9E), Color(0xff031965)],
+          focal: Alignment.topCenter,
+          radius: .85,
+        )),
+
+    child: Column(
+      children: [
+        Image.asset(
+          imagePath,
+          scale: 4.8,
+        ),
+        Text(title,
+            style: const TextStyle(
+                color: Colors.white, fontFamily: "BigBottom", fontSize: 22)),
+        15.r.verticalSpace,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+                width: 40.r,
+                height: 40.r,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100.0),
+                  gradient: const LinearGradient(
+                      colors: [Colors.yellow, Colors.orange],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter),
+                ),
+                child: const Icon(
+                  Icons.keyboard_arrow_right,
+                  color: Colors.white,
+                  size: 30,
+                )),
+          ],
+        ),
+      ],
+    ),
+  );
 }
 
 // body: Column(

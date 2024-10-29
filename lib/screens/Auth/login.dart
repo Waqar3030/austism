@@ -145,6 +145,7 @@ import 'package:austism/components/auth_field.dart';
 import 'package:austism/components/primary_button.dart';
 import 'package:austism/controller/auth_controller.dart';
 import 'package:austism/resources/appColors.dart';
+import 'package:austism/resources/apptext.dart';
 import 'package:austism/screens/Auth/forgot_password.dart';
 import 'package:austism/screens/Auth/signup.dart';
 import 'package:flutter/gestures.dart';
@@ -196,12 +197,16 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Center(
                 child: Column(
                   children: [
-                    // Background(),
-                    const Text('Let’s Sign you in',
-                        style: TextStyle(
-                            fontSize: 24,
+                    Image.asset(
+                      "assets/images/app_icon.png",
+                      scale: 3.8,
+                    ),
+                    10.h.verticalSpace,
+                    Text('Let’s Sign you in',
+                        style: AppTextStyle.medium.copyWith(
+                            fontSize: 24.sp,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black)),
+                            color: AppColors.kWhite)),
                     const SizedBox(height: 5),
                     const Text(
                       'Lorem ipsum dolor sit amet, consectetur',

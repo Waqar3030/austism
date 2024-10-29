@@ -183,7 +183,6 @@ class _SignupScreenState extends State<SignupScreen> {
       appBar: AppBar(
           backgroundColor: Colors.transparent,
           surfaceTintColor: Colors.transparent,
-          elevation: 0,
           leading: const BackButton(
             color: AppColors.kPrimary,
           )),
@@ -201,109 +200,108 @@ class _SignupScreenState extends State<SignupScreen> {
             init: authController,
             builder: (controller) {
               return SingleChildScrollView(
-                padding: const EdgeInsets.all(20),
+                padding: EdgeInsets.symmetric(horizontal: 20.r),
                 child: SafeArea(
                   child: Form(
-                    child: Center(
-                      child: Column(
-                        children: [
-                          const Text('Create Account',
-                              style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black)),
-                          const SizedBox(height: 5),
-                          const Text('Lorem ipsum dolor sit amet, consectetur',
-                              style: TextStyle(
-                                  fontSize: 14, color: AppColors.kGrey60)),
-                          const SizedBox(height: 30),
-                          // FullName.
-                          AuthField(
-                            title: 'Full Name',
-                            hintText: 'Enter your name',
-                            controller: _nameController,
-                            // validator: (value) {
-                            //   if (value == null || value.isEmpty) {
-                            //     return 'Name is required';
-                            //   } else if (!RegExp(r'^[a-zA-Z ]+ $')
-                            //       .hasMatch(value)) {
-                            //     return 'Please enter a valid name';
-                            //   }
-                            //   return null;
-                            // },
-                            keyboardType: TextInputType.name,
-                            textInputAction: TextInputAction.next,
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          "assets/images/app_icon.png",
+                          scale: 4.5,
+                        ),
+                        const Text('Create Account',
+                            style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black)),
+
+                        const SizedBox(height: 10),
+                        // FullName.
+                        AuthField(
+                          title: 'Full Name',
+                          hintText: 'Enter your name',
+                          controller: _nameController,
+                          // validator: (value) {
+                          //   if (value == null || value.isEmpty) {
+                          //     return 'Name is required';
+                          //   } else if (!RegExp(r'^[a-zA-Z ]+ $')
+                          //       .hasMatch(value)) {
+                          //     return 'Please enter a valid name';
+                          //   }
+                          //   return null;
+                          // },
+                          keyboardType: TextInputType.name,
+                          textInputAction: TextInputAction.next,
+                        ),
+                        const SizedBox(height: 15),
+                        // Email Field.
+                        AuthField(
+                          title: 'E-mail',
+                          hintText: 'Enter your email address',
+                          controller: emailController,
+                          // validator: (value) {
+                          //   if (value == null || value.isEmpty) {
+                          //     return 'Email is required';
+                          //   } else if (!value.isEmail) {
+                          //     return 'Invalid email address';
+                          //   }
+                          //   return null;
+                          // },
+                          keyboardType: TextInputType.emailAddress,
+                          textInputAction: TextInputAction.next,
+                        ),
+                        const SizedBox(height: 15),
+                        // Password Field.
+                        AuthField(
+                          title: 'Password',
+                          hintText: 'Enter your password',
+                          controller: passController,
+                          // validator: (value) {
+                          //   if (value == null || value.isEmpty) {
+                          //     return 'Password is required';
+                          //   } else if (value.length < 8) {
+                          //     return 'Password should be at least 8 characters long';
+                          //   }
+                          //   return null;
+                          // },
+                          isPassword: true,
+                          keyboardType: TextInputType.visiblePassword,
+                          textInputAction: TextInputAction.done,
+                        ),
+                        const SizedBox(height: 30),
+                        PrimaryButton(
+                          onTap: () {
+                            // if (_formKey.currentState!.validate()) {}
+                            controller.register(
+                                emailController.text, passController.text);
+                          },
+                          text: 'Create An Account',
+                        ),
+                        30.h.verticalSpace,
+                        RichText(
+                          text: TextSpan(
+                            text: 'Don’t have an account? ',
+                            style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.kGrey70),
+                            children: [
+                              TextSpan(
+                                text: 'Login',
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    Get.to(() => const LoginScreen());
+                                  },
+                                style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                    color: AppColors.kPrimary),
+                              ),
+                            ],
                           ),
-                          const SizedBox(height: 15),
-                          // Email Field.
-                          AuthField(
-                            title: 'E-mail',
-                            hintText: 'Enter your email address',
-                            controller: emailController,
-                            // validator: (value) {
-                            //   if (value == null || value.isEmpty) {
-                            //     return 'Email is required';
-                            //   } else if (!value.isEmail) {
-                            //     return 'Invalid email address';
-                            //   }
-                            //   return null;
-                            // },
-                            keyboardType: TextInputType.emailAddress,
-                            textInputAction: TextInputAction.next,
-                          ),
-                          const SizedBox(height: 15),
-                          // Password Field.
-                          AuthField(
-                            title: 'Password',
-                            hintText: 'Enter your password',
-                            controller: passController,
-                            // validator: (value) {
-                            //   if (value == null || value.isEmpty) {
-                            //     return 'Password is required';
-                            //   } else if (value.length < 8) {
-                            //     return 'Password should be at least 8 characters long';
-                            //   }
-                            //   return null;
-                            // },
-                            isPassword: true,
-                            keyboardType: TextInputType.visiblePassword,
-                            textInputAction: TextInputAction.done,
-                          ),
-                          const SizedBox(height: 30),
-                          PrimaryButton(
-                            onTap: () {
-                              // if (_formKey.currentState!.validate()) {}
-                              controller.register(
-                                  emailController.text, passController.text);
-                            },
-                            text: 'Create An Account',
-                          ),
-                          50.h.verticalSpace,
-                          RichText(
-                            text: TextSpan(
-                              text: 'Don’t have an account? ',
-                              style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700,
-                                  color: AppColors.kGrey70),
-                              children: [
-                                TextSpan(
-                                  text: 'Login',
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
-                                      Get.to(() => const LoginScreen());
-                                    },
-                                  style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w700,
-                                      color: AppColors.kPrimary),
-                                ),
-                              ],
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
                     ),
                   ),
                 ),
