@@ -9,7 +9,6 @@ import 'package:austism/screens/Auth/profile/edit_child_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ChildProfile extends StatefulWidget {
   const ChildProfile({super.key});
@@ -151,7 +150,7 @@ class _ChildProfileState extends State<ChildProfile> {
                                 "Parent Email", controller.parentemail),
                             _buildDivider(),
                             _buildInfoRow(
-                                "Parent Location", controller.parentloc),
+                                "Child Location", controller.childloc),
                             // Add more fields as needed
                           ],
                         ),

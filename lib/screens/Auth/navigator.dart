@@ -6,7 +6,7 @@ import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/Auth/profile/child_profile.dart';
 import 'package:austism/screens/Auth/profile/home_screen.dart';
 import 'package:austism/screens/Auth/profile/learning_screen.dart';
-import 'package:austism/screens/viusal_screen.dart';
+import 'package:austism/screens/visual_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -23,7 +23,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
 
   final List<Widget> _pages = [
     const HomeScreen(),
-    const ViusalScreen(),
+    const VisualScreen(),
     const LearningScreen(),
     const ChildProfile()
   ];

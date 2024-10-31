@@ -1,7 +1,6 @@
 import 'package:austism/controller/auth_controller.dart';
 import 'package:austism/firebase_options.dart';
 import 'package:austism/resources/local_storage.dart';
-import 'package:austism/screens/Auth/profile/home_screen.dart';
 import 'package:austism/screens/Auth/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

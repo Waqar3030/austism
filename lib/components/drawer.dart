@@ -3,7 +3,6 @@ import 'package:austism/controller/child_controller.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/Auth/navigator.dart';
-import 'package:austism/screens/diet_plan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

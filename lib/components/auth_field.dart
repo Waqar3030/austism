@@ -3,6 +3,7 @@ import 'package:austism/resources/appColors.dart';
 import 'package:austism/resources/apptext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class AuthField extends StatefulWidget {
@@ -70,9 +71,15 @@ class _AuthFieldState extends State<AuthField> {
                           isObscure = !isObscure;
                         });
                       },
-                      icon: Icon(
-                          isObscure ? Icons.visibility : Icons.visibility_off,
-                          color: const Color(0xFF171725)),
+                      icon: SvgPicture.asset(
+                          isObscure
+                              ? "assets/images/eye-slash.svg"
+                              : "assets/images/eye_without.svg",
+                          fit: BoxFit.scaleDown,
+                          colorFilter: ColorFilter.mode(
+                            AppColors.kGrey100,
+                            BlendMode.srcIn,
+                          )),
                     )
                   : null,
               focusedBorder: OutlineInputBorder(

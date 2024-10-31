@@ -4,6 +4,7 @@ import 'package:austism/components/primary_button.dart';
 import 'package:austism/controller/create_profile_controller.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/appColors.dart';
+import 'package:austism/resources/app_loader.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/Auth/profile/add_child.dart';
 import 'package:flutter/material.dart';
@@ -125,33 +126,27 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                     title: "Parent Name",
                     hintText: "Enter Name",
                     controller: userController.parentnameController),
-                // txtfield(
-                //     "Full Name", 1.sw, userController.parentnameController),
-                SizedBox(height: 5.h),
+                5.h.verticalSpace,
                 AuthField(
                     title: "Location",
                     hintText: "Enter Location",
                     controller: userController.parentlocController),
-                // txtfield("Location", 1.sw, userController.parentlocController),
-                SizedBox(height: 5.h),
+                5.h.verticalSpace,
                 AuthField(
                     title: "Contact",
                     hintText: "Enter Contact Number",
                     controller: userController.parentcontactController),
-                // txtfield("Contact Info", 1.sw,
-                //     userController.parentcontactController),
-                SizedBox(height: 5.h),
+                5.h.verticalSpace,
                 AuthField(
                     title: "Email",
                     hintText: "Enter Email",
                     controller: userController.parentemailController),
-                // txtfield("Email", 1.sw, userController.parentemailController),
-                SizedBox(height: 50.h),
+                5.h.verticalSpace,
                 GetBuilder(
                   init: userController,
                   builder: (controller) {
-                    return controller.isloading
-                        ? const Center(child: CircularProgressIndicator())
+                    return controller.isLoading
+                        ? AppLoader.spinkit
                         : PrimaryButton(
                             onTap: () async {
                               Get.to(() => const AddChildScreen());

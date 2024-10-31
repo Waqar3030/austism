@@ -30,11 +30,18 @@ class _SignupScreenState extends State<SignupScreen> {
       backgroundColor: AppColors.kWhite,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          surfaceTintColor: Colors.transparent,
-          leading: const BackButton(
-            color: AppColors.kPrimary,
-          )),
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: Icon(
+              Icons.keyboard_backspace_sharp,
+              color: AppColors.kPrimary,
+              size: 30.sp,
+            )),
+      ),
       body: Container(
         height: Get.height,
         width: Get.width,

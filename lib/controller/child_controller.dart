@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class ChildController extends GetxController {
   String parentname = "";
-  String parentloc = "";
+  String childloc = "";
   String parentcontact = "";
   String parentemail = "";
   String childname = "";
@@ -35,7 +35,7 @@ class ChildController extends GetxController {
       if (userDoc.exists) {
         Map<String, dynamic> data = userDoc.data() as Map<String, dynamic>;
         parentname = data["name"] ?? "";
-        parentloc = data["location"] ?? "";
+        childloc = data["location"] ?? "";
         // parentcontact = data["contactInfo"] ?? "";
         parentemail = data["email"] ?? "";
         childname = data["childName"] ?? "";
@@ -85,7 +85,7 @@ class ChildController extends GetxController {
       await _firestore.collection('users').doc(userId).update(updatedData);
       // Update local variables with new values
       if (newParentName != null) parentname = newParentName;
-      if (newParentLoc != null) parentloc = newParentLoc;
+      if (newParentLoc != null) childloc = newParentLoc;
       if (newParentContact != null) parentcontact = newParentContact;
       if (newParentEmail != null) parentemail = newParentEmail;
       if (newChildName != null) childname = newChildName;

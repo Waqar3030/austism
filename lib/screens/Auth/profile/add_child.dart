@@ -1,10 +1,9 @@
 import 'package:austism/components/auth_field.dart';
-import 'package:austism/components/button.dart';
 import 'package:austism/components/primary_button.dart';
 import 'package:austism/controller/create_profile_controller.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/appColors.dart';
-import 'package:austism/resources/colors.dart';
+import 'package:austism/resources/app_loader.dart';
 import 'package:austism/screens/Auth/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,12 +29,6 @@ class _AddChildScreenState extends State<AddChildScreen> {
       userController.fetchUserData();
     });
   }
-
-  // @override
-  // void dispose() {
-  //   userController.dispose(); // TODO: implement dispose
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -144,8 +137,6 @@ class _AddChildScreenState extends State<AddChildScreen> {
                           title: "Child Name",
                           hintText: "Enter Name",
                           controller: controller.childnameController),
-                      // txtfield(
-                      //     "Full Name", 1.sw, controller.childnameController),
                       SizedBox(
                         height: 5.h,
                       ),
@@ -153,7 +144,6 @@ class _AddChildScreenState extends State<AddChildScreen> {
                           title: "Date of Birth",
                           hintText: "Enter Date Birth",
                           controller: controller.dobController),
-                      // txtfield("Date of Birth", 1.sw, controller.dobController),
                       SizedBox(
                         height: 5.h,
                       ),
@@ -166,61 +156,51 @@ class _AddChildScreenState extends State<AddChildScreen> {
                           title: "Guardian Phone Number",
                           hintText: "Enter Number",
                           controller: controller.guardianContactController),
-                      // txtfield("Guardian Phone Number", 1.sw,
-                      //     controller.guardianContactController),
-                      // txtfield("Gender", 1.sw, controller.genderController),
                       SizedBox(
                         height: 5.h,
                       ),
-                      PrimaryButton(
-                        onTap: () async {
-                          if (controller.selectedParentImage != null &&
-                              controller.selectedChildImage != null) {
-                            controller.parentimage =
-                                await controller.uploadImage(
-                              selectedImage: controller.selectedParentImage,
-                              imageurl: controller.parentimage,
-                            );
-                            controller.childimage =
-                                await controller.uploadImage(
-                              selectedImage: controller.selectedChildImage,
-                              imageurl: controller.childimage,
-                            );
-                          } else {
-                            if (controller.selectedParentImage != null) {
-                              controller.parentimage =
-                                  await controller.uploadImage(
-                                selectedImage: controller.selectedParentImage,
-                                imageurl: controller.parentimage,
-                              );
-                            }
-                            if (controller.selectedChildImage != null) {
-                              controller.childimage =
-                                  await controller.uploadImage(
-                                selectedImage: controller.selectedChildImage,
-                                imageurl: controller.childimage,
-                              );
-                            }
-                          }
+                      userController.isLoading
+                          ? AppLoader.spinkit
+                          : PrimaryButton(
+                              onTap: () async {
+                                if (controller.selectedParentImage != null &&
+                                    controller.selectedChildImage != null) {
+                                  controller.parentimage =
+                                      await controller.uploadImage(
+                                    selectedImage:
+                                        controller.selectedParentImage,
+                                    imageurl: controller.parentimage,
+                                  );
+                                  controller.childimage =
+                                      await controller.uploadImage(
+                                    selectedImage:
+                                        controller.selectedChildImage,
+                                    imageurl: controller.childimage,
+                                  );
+                                } else {
+                                  if (controller.selectedParentImage != null) {
+                                    controller.parentimage =
+                                        await controller.uploadImage(
+                                      selectedImage:
+                                          controller.selectedParentImage,
+                                      imageurl: controller.parentimage,
+                                    );
+                                  }
+                                  if (controller.selectedChildImage != null) {
+                                    controller.childimage =
+                                        await controller.uploadImage(
+                                      selectedImage:
+                                          controller.selectedChildImage,
+                                      imageurl: controller.childimage,
+                                    );
+                                  }
+                                }
 
-                          // String? parentImageUrl = await controller.uploadImage(
-                          //     selectedImage: controller.selectedParentImage);
-                          // String? childImageUrl = await controller.uploadImage(
-                          //     selectedImage: controller.selectedChildImage);
-                          // if (controller.selectedParentImage != null ||
-                          //     controller.selectedChildImage != null) {
-                          //   await controller.uploadImage(
-                          //       selectedImage: controller.selectedParentImage,
-                          //       imageurl: controller.parentimage);
-                          //   await controller.uploadImage(
-                          //       selectedImage: controller.selectedChildImage,
-                          //       imageurl: controller.childimage);
-                          // }
-                          controller.createUser();
-                          Get.offAll(() => const NavigatorScreen());
-                        },
-                        text: "Done",
-                      ),
+                                controller.createUser();
+                                Get.offAll(() => const NavigatorScreen());
+                              },
+                              text: "Done",
+                            ),
                     ],
                   ),
                 ),
@@ -263,41 +243,42 @@ class _AddChildScreenState extends State<AddChildScreen> {
     );
   }
 
-  Widget txtfield(String txt, double width, TextEditingController controller) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: 20.w,
-      ),
-      width: width,
-      child: TextFormField(
-        onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
-        controller: controller,
-        style: const TextStyle(color: Colors.black),
-        cursorColor: Colors.white,
-        decoration: InputDecoration(
-          fillColor: Colors.white,
-          filled: true,
-          hintText: txt,
-          hintStyle: const TextStyle(
-            color: Colors.black,
-            fontSize: 13,
-            fontWeight: FontWeight.w200,
-          ),
-          border: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.white, width: 1),
-              borderRadius: BorderRadius.circular(10.r)),
-          enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: Colors.white,
-              ),
-              borderRadius: BorderRadius.circular(10.r)),
-          focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: Colors.white,
-              ),
-              borderRadius: BorderRadius.circular(10.r)),
-        ),
-      ),
-    );
-  }
+//   Widget txtfield(String txt, double width, TextEditingController controller) {
+//     return Container(
+//       padding: EdgeInsets.symmetric(
+//         horizontal: 20.w,
+//       ),
+//       width: width,
+//       child: TextFormField(
+//         onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
+//         controller: controller,
+//         style: const TextStyle(color: Colors.black),
+//         cursorColor: Colors.white,
+//         decoration: InputDecoration(
+//           fillColor: Colors.white,
+//           filled: true,
+//           hintText: txt,
+//           hintStyle: const TextStyle(
+//             color: Colors.black,
+//             fontSize: 13,
+//             fontWeight: FontWeight.w200,
+//           ),
+//           border: OutlineInputBorder(
+//               borderSide: const BorderSide(color: Colors.white, width: 1),
+//               borderRadius: BorderRadius.circular(10.r)),
+//           enabledBorder: OutlineInputBorder(
+//               borderSide: const BorderSide(
+//                 color: Colors.white,
+//               ),
+//               borderRadius: BorderRadius.circular(10.r)),
+//           focusedBorder: OutlineInputBorder(
+//               borderSide: const BorderSide(
+//                 color: Colors.white,
+//               ),
+//               borderRadius: BorderRadius.circular(10.r)),
+//         ),
+//       ),
+//     );
+//   }
+// }
 }

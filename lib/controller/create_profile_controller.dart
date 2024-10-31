@@ -29,9 +29,9 @@ class UserController extends GetxController {
   File? selectedParentImage;
   File? selectedChildImage;
 
-  bool isloading = false;
+  bool isLoading = false;
   setLoading(bool value) {
-    isloading = value;
+    isLoading = value;
     update();
   }
 

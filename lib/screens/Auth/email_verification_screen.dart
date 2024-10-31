@@ -2,6 +2,7 @@ import 'package:austism/components/primary_button.dart';
 import 'package:austism/controller/auth_controller.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/appColors.dart';
+import 'package:austism/resources/app_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -61,12 +62,14 @@ class EmailVerificationScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 35.h),
-                  PrimaryButton(
-                    onTap: () {
-                      authController.verifyEmail();
-                    },
-                    text: "Verify Email",
-                  ),
+                  authController.isLoading
+                      ? AppLoader.spinkit
+                      : PrimaryButton(
+                          onTap: () {
+                            authController.verifyEmail();
+                          },
+                          text: "Verify Email",
+                        ),
                 ],
               ),
             ),
