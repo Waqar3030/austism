@@ -75,47 +75,11 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                   title: "New Password",
                   hintText: "Enter Password",
                   controller: passController),
-              // AuthTextField(
-              //   controller: passController,
-              //   hinttext: "Password",
-              //   underlineColor: Colors.white,
-              //   hintColor: Colors.white,
-              //   widthh: 0.9.sw,
-              //   isPassword: _isObscure,
-              //   suffixicon: IconButton(
-              //       onPressed: () {
-              //         setState(() {
-              //           _isObscure = !_isObscure;
-              //         });
-              //       },
-              //       icon: Icon(
-              //           _isObscure ? Icons.visibility : Icons.visibility_off,
-              //           color: white)),
-              // ),
               20.r.verticalSpace,
               AuthField(
                   title: "Confirm New Password",
                   hintText: "Enter your Password",
                   controller: repeatPassController),
-              // AuthTextField(
-              //   controller: repeatPassController,
-              //   hinttext: "Password",
-              //   underlineColor: Colors.white,
-              //   hintColor: Colors.white,
-              //   widthh: 0.9.sw,
-              //   isPassword: _isObscure1,
-              //   suffixicon: IconButton(
-              //       onPressed: () {
-              //         setState(() {
-              //           _isObscure1 = !_isObscure1;
-              //         });
-              //       },
-              //       icon: Icon(
-              //           _isObscure1
-              //               ? Icons.remove_red_eye
-              //               : Icons.visibility_off,
-              //           color: white)),
-              // ),
               30.r.verticalSpace,
               PrimaryButton(
                 onTap: () {

@@ -80,7 +80,16 @@ class Appassets {
   static const String horse = "assets/images/horse.png";
   static const String rabbit = "assets/images/rabbit.png";
   static const String sheep = "assets/images/sheep.png";
-  //-------------------------Replies-------------------------
+  //-------------------------Numbers-------------------------
+  static const String one = "assets/images/one.png";
+  static const String two = "assets/images/two.png";
+  static const String three = "assets/images/three.png";
+  static const String four = "assets/images/four.png";
+  static const String five = "assets/images/five.png";
+  static const String six = "assets/images/six.png";
+  static const String seven = "assets/images/seven.png";
+  static const String eight = "assets/images/eight.png";
+  static const String nine = "assets/images/nine.png";
   //-------------------------Clothes-------------------------
   static const String backpack = "assets/images/backpack.png";
   static const String cap = "assets/images/cap.png";

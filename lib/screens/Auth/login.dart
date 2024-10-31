@@ -144,6 +144,7 @@ import 'dart:ui';
 import 'package:austism/components/auth_field.dart';
 import 'package:austism/components/primary_button.dart';
 import 'package:austism/controller/auth_controller.dart';
+import 'package:austism/controller/bottom_controller.dart';
 import 'package:austism/resources/appColors.dart';
 import 'package:austism/resources/app_loader.dart';
 import 'package:austism/resources/apptext.dart';
@@ -168,6 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passController = TextEditingController();
   final _controller = Get.put(AuthController());
+  final navigatorController = Get.put(BottomController());
   bool isRemember = false;
   @override
   Widget build(BuildContext context) {
@@ -264,6 +266,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               onTap: () {
                                 _controller.login(
                                     emailController.text, passController.text);
+                                navigatorController.navBarChange(0);
                               },
                               text: 'Sign In',
                             ),

@@ -6,6 +6,7 @@ import 'package:austism/screens/text_to_speech/clothes.dart';
 import 'package:austism/screens/text_to_speech/color_Image.dart';
 import 'package:austism/screens/text_to_speech/dairy.dart';
 import 'package:austism/screens/text_to_speech/fruits.dart';
+import 'package:austism/screens/text_to_speech/numbers.dart';
 import 'package:austism/screens/text_to_speech/relationship.dart';
 import 'package:austism/screens/text_to_speech/sports.dart';
 import 'package:austism/screens/text_to_speech/vegetables.dart';
@@ -102,6 +103,13 @@ class _LearningScreenState extends State<LearningScreen> {
                   text: "Clothes",
                   onTap: () {
                     Get.to(() => ClothesScreen());
+                  },
+                  // image: Appassets.cap
+                ),
+                item(
+                  text: "Numbers",
+                  onTap: () {
+                    Get.to(() => NumbersScreen());
                   },
                   // image: Appassets.cap
                 ),
