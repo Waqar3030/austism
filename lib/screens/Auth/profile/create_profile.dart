@@ -135,7 +135,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 AuthField(
                     title: "Contact",
                     hintText: "Enter Contact Number",
-                    controller: userController.parentcontactController),
+                    controller: userController.parentcontactController,
+                    keyboardType: TextInputType.phone),
                 5.h.verticalSpace,
                 AuthField(
                     title: "Email",

@@ -29,97 +29,129 @@ class _VisualScreenState extends State<VisualScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          contentPadding: EdgeInsets.symmetric(horizontal: 10.r),
+          insetPadding: EdgeInsets.symmetric(horizontal: 15.r),
           title: Text("Create Schedule"),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              GestureDetector(
-                onTap: () async {
-                  imageFile = await ImagePicker()
-                      .pickImage(source: ImageSource.gallery);
-                  setState(() {}); // Refresh the dialog to show image preview
-                },
-                child: imageFile != null
-                    ? Image.file(
-                        File(imageFile!.path),
-                        height: 100,
-                        width: 100,
-                        fit: BoxFit.cover,
-                      )
-                    : Container(
-                        height: 100,
-                        width: 100,
-                        color: Colors.grey[200],
-                        child: Icon(Icons.add_a_photo),
-                      ),
+          content: SizedBox(
+            height: 340.r,
+            width: 400.r,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  GestureDetector(
+                    onTap: () async {
+                      imageFile = await ImagePicker()
+                          .pickImage(source: ImageSource.gallery);
+                      setState(
+                          () {}); // Refresh the dialog to show image preview
+                    },
+                    child: imageFile != null
+                        ? Image.file(
+                            File(imageFile!.path),
+                            height: 100.r,
+                            width: 150.r,
+                            fit: BoxFit.cover,
+                          )
+                        : Container(
+                            height: 100.r,
+                            width: 150.r,
+                            color: Colors.grey[200],
+                            child: Icon(Icons.add_a_photo),
+                          ),
+                  ),
+                  SizedBox(height: 10.r),
+                  TextField(
+                    controller: dateController,
+                    readOnly: true,
+                    decoration: InputDecoration(labelText: "Select Date"),
+                    onTap: () async {
+                      DateTime? selectedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2100),
+                      );
+                      if (selectedDate != null) {
+                        dateController.text =
+                            "${selectedDate.toLocal()}".split(' ')[0];
+                      }
+                    },
+                  ),
+                  SizedBox(height: 10.r),
+                  TextField(
+                    controller: timeController,
+                    readOnly: true,
+                    decoration: InputDecoration(labelText: "Select Time"),
+                    onTap: () async {
+                      TimeOfDay? selectedTime = await showTimePicker(
+                        context: context,
+                        initialTime: TimeOfDay.now(),
+                      );
+                      if (selectedTime != null) {
+                        timeController.text = selectedTime.format(context);
+                      }
+                    },
+                  ),
+                  SizedBox(height: 10.r),
+                  TextField(
+                    maxLines: 2,
+                    controller: routineController,
+                    decoration: InputDecoration(labelText: "Enter Routine"),
+                  ),
+                  SizedBox(height: 10.r),
+                ],
               ),
-              SizedBox(height: 10),
-              TextField(
-                controller: dateController,
-                readOnly: true,
-                decoration: InputDecoration(labelText: "Select Date"),
-                onTap: () async {
-                  DateTime? selectedDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(2000),
-                    lastDate: DateTime(2100),
-                  );
-                  if (selectedDate != null) {
-                    dateController.text =
-                        "${selectedDate.toLocal()}".split(' ')[0];
-                  }
-                },
-              ),
-              SizedBox(height: 10),
-              TextField(
-                controller: timeController,
-                readOnly: true,
-                decoration: InputDecoration(labelText: "Select Time"),
-                onTap: () async {
-                  TimeOfDay? selectedTime = await showTimePicker(
-                    context: context,
-                    initialTime: TimeOfDay.now(),
-                  );
-                  if (selectedTime != null) {
-                    timeController.text = selectedTime.format(context);
-                  }
-                },
-              ),
-              SizedBox(height: 10),
-              TextField(
-                controller: routineController,
-                decoration: InputDecoration(labelText: "Enter Routine"),
-              ),
-            ],
+            ),
           ),
           actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close dialog without saving
-              },
-              child: Text("Cancel"),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                if (imageFile != null &&
-                    dateController.text.isNotEmpty &&
-                    timeController.text.isNotEmpty &&
-                    routineController.text.isNotEmpty) {
-                  scheduleController.addSchedule(
-                      imageFile!,
-                      dateController.text,
-                      timeController.text,
-                      routineController.text);
-                  Navigator.of(context).pop(); // Close dialog after saving
-                }
-              },
-              child: Text("Save"),
-            ),
+            PrimaryButton(
+                height: 40.r,
+                width: 100.r,
+                onTap: () {
+                  Get.back();
+                },
+                text: "Cancel"),
+            PrimaryButton(
+                height: 40.r,
+                width: 100.r,
+                onTap: () {
+                  if (imageFile != null &&
+                      dateController.text.isNotEmpty &&
+                      timeController.text.isNotEmpty &&
+                      routineController.text.isNotEmpty) {
+                    scheduleController.addSchedule(
+                        imageFile!,
+                        dateController.text,
+                        timeController.text,
+                        routineController.text);
+                    Navigator.of(context).pop(); // Close dialog after saving
+                  }
+                },
+                text: "Save"),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     if (imageFile != null &&
+            //         dateController.text.isNotEmpty &&
+            //         timeController.text.isNotEmpty &&
+            //         routineController.text.isNotEmpty) {
+            //       scheduleController.addSchedule(
+            //           imageFile!,
+            //           dateController.text,
+            //           timeController.text,
+            //           routineController.text);
+            //       Navigator.of(context).pop(); // Close dialog after saving
+            //     }
+            //   },
+            //   child: Text("Save"),
+            // ),
           ],
         );
       },
     );
+  }
+
+  void _deleteSchedule(int index) {
+    scheduleController.removeSchedule(index);
   }
 
   @override
@@ -143,67 +175,103 @@ class _VisualScreenState extends State<VisualScreen> {
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
         child: SafeArea(
-          child: Column(
-            children: [
-              30.r.verticalSpace,
-              Row(
-                children: [
-                  Text(
-                    "My Schedule",
-                    style: AppTextStyle.medium.copyWith(
-                      color: AppColors.kWhite,
-                      fontSize: 22.sp,
-                      fontWeight: FontWeight.w600,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                30.r.verticalSpace,
+                Row(
+                  children: [
+                    Text(
+                      "My Schedule",
+                      style: AppTextStyle.medium.copyWith(
+                        color: AppColors.kWhite,
+                        fontSize: 22.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              20.r.verticalSpace,
-              Expanded(
-                child: Obx(() => ListView.builder(
+                  ],
+                ),
+                20.r.verticalSpace,
+                Obx(() => ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
                       itemCount: scheduleController.schedules.length,
                       itemBuilder: (context, index) {
                         final schedule = scheduleController.schedules[index];
                         return Padding(
-                          padding: EdgeInsets.symmetric(vertical: 8.r),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 8.r, horizontal: 16.r),
                           child: Container(
-                            width: 0.8.sw,
-                            padding: EdgeInsets.symmetric(horizontal: 10.r),
+                            width: 0.85.sw,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16.r, vertical: 16.r),
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(10.r),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 6.r,
+                                  offset: Offset(0, 4),
+                                ),
+                              ],
                             ),
-                            child: Column(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Image.file(
-                                  File(schedule["image"]!.path),
-                                  height: 100,
-                                  width: 100,
-                                  fit: BoxFit.cover,
-                                ),
-                                Text(
-                                  schedule["date"],
-                                  style: TextStyle(
-                                    color: Color(0xff121137),
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 20.sp,
+                                // Image section
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.r),
+                                  child: Image.file(
+                                    File(schedule["image"]!.path),
+                                    height: 80.r,
+                                    width: 80.r,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
-                                Text(
-                                  schedule["time"],
-                                  style: TextStyle(
-                                    color: Color(0xff121137),
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 20.sp,
+                                SizedBox(width: 16.r),
+
+                                // Text section
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        schedule["routine"],
+                                        style: TextStyle(
+                                          color: Color(0xff121137),
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 22.sp,
+                                        ),
+                                      ),
+                                      SizedBox(height: 8.r),
+                                      Text(
+                                        schedule["date"],
+                                        style: TextStyle(
+                                          color: Color(0xff121137),
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 16.sp,
+                                        ),
+                                      ),
+                                      SizedBox(height: 4.r),
+                                      Text(
+                                        schedule["time"],
+                                        style: TextStyle(
+                                          color: Color(0xff757575),
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 16.sp,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                Text(
-                                  schedule["routine"],
-                                  style: TextStyle(
-                                    color: Color(0xff121137),
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 24.sp,
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.close,
+                                    color: Colors.indigo[700]!,
                                   ),
+                                  onPressed: () => _deleteSchedule(index),
                                 ),
                               ],
                             ),
@@ -211,13 +279,14 @@ class _VisualScreenState extends State<VisualScreen> {
                         );
                       },
                     )),
-              ),
-              PrimaryButton(
-                onTap: _openCreateScheduleDialog,
-                text: "Create Schedule",
-              ),
-            ],
-          ).paddingSymmetric(horizontal: 14.w),
+                SizedBox(height: 20), // Add space above the button if needed
+                PrimaryButton(
+                  onTap: _openCreateScheduleDialog,
+                  text: "Create Schedule",
+                ),
+              ],
+            ).paddingSymmetric(horizontal: 14.w),
+          ),
         ),
       ),
     );
@@ -236,5 +305,9 @@ class ScheduleController extends GetxController {
       "time": time,
       "routine": routine,
     });
+  }
+
+  void removeSchedule(int index) {
+    schedules.removeAt(index);
   }
 }

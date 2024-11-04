@@ -1,16 +1,36 @@
+import 'dart:io';
+
 import 'package:austism/components/auth_field.dart';
 import 'package:austism/components/primary_button.dart';
 import 'package:austism/controller/create_profile_controller.dart';
 import 'package:austism/resources/appAssets.dart';
+import 'package:austism/resources/appColors.dart';
+import 'package:austism/resources/app_loader.dart';
 import 'package:austism/resources/apptext.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EditChildProfile extends StatefulWidget {
-  const EditChildProfile({super.key});
+  final String name,
+      imageUrl,
+      gender,
+      birth,
+      guardianNum,
+      parentEmail,
+      childLocation;
+  const EditChildProfile(
+      {super.key,
+      required this.name,
+      required this.imageUrl,
+      required this.gender,
+      required this.birth,
+      required this.guardianNum,
+      required this.parentEmail,
+      required this.childLocation});
 
   @override
   State<EditChildProfile> createState() => _EditChildProfileState();
@@ -24,6 +44,18 @@ class _EditChildProfileState extends State<EditChildProfile> {
   final guardianNumController = TextEditingController();
   final parentEmailController = TextEditingController();
   final childLocationController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      childNameController.text = widget.name;
+      genderController.text = widget.gender;
+      birthController.text = widget.birth;
+      guardianNumController.text = widget.guardianNum;
+      parentEmailController.text = widget.parentEmail;
+      childLocationController.text = widget.childLocation;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,10 +114,10 @@ class _EditChildProfileState extends State<EditChildProfile> {
                               CircleAvatar(
                                 radius: 70.r,
                                 backgroundImage: controller
-                                            .selectedChildImage ==
+                                            .selectedChildImage !=
                                         null
-                                    ? const AssetImage(Appassets.parentPic)
-                                    : FileImage(controller.selectedChildImage!)
+                                    ? FileImage(controller.selectedChildImage!)
+                                    : NetworkImage(widget.imageUrl)
                                         as ImageProvider,
                                 backgroundColor: Colors.transparent,
                               ),
@@ -136,13 +168,14 @@ class _EditChildProfileState extends State<EditChildProfile> {
                         title: "Guardian Contact",
                         hintText: "Enter Number",
                         controller: guardianNumController,
+                        keyboardType: TextInputType.phone,
                       ),
-                      10.r.verticalSpace,
-                      AuthField(
-                        title: "Parent Email",
-                        hintText: "Enter Email",
-                        controller: parentEmailController,
-                      ),
+                      // 10.r.verticalSpace,
+                      // AuthField(
+                      //   title: "Parent Email",
+                      //   hintText: "Enter Email",
+                      //   controller: parentEmailController,
+                      // ),
                       10.r.verticalSpace,
                       AuthField(
                         title: "Child Location",
@@ -150,7 +183,28 @@ class _EditChildProfileState extends State<EditChildProfile> {
                         controller: childLocationController,
                       ),
                       20.r.verticalSpace,
-                      PrimaryButton(onTap: () {}, text: "Update"),
+                      GetBuilder(
+                          init: userController,
+                          builder: (controller) {
+                            return controller.isLoading
+                                ? AppLoader.spinkit
+                                : PrimaryButton(
+                                    onTap: () {
+                                      userController.updateUser(
+                                        name: childNameController.text,
+                                        location: childLocationController.text,
+                                        contactInfo: guardianNumController.text,
+                                        email: parentEmailController.text,
+                                        childName: childNameController.text,
+                                        dob: birthController.text,
+                                        guardianContact:
+                                            guardianNumController.text,
+                                        gender: genderController.text,
+                                        image: widget.imageUrl,
+                                      );
+                                    },
+                                    text: "Update");
+                          }),
                       10.r.verticalSpace,
                     ],
                   ).paddingSymmetric(horizontal: 10.r),

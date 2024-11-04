@@ -180,4 +180,45 @@ class AuthController extends GetxController {
       loader(false);
     }
   }
+
+  // Forgot Password
+  void forgotPassword(String email) async {
+    if (email.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Please enter your email address",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.TOP,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      return;
+    }
+
+    try {
+      loader(true);
+      await firebaseAuth.sendPasswordResetEmail(email: email.trim());
+      Fluttertoast.showToast(
+        msg: "Password reset email sent! Please check your email.",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.TOP,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      // Optionally, you could navigate to a confirmation screen
+    } catch (firebaseAuthException) {
+      log("Password reset failed: ${firebaseAuthException.toString()}");
+      Fluttertoast.showToast(
+        msg: "Failed to send reset email. Please try again.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.TOP,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    } finally {
+      loader(false);
+    }
+  }
 }

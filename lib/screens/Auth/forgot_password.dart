@@ -1,5 +1,6 @@
 import 'package:austism/components/auth_field.dart';
 import 'package:austism/components/primary_button.dart';
+import 'package:austism/controller/forgot_pass_controller.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/appColors.dart';
 import 'package:austism/resources/apptext.dart';
@@ -16,7 +17,7 @@ class ForgotScreen extends StatefulWidget {
 }
 
 class _ForgotScreenState extends State<ForgotScreen> {
-  final emailController = TextEditingController();
+  final passController = Get.put(ForgotPassController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,11 +70,11 @@ class _ForgotScreenState extends State<ForgotScreen> {
               AuthField(
                   title: "Email",
                   hintText: "Enter your Email",
-                  controller: emailController),
+                  controller: passController.emailController),
               30.r.verticalSpace,
               PrimaryButton(
                   onTap: () {
-                    Get.to(() => const CreateNewPasswordScreen());
+                    passController.forgotPassword();
                   },
                   text: 'Continue')
             ],

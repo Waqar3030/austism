@@ -1,4 +1,5 @@
 import 'package:austism/components/custom_dialogbox.dart';
+import 'package:austism/controller/bottom_controller.dart';
 import 'package:austism/controller/child_controller.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/colors.dart';
@@ -16,6 +17,7 @@ class DrawerScreen extends StatefulWidget {
 
 class _DrawerScreenState extends State<DrawerScreen> {
   final ChildController childcontroller = Get.put(ChildController());
+  final bottomController = Get.put(BottomController());
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +56,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               40.h.verticalSpace,
               GestureDetector(
                 onTap: () {
+                  bottomController.navBarChange(0);
                   Get.to(() => const NavigatorScreen());
                 },
                 child: button("Home"),

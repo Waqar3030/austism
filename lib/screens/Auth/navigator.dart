@@ -126,10 +126,13 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
   Widget build(BuildContext context) {
     return GetBuilder<BottomController>(
       builder: (_) {
-        return Scaffold(
-          extendBody: true,
-          body: _pages[_bottomController.userNavigationBarIndexValue],
-          bottomNavigationBar: _buildMyNavBar(context),
+        return PopScope(
+          canPop: false,
+          child: Scaffold(
+            extendBody: true,
+            body: _pages[_bottomController.userNavigationBarIndexValue],
+            bottomNavigationBar: _buildMyNavBar(context),
+          ),
         );
       },
     );

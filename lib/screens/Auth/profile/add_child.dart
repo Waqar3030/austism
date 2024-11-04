@@ -155,7 +155,13 @@ class _AddChildScreenState extends State<AddChildScreen> {
                       AuthField(
                           title: "Guardian Phone Number",
                           hintText: "Enter Number",
-                          controller: controller.guardianContactController),
+                          controller: controller.guardianContactController,
+                          keyboardType: TextInputType.phone),
+                      5.h.verticalSpace,
+                      AuthField(
+                          title: "Child Location",
+                          hintText: "Enter Location",
+                          controller: controller.childLocation),
                       SizedBox(
                         height: 5.h,
                       ),

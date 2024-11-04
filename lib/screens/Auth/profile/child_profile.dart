@@ -59,7 +59,18 @@ class _ChildProfileState extends State<ChildProfile> {
             actions: [
               GestureDetector(
                 onTap: () {
-                  Get.to(() => EditChildProfile());
+                  Get.to(() => EditChildProfile(
+                            name: childcontroller.childname,
+                            gender: childcontroller.gender,
+                            birth: childcontroller.dob,
+                            guardianNum: childcontroller.guardianContact,
+                            parentEmail: childcontroller.parentemail,
+                            childLocation: childcontroller.childloc,
+                            imageUrl: childcontroller.childimage,
+                          ))!
+                      .whenComplete(
+                    () => childcontroller.fetchUserData(),
+                  );
                 },
                 child: Image.asset(
                   "assets/images/Frame 11577.png",

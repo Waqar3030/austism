@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:austism/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
@@ -18,6 +19,7 @@ class UserController extends GetxController {
   TextEditingController dobController = TextEditingController();
   TextEditingController guardianContactController = TextEditingController();
   TextEditingController genderController = TextEditingController();
+  TextEditingController childLocation = TextEditingController();
   String? parentimage;
   String? childimage;
 
@@ -90,29 +92,6 @@ class UserController extends GetxController {
     }
   }
 
-  // Method to upload the selected image to Firebase Storage
-  // Future uploadImage(
-  //     {required File? selectedImage, required String? imageurl}) async {
-  //   if (selectedImage != null) {
-  //     try {
-  //       final imagesRef =
-  //           FirebaseStorage.instance.ref('profileImages/${DateTime.now()}.png');
-  //       final uploadTask = imagesRef.putFile(selectedImage!);
-
-  //       final taskSnapshot = await uploadTask;
-
-  //       final imageURL = await taskSnapshot.ref.getDownloadURL();
-  //       return imageURL;
-  //       // imageurl = imageURL;
-  //       // update();
-  //     } catch (e) {
-  //       log('Error uploading image: ${e.toString()}');
-  //     }
-  //   } else {
-  //     log('No image selected');
-  //   }
-  // }
-
   Future<String?> uploadImage(
       {required File? selectedImage, String? imageurl}) async {
     if (selectedImage != null) {
@@ -163,6 +142,57 @@ class UserController extends GetxController {
       }
     } catch (e) {
       log('Error picking image: ${e.toString()}');
+    }
+  }
+
+  // Method to update the child profile in Firestore
+  Future updateUser({
+    required String name,
+    required String location,
+    required String contactInfo,
+    required String email,
+    required String childName,
+    required String dob,
+    required String guardianContact,
+    required String gender,
+    String? image,
+  }) async {
+    String userId = authController.firebaseUser.value?.uid ?? "";
+    try {
+      setLoading(true);
+
+      // Upload new parent and child images if selected
+      // if (selectedParentImage != null) {
+      //   parentimage = await uploadImage(selectedImage: selectedParentImage);
+      // }
+      if (selectedChildImage != null) {
+        childimage = await uploadImage(selectedImage: selectedChildImage);
+      } else {}
+
+      // Update user document in Firestore
+      await _firestore.collection('users').doc(userId).update({
+        // "name": name
+        "location": location,
+        "contactInfo": contactInfo,
+        // "image": ,
+        "childName": name,
+        "childdob": dob,
+        "childImageUrl": selectedChildImage != null ? childimage : image,
+        "gender": gender,
+      });
+      Fluttertoast.showToast(
+        msg: 'User updated successfully.',
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.TOP,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      Get.close(1);
+    } catch (e) {
+      return 'Error updating user: $e';
+    } finally {
+      setLoading(false);
     }
   }
 }
