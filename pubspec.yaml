@@ -66,17 +66,17 @@ dependencies:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/images/Untitled design.png"
+  image_path: "assets/images/Frame 56790.png"
   web:
     generate: true
-    image_path: "assets/images/Untitled design.png"
+    image_path: "assets/images/Frame 56790.png"
   windows:
     generate: true
-    image_path: "assets/images/Untitled design.png"
+    image_path: "assets/images/Frame 56790.png"
     icon_size: 256 # min:48, max:256, default: 48
   macos:
     generate: true
-    image_path: "assets/images/Untitled design.png"
+    image_path: "assets/images/Frame 56790.png"
 
   
 
