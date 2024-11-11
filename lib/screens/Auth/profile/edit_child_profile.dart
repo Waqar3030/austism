@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:austism/components/auth_field.dart';
 import 'package:austism/components/primary_button.dart';
 import 'package:austism/controller/create_profile_controller.dart';
@@ -7,12 +5,11 @@ import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/appColors.dart';
 import 'package:austism/resources/app_loader.dart';
 import 'package:austism/resources/apptext.dart';
-import 'package:austism/resources/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 class EditChildProfile extends StatefulWidget {
   final String name,
@@ -44,6 +41,23 @@ class _EditChildProfileState extends State<EditChildProfile> {
   final guardianNumController = TextEditingController();
   final parentEmailController = TextEditingController();
   final childLocationController = TextEditingController();
+  DateTime? _selectedDate;
+
+  void _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate ?? DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+    if (picked != null && picked != _selectedDate) {
+      setState(() {
+        _selectedDate = picked;
+        birthController.text = DateFormat('dd-MM-yyyy').format(_selectedDate!);
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -158,11 +172,50 @@ class _EditChildProfileState extends State<EditChildProfile> {
                         controller: genderController,
                       ),
                       10.r.verticalSpace,
-                      AuthField(
-                        title: "Date of Birth",
-                        hintText: "Enter Date of Birth",
-                        controller: birthController,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            textAlign: TextAlign.left,
+                            "Date of Birth bbb",
+                            style: AppTextStyle.small.copyWith(
+                              color: AppColors.kWhite,
+                              fontSize: 14.sp,
+                            ),
+                          ).paddingOnly(left: 20.r, bottom: 5.r),
+                        ],
                       ),
+                      Container(
+                        child: TextFormField(
+                          onTap: () {
+                            _selectDate(context);
+                          },
+                          onTapOutside: (_) =>
+                              FocusManager.instance.primaryFocus?.unfocus(),
+                          controller: birthController,
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15.r),
+                                  borderSide:
+                                      BorderSide(color: Colors.transparent)),
+                              fillColor: const Color(0xFFF6F6F6),
+                              filled: true,
+                              hintText: birthController.text,
+                              hintStyle:
+                                  const TextStyle(color: AppColors.kGrey60),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Color(0xFFD1A661)),
+                                borderRadius: BorderRadius.circular(15.r),
+                              )),
+                        ),
+                      ),
+                      // AuthField(
+                      //   title: "Date of Birth",
+                      //   hintText: "Enter Date of Birth",
+                      //   controller: birthController,
+                      // ),
                       10.r.verticalSpace,
                       AuthField(
                         title: "Guardian Contact",

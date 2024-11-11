@@ -4,11 +4,13 @@ import 'package:austism/controller/create_profile_controller.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/appColors.dart';
 import 'package:austism/resources/app_loader.dart';
+import 'package:austism/resources/apptext.dart';
 import 'package:austism/screens/Auth/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 class AddChildScreen extends StatefulWidget {
   const AddChildScreen({super.key});
@@ -20,6 +22,23 @@ class AddChildScreen extends StatefulWidget {
 class _AddChildScreenState extends State<AddChildScreen> {
   TextEditingController emailController = TextEditingController();
   final userController = Get.put(UserController());
+  DateTime? _selectedDate;
+
+  void _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate ?? DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+    if (picked != null && picked != _selectedDate) {
+      setState(() {
+        _selectedDate = picked;
+        userController.dobController.text =
+            DateFormat('dd-MM-yyyy').format(_selectedDate!);
+      });
+    }
+  }
 
   @override
   void initState() {
@@ -140,10 +159,46 @@ class _AddChildScreenState extends State<AddChildScreen> {
                       SizedBox(
                         height: 5.h,
                       ),
-                      AuthField(
-                          title: "Date of Birth",
-                          hintText: "Enter Date Birth",
-                          controller: controller.dobController),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            textAlign: TextAlign.left,
+                            "Date of Birth",
+                            style: AppTextStyle.small.copyWith(
+                              color: AppColors.kWhite,
+                              fontSize: 14.sp,
+                            ),
+                          ).paddingOnly(left: 20.r, bottom: 5.r),
+                        ],
+                      ),
+                      TextFormField(
+                        onTap: () {
+                          _selectDate(context);
+                        },
+                        onTapOutside: (_) =>
+                            FocusManager.instance.primaryFocus?.unfocus(),
+                        controller: controller.dobController,
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15.r),
+                                borderSide:
+                                    BorderSide(color: Colors.transparent)),
+                            fillColor: const Color(0xFFF6F6F6),
+                            filled: true,
+                            hintText: "Enter Date of Birth",
+                            hintStyle:
+                                const TextStyle(color: AppColors.kGrey60),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFFD1A661)),
+                              borderRadius: BorderRadius.circular(15.r),
+                            )),
+                      ),
+                      // AuthField(
+                      //     title: "Date of Birth",
+                      //     hintText: "Enter Date Birth",
+                      //     controller: controller.dobController),
                       SizedBox(
                         height: 5.h,
                       ),
@@ -248,43 +303,4 @@ class _AddChildScreenState extends State<AddChildScreen> {
       ),
     );
   }
-
-//   Widget txtfield(String txt, double width, TextEditingController controller) {
-//     return Container(
-//       padding: EdgeInsets.symmetric(
-//         horizontal: 20.w,
-//       ),
-//       width: width,
-//       child: TextFormField(
-//         onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
-//         controller: controller,
-//         style: const TextStyle(color: Colors.black),
-//         cursorColor: Colors.white,
-//         decoration: InputDecoration(
-//           fillColor: Colors.white,
-//           filled: true,
-//           hintText: txt,
-//           hintStyle: const TextStyle(
-//             color: Colors.black,
-//             fontSize: 13,
-//             fontWeight: FontWeight.w200,
-//           ),
-//           border: OutlineInputBorder(
-//               borderSide: const BorderSide(color: Colors.white, width: 1),
-//               borderRadius: BorderRadius.circular(10.r)),
-//           enabledBorder: OutlineInputBorder(
-//               borderSide: const BorderSide(
-//                 color: Colors.white,
-//               ),
-//               borderRadius: BorderRadius.circular(10.r)),
-//           focusedBorder: OutlineInputBorder(
-//               borderSide: const BorderSide(
-//                 color: Colors.white,
-//               ),
-//               borderRadius: BorderRadius.circular(10.r)),
-//         ),
-//       ),
-//     );
-//   }
-// }
 }

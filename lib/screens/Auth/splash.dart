@@ -24,6 +24,8 @@ class _SplashScreen extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
+        height: Get.height,
+        width: Get.width,
         decoration: const BoxDecoration(
           image: DecorationImage(
             // image: AssetImage(Appassets.splash),

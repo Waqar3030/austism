@@ -1,7 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:austism/components/appBar.dart';
 import 'package:austism/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -186,7 +188,7 @@ class UserController extends GetxController {
         gravity: ToastGravity.TOP,
         backgroundColor: Colors.green,
         textColor: Colors.white,
-        fontSize: 16.0,
+        fontSize: 16.sp,
       );
       Get.close(1);
     } catch (e) {

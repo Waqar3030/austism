@@ -5,6 +5,7 @@ import 'package:austism/screens/Auth/email_verification_screen.dart';
 import 'package:austism/screens/Auth/profile/create_profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
@@ -44,7 +45,7 @@ class AuthController extends GetxController {
         gravity: ToastGravity.TOP,
         backgroundColor: Colors.red,
         textColor: Colors.white,
-        fontSize: 16.0,
+        fontSize: 16.sp,
       );
       return;
     }
@@ -71,7 +72,7 @@ class AuthController extends GetxController {
         gravity: ToastGravity.TOP,
         backgroundColor: Colors.green,
         textColor: Colors.white,
-        fontSize: 16.0,
+        fontSize: 16.sp,
       );
 
       // Navigate to OTP screen (email verification screen in this case)
@@ -84,7 +85,7 @@ class AuthController extends GetxController {
         gravity: ToastGravity.TOP,
         backgroundColor: Colors.red,
         textColor: Colors.white,
-        fontSize: 16.0,
+        fontSize: 16.sp,
       );
     } finally {
       loader(false);
@@ -102,7 +103,7 @@ class AuthController extends GetxController {
           gravity: ToastGravity.TOP,
           backgroundColor: Colors.green,
           textColor: Colors.white,
-          fontSize: 16.0,
+          fontSize: 16.sp,
         );
         Get.to(() => const CreateProfileScreen());
       } else {
@@ -112,7 +113,7 @@ class AuthController extends GetxController {
           gravity: ToastGravity.TOP,
           backgroundColor: Colors.red,
           textColor: Colors.white,
-          fontSize: 16.0,
+          fontSize: 16.sp,
         );
       }
     } catch (e) {
@@ -123,7 +124,7 @@ class AuthController extends GetxController {
         gravity: ToastGravity.TOP,
         backgroundColor: Colors.red,
         textColor: Colors.white,
-        fontSize: 16.0,
+        fontSize: 16.sp,
       );
     }
   }
@@ -137,7 +138,7 @@ class AuthController extends GetxController {
         gravity: ToastGravity.TOP,
         backgroundColor: Colors.red,
         textColor: Colors.white,
-        fontSize: 16.0,
+        fontSize: 16.sp,
       );
       return;
     }
@@ -163,7 +164,7 @@ class AuthController extends GetxController {
           gravity: ToastGravity.TOP,
           backgroundColor: Colors.red,
           textColor: Colors.white,
-          fontSize: 16.0,
+          fontSize: 16.sp,
         );
       }
     } catch (firebaseAuthException) {
@@ -174,7 +175,7 @@ class AuthController extends GetxController {
         gravity: ToastGravity.TOP,
         backgroundColor: Colors.red,
         textColor: Colors.white,
-        fontSize: 16.0,
+        fontSize: 16.sp,
       );
     } finally {
       loader(false);
@@ -190,7 +191,7 @@ class AuthController extends GetxController {
         gravity: ToastGravity.TOP,
         backgroundColor: Colors.red,
         textColor: Colors.white,
-        fontSize: 16.0,
+        fontSize: 16.sp,
       );
       return;
     }
@@ -204,7 +205,7 @@ class AuthController extends GetxController {
         gravity: ToastGravity.TOP,
         backgroundColor: Colors.green,
         textColor: Colors.white,
-        fontSize: 16.0,
+        fontSize: 16.sp,
       );
       // Optionally, you could navigate to a confirmation screen
     } catch (firebaseAuthException) {
@@ -215,7 +216,7 @@ class AuthController extends GetxController {
         gravity: ToastGravity.TOP,
         backgroundColor: Colors.red,
         textColor: Colors.white,
-        fontSize: 16.0,
+        fontSize: 16.sp,
       );
     } finally {
       loader(false);

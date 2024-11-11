@@ -1,11 +1,9 @@
 import 'package:austism/components/auth_field.dart';
-import 'package:austism/components/button.dart';
 import 'package:austism/components/primary_button.dart';
 import 'package:austism/controller/create_profile_controller.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/appColors.dart';
 import 'package:austism/resources/app_loader.dart';
-import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/Auth/profile/add_child.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

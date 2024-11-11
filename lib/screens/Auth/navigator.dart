@@ -1,8 +1,6 @@
 import 'package:austism/controller/bottom_controller.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/apptext.dart';
-import 'package:austism/resources/colors.dart';
-
 import 'package:austism/screens/Auth/profile/child_profile.dart';
 import 'package:austism/screens/Auth/profile/home_screen.dart';
 import 'package:austism/screens/Auth/profile/learning_screen.dart';

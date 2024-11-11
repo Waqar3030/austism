@@ -48,7 +48,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     child: Image.asset(
                       Appassets.cross_black,
                       scale: 3.8,
-                      color: greenColor,
+                      color: Colors.indigo[700]!,
                     ),
                   ),
                 ],

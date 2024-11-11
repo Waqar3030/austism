@@ -50,7 +50,7 @@ class _AuthFieldState extends State<AuthField> {
           onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
           controller: widget.controller,
           validator: widget.validator,
-          maxLines: widget.isPassword ? 1 : widget.maxLines,
+
           // ignore: avoid_bool_literals_in_conditional_expressions
           obscureText: widget.isPassword ? isObscure : false,
           textInputAction: widget.textInputAction,

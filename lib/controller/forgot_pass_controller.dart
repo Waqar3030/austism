@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
@@ -24,7 +25,7 @@ class ForgotPassController extends GetxController {
         gravity: ToastGravity.TOP,
         backgroundColor: Colors.red,
         textColor: Colors.white,
-        fontSize: 16.0,
+        fontSize: 16.sp,
       );
       return;
     }
@@ -42,7 +43,7 @@ class ForgotPassController extends GetxController {
         gravity: ToastGravity.TOP,
         backgroundColor: Colors.green,
         textColor: Colors.white,
-        fontSize: 16.0,
+        fontSize: 16.sp,
       );
       Get.close(1);
     } on FirebaseAuthException catch (e) {
@@ -61,7 +62,7 @@ class ForgotPassController extends GetxController {
         gravity: ToastGravity.TOP,
         backgroundColor: Colors.red,
         textColor: Colors.white,
-        fontSize: 16.0,
+        fontSize: 16.sp,
       );
     } catch (error) {
       log("An unexpected error occurred: $error");
@@ -71,7 +72,7 @@ class ForgotPassController extends GetxController {
         gravity: ToastGravity.TOP,
         backgroundColor: Colors.red,
         textColor: Colors.white,
-        fontSize: 16.0,
+        fontSize: 16.sp,
       );
     } finally {
       loader(false);

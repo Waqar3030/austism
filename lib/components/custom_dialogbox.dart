@@ -1,4 +1,5 @@
 import 'package:austism/components/button.dart';
+import 'package:austism/components/primary_button.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/Auth/login.dart';
 import 'package:flutter/material.dart';
@@ -27,30 +28,19 @@ class CustomDialogbox {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                GestureDetector(
+                PrimaryButton(
                   onTap: () {
                     Get.back();
                   },
-                  child: CustomButton(
-                    textButton: "No",
-                    textColor: Colors.white,
-                    widthh: 0.30.sw,
-                    isIcon: false,
-                    buttonColor: kprimaryColor,
-                  ),
+                  text: 'No',
+                  width: 0.30.sw,
                 ),
-                GestureDetector(
+                PrimaryButton(
+                  width: 0.30.sw,
                   onTap: () {
-                    Get.close(2);
-                    Get.to(() => const LoginScreen());
+                    Get.offAll(() => const LoginScreen());
                   },
-                  child: CustomButton(
-                    textButton: "Yes",
-                    textColor: Colors.white,
-                    widthh: 0.30.sw,
-                    isIcon: false,
-                    buttonColor: kprimaryColor,
-                  ),
+                  text: 'Yes',
                 ),
               ],
             )
