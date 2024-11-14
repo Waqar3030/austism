@@ -48,7 +48,7 @@ class _SplashScreen extends State<SplashScreen> {
             // image: AssetImage(Appassets.splash),
             image: AssetImage("assets/images/178.png"),
             filterQuality: FilterQuality.low,
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
         child: Container(

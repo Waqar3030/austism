@@ -46,7 +46,7 @@ class UserController extends GetxController {
       setLoading(true);
       await _firestore.collection('users').doc(userId).set({
         "name": parentnameController.text,
-        "location": locController.text,
+        "location": childLocation.text,
         "contactInfo": guardianContactController.text,
         "email": parentemailController.text,
         "image": parentimage,
@@ -76,7 +76,7 @@ class UserController extends GetxController {
       if (userDoc.exists) {
         Map<String, dynamic> data = userDoc.data() as Map<String, dynamic>;
         parentnameController.text = data["name"] ?? "";
-        parentlocController.text = data["location"] ?? "";
+        childLocation.text = data["location"] ?? "";
         parentcontactController.text = data["contactInfo"] ?? "";
         parentemailController.text = data["email"] ?? "";
         childnameController.text = data["childName"] ?? "";

@@ -106,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Text(
                             "Forgot Password?",
                             style: AppTextStyle.small.copyWith(
-                              color: Colors.red,
+                              color: AppColors.kWhite,
                               fontSize: 18.r,
                             ),
                           ),
