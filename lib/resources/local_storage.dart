@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:get_storage/get_storage.dart';
 
 class LocalStorage {
-  static init() async {
+  static Future init() async {
     await GetStorage.init();
+    log("Local storage initialized");
   }
 
   static saveJson({required String key, required value}) {
@@ -22,4 +25,10 @@ class LocalStorage {
     var res = getStorage.remove(key);
     return res;
   }
+}
+
+// ignore: camel_case_types
+class lsk {
+  static const String token = "token";
+  static const String userData = "userData";
 }

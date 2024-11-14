@@ -25,12 +25,12 @@ class ChildController extends GetxController {
   }
 
   final authController = Get.put(AuthController());
-  Future<void> fetchUserData() async {
+  Future<void> fetchUserData({String? user}) async {
     String userId = authController.firebaseUser.value?.uid ?? "";
     try {
       setLoading(true);
       DocumentSnapshot userDoc =
-          await _firestore.collection('users').doc(userId).get();
+          await _firestore.collection('users').doc(user ?? userId).get();
 
       if (userDoc.exists) {
         Map<String, dynamic> data = userDoc.data() as Map<String, dynamic>;

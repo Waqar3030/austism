@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:austism/controller/child_controller.dart';
+import 'package:austism/resources/local_storage.dart';
 import 'package:austism/screens/Auth/navigator.dart';
 import 'package:austism/screens/Auth/email_verification_screen.dart';
 import 'package:austism/screens/Auth/profile/create_profile.dart';
@@ -154,8 +156,9 @@ class AuthController extends GetxController {
 
       // Check if the email is verified
       if (firebaseUser.value?.emailVerified == true) {
+        LocalStorage.saveJson(
+            key: lsk.userData, value: firebaseUser.value?.uid.toString());
         Get.to(() => const NavigatorScreen()); // Navigate to the next screen
-        //
         childcontroller.fetchUserData();
       } else {
         Fluttertoast.showToast(

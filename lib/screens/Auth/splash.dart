@@ -1,4 +1,8 @@
 import 'dart:async';
+import 'dart:developer';
+import 'package:austism/controller/child_controller.dart';
+import 'package:austism/resources/local_storage.dart';
+import 'package:austism/screens/Auth/navigator.dart';
 import 'package:austism/screens/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,10 +17,23 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreen extends State<SplashScreen> {
+  final childcontroller = Get.put(ChildController());
+
+  @override
   void initState() {
     super.initState();
-    print('run');
-    Timer(Duration(seconds: 3), () => Get.offAll(() => const LoginScreen()));
+    var user = LocalStorage.readJson(key: lsk.userData);
+
+    if (user != null) {
+      childcontroller.fetchUserData(user: user);
+      log("User logged in: $user");
+      Timer(Duration(seconds: 3),
+          () => Get.offAll(() => const NavigatorScreen()));
+    } else {
+      log("User logged in: $user");
+
+      Timer(Duration(seconds: 3), () => Get.offAll(() => const LoginScreen()));
+    }
   }
 
   @override
