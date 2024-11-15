@@ -1,6 +1,7 @@
 import 'package:austism/components/button.dart';
 import 'package:austism/components/primary_button.dart';
 import 'package:austism/resources/colors.dart';
+import 'package:austism/resources/local_storage.dart';
 import 'package:austism/screens/Auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,6 +40,8 @@ class CustomDialogbox {
                   width: 0.30.sw,
                   onTap: () {
                     Get.offAll(() => const LoginScreen());
+                    LocalStorage.deleteJson(key: lsk.token);
+                    LocalStorage.deleteJson(key: lsk.userData);
                   },
                   text: 'Yes',
                 ),

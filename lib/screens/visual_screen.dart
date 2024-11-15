@@ -1,13 +1,18 @@
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:austism/components/primary_button.dart';
 import 'package:austism/components/appBar.dart';
 import 'package:austism/resources/appColors.dart';
 import 'package:austism/resources/apptext.dart';
+import 'package:austism/resources/local_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:convert';
+import 'dart:typed_data';
 
 class VisualScreen extends StatefulWidget {
   const VisualScreen({super.key});
@@ -155,6 +160,23 @@ class _VisualScreenState extends State<VisualScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    print(LocalStorage.readJson(key: lsk.scheduleList));
+    Future.microtask(() async {
+      List dataList = LocalStorage.readJsonList(key: lsk.scheduleList) ?? [];
+
+      for (var schedule in dataList) {
+        scheduleController.schedules.value = schedule;
+        // String base64Image = schedule['image'];
+        // Uint8List imageBytes = base64Decode(base64Image);
+        // Use imageBytes with an Image widget or other methods
+      }
+      setState(() {});
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -197,7 +219,7 @@ class _VisualScreenState extends State<VisualScreen> {
                       shrinkWrap: true,
                       itemCount: scheduleController.schedules.length,
                       itemBuilder: (context, index) {
-                        final schedule = scheduleController.schedules[index];
+                        final scheduless = scheduleController.schedules[index];
                         return Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 8.r, horizontal: 16.r),
@@ -223,7 +245,7 @@ class _VisualScreenState extends State<VisualScreen> {
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(8.r),
                                   child: Image.file(
-                                    File(schedule["image"]!.path),
+                                    File(scheduless["image"]),
                                     height: 80.r,
                                     width: 80.r,
                                     fit: BoxFit.cover,
@@ -238,7 +260,7 @@ class _VisualScreenState extends State<VisualScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        schedule["routine"],
+                                        scheduless["routine"],
                                         style: TextStyle(
                                           color: Color(0xff121137),
                                           fontWeight: FontWeight.w600,
@@ -247,7 +269,7 @@ class _VisualScreenState extends State<VisualScreen> {
                                       ),
                                       SizedBox(height: 8.r),
                                       Text(
-                                        schedule["date"],
+                                        scheduless["date"],
                                         style: TextStyle(
                                           color: Color(0xff121137),
                                           fontWeight: FontWeight.w400,
@@ -256,7 +278,7 @@ class _VisualScreenState extends State<VisualScreen> {
                                       ),
                                       SizedBox(height: 4.r),
                                       Text(
-                                        schedule["time"],
+                                        scheduless["time"],
                                         style: TextStyle(
                                           color: Color(0xff757575),
                                           fontWeight: FontWeight.w400,
@@ -295,16 +317,18 @@ class _VisualScreenState extends State<VisualScreen> {
 
 class ScheduleController extends GetxController {
   // List to store schedules
-  var schedules = <Map<String, dynamic>>[].obs;
+  RxList schedules = [].obs;
 
   // Method to add a new schedule
-  void addSchedule(XFile imageFile, String date, String time, String routine) {
+  void addSchedule(
+      XFile imageFile, String date, String time, String routine) async {
     schedules.add({
-      "image": imageFile,
+      "image": imageFile.path,
       "date": date,
       "time": time,
       "routine": routine,
     });
+    LocalStorage.saveJson(key: lsk.scheduleList, value: [schedules]);
   }
 
   void removeSchedule(int index) {

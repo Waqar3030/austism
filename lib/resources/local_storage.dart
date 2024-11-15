@@ -20,6 +20,12 @@ class LocalStorage {
     return res;
   }
 
+  static readJsonList({required String key}) {
+    final getStorage = GetStorage();
+    var res = getStorage.read<List>(key);
+    return res;
+  }
+
   static deleteJson({required String key}) {
     final getStorage = GetStorage();
     var res = getStorage.remove(key);
@@ -31,4 +37,5 @@ class LocalStorage {
 class lsk {
   static const String token = "token";
   static const String userData = "userData";
+  static const String scheduleList = "scheduleList";
 }
