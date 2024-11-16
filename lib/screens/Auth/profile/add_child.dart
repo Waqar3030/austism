@@ -70,7 +70,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
             fit: BoxFit.fill,
           ),
         ),
-        child: GetBuilder(
+        child: GetBuilder<UserController>(
             init: userController,
             builder: (controller) {
               return SafeArea(
@@ -224,6 +224,8 @@ class _AddChildScreenState extends State<AddChildScreen> {
                           ? AppLoader.spinkit
                           : PrimaryButton(
                               onTap: () async {
+                                controller.setLoading(true);
+
                                 if (controller.selectedParentImage != null &&
                                     controller.selectedChildImage != null) {
                                   controller.parentimage =
@@ -258,7 +260,6 @@ class _AddChildScreenState extends State<AddChildScreen> {
                                 }
 
                                 controller.createUser();
-                                Get.offAll(() => const NavigatorScreen());
                               },
                               text: "Done",
                             ),

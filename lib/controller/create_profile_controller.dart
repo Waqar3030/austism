@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:austism/components/appBar.dart';
 import 'package:austism/controller/auth_controller.dart';
+import 'package:austism/screens/Auth/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -56,6 +57,7 @@ class UserController extends GetxController {
         "childImageUrl": childimage,
         "gender": genderController.text,
       });
+      Get.offAll(() => const NavigatorScreen());
 
       return 'User $userId created successfully.';
     } catch (e) {

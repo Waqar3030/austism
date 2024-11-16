@@ -66,7 +66,7 @@ dependencies:
   
 
 flutter_launcher_icons:
-  android: true
+  android: "launcher_icon"
   ios: true
   image_path: "assets/images/autism.png"
   min_sdk_android: 21
@@ -76,10 +76,12 @@ flutter_launcher_icons:
   windows:
     generate: true
     image_path: "assets/images/autism.png"
-    icon_size: 256 # min:48, max:256, default: 48
+    icon_size: 48  # min:48, max:256, default: 48
   macos:
     generate: true
     image_path: "assets/images/autism.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/images/autism.png"
 
   
 

@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:austism/components/primary_button.dart';
@@ -11,8 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:convert';
-import 'dart:typed_data';
 
 class VisualScreen extends StatefulWidget {
   const VisualScreen({super.key});
@@ -167,10 +163,8 @@ class _VisualScreenState extends State<VisualScreen> {
       List dataList = LocalStorage.readJsonList(key: lsk.scheduleList) ?? [];
 
       for (var schedule in dataList) {
-        scheduleController.schedules.value = schedule;
-        // String base64Image = schedule['image'];
-        // Uint8List imageBytes = base64Decode(base64Image);
-        // Use imageBytes with an Image widget or other methods
+        scheduleController.schedules = schedule;
+        scheduleController.update();
       }
       setState(() {});
     });
@@ -214,48 +208,50 @@ class _VisualScreenState extends State<VisualScreen> {
                   ],
                 ),
                 20.r.verticalSpace,
-                Obx(() => ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: scheduleController.schedules.length,
-                      itemBuilder: (context, index) {
-                        final scheduless = scheduleController.schedules[index];
-                        return Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 8.r, horizontal: 16.r),
-                          child: Container(
-                            width: 0.85.sw,
+                GetBuilder(
+                    init: scheduleController,
+                    builder: (controller) {
+                      return ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: controller.schedules.length,
+                        itemBuilder: (context, index) {
+                          var scheduless = controller.schedules[index];
+                          return Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 16.r, vertical: 16.r),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(12.r),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.1),
-                                  blurRadius: 6.r,
-                                  offset: Offset(0, 4),
-                                ),
-                              ],
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // Image section
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.r),
-                                  child: Image.file(
-                                    File(scheduless["image"]),
-                                    height: 80.r,
-                                    width: 80.r,
-                                    fit: BoxFit.cover,
+                                vertical: 8.r, horizontal: 16.r),
+                            child: Container(
+                              width: 0.85.sw,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16.r, vertical: 16.r),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(12.r),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.1),
+                                    blurRadius: 6.r,
+                                    offset: Offset(0, 4),
                                   ),
-                                ),
-                                SizedBox(width: 16.r),
+                                ],
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // Image section
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.r),
+                                    child: Image.file(
+                                      File(scheduless["image"]),
+                                      height: 80.r,
+                                      width: 80.r,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  SizedBox(width: 16.r),
 
-                                // Text section
-                                Expanded(
-                                  child: Column(
+                                  // Text section
+                                  Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
@@ -287,20 +283,20 @@ class _VisualScreenState extends State<VisualScreen> {
                                       ),
                                     ],
                                   ),
-                                ),
-                                IconButton(
-                                  icon: Icon(
-                                    Icons.close,
-                                    color: Colors.indigo[700]!,
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.close,
+                                      color: Colors.indigo[700]!,
+                                    ),
+                                    onPressed: () => _deleteSchedule(index),
                                   ),
-                                  onPressed: () => _deleteSchedule(index),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                    )),
+                          );
+                        },
+                      );
+                    }),
                 SizedBox(height: 20), // Add space above the button if needed
                 PrimaryButton(
                   onTap: _openCreateScheduleDialog,
@@ -317,7 +313,7 @@ class _VisualScreenState extends State<VisualScreen> {
 
 class ScheduleController extends GetxController {
   // List to store schedules
-  RxList schedules = [].obs;
+  List schedules = [];
 
   // Method to add a new schedule
   void addSchedule(
@@ -328,10 +324,13 @@ class ScheduleController extends GetxController {
       "time": time,
       "routine": routine,
     });
+    update();
+
     LocalStorage.saveJson(key: lsk.scheduleList, value: [schedules]);
   }
 
   void removeSchedule(int index) {
     schedules.removeAt(index);
+    update();
   }
 }
