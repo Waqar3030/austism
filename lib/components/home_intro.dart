@@ -15,7 +15,7 @@ class IntroCard extends StatelessWidget {
         init: childcontroller,
         builder: (controller) {
           return Container(
-            height: 190.r,
+            height: 160.r,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50.r),

@@ -62,49 +62,85 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (_) => childcontroller.isloading
               ? AppLoader.spinkit
               : SafeArea(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        30.r.verticalSpace,
-                        IntroCard(),
-                        20.r.verticalSpace,
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          height: 270.r,
-                          child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 3,
-                              itemBuilder: (context, index) {
-                                return speechCards(
-                                  ontap: () {
-                                    Get.to(() => speechCardsNavigate[index]);
-                                  },
-                                  title: titles[index],
-                                  imagePath: path[index],
-                                );
-                              }),
-                        ),
-                        10.h.verticalSpace,
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                  child: Column(
+                    children: [
+                      20.r.verticalSpace,
+                      IntroCard(),
+                      20.r.verticalSpace,
+                      Container(
+                        height: 130.r,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50.r),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.indigo[800]!.withOpacity(.15),
+                                offset: const Offset(0, 10),
+                                blurRadius: 0,
+                                spreadRadius: 0,
+                              )
+                            ],
+                            gradient: const RadialGradient(
+                              colors: [Color(0xff0E5C9E), Color(0xff031965)],
+                              focal: Alignment.topCenter,
+                              radius: .85,
+                            )),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 25.w, vertical: 15.h),
+                        child: Column(
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                final bottomController2 = Get.put(
-                                    bottomController.BottomController());
-                                bottomController2.navBarChange(2);
-                              },
-                              child: Text("Find more",
-                                  style: AppTextStyle.small.copyWith(
-                                      color: AppColors.kWhite,
-                                      fontFamily: "BigBottom",
-                                      fontSize: 20.r)),
-                            ),
+                            // 5.r.verticalSpace,
+                            Text(
+                                textAlign: TextAlign.center,
+                                "Autistic individuals are not puzzles. They are complex and wonderful people.",
+                                style: AppTextStyle.small.copyWith(
+                                  color: Colors.white,
+                                )),
+                            5.r.verticalSpace,
+                            Text(
+                                textAlign: TextAlign.center,
+                                "Autism is not a disability, it’s a different ability.",
+                                style: AppTextStyle.small.copyWith(
+                                  color: Colors.white,
+                                )),
                           ],
-                        )
-                      ],
-                    ).paddingSymmetric(horizontal: 10.r),
-                  ),
+                        ),
+                      ),
+                      20.r.verticalSpace,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              final bottomController2 =
+                                  Get.put(bottomController.BottomController());
+                              bottomController2.navBarChange(2);
+                            },
+                            child: Text("Find more",
+                                style: AppTextStyle.small.copyWith(
+                                    color: AppColors.kWhite, fontSize: 20.r)),
+                          ),
+                        ],
+                      ),
+                      10.h.verticalSpace,
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: 270.r,
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 3,
+                            itemBuilder: (context, index) {
+                              return speechCards(
+                                ontap: () {
+                                  Get.to(() => speechCardsNavigate[index]);
+                                },
+                                title: titles[index],
+                                imagePath: path[index],
+                              );
+                            }),
+                      ),
+                    ],
+                  ).paddingSymmetric(horizontal: 10.r),
                 ),
         ),
       ),

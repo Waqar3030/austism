@@ -4,7 +4,7 @@ import 'package:austism/controller/forgot_pass_controller.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/appColors.dart';
 import 'package:austism/resources/apptext.dart';
-import 'package:austism/screens/Auth/create_new_password.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

@@ -2,6 +2,7 @@ import 'package:austism/components/custom_dialogbox.dart';
 import 'package:austism/controller/bottom_controller.dart';
 import 'package:austism/controller/child_controller.dart';
 import 'package:austism/resources/appAssets.dart';
+import 'package:austism/resources/apptext.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/Auth/navigator.dart';
 import 'package:flutter/material.dart';
@@ -54,6 +55,42 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 ],
               ).paddingOnly(left: 40.w, right: 30.w),
               40.h.verticalSpace,
+              GetBuilder(
+                  init: childcontroller,
+                  builder: (controller) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(controller.parentname,
+                                style: AppTextStyle.heading.copyWith(
+                                  color: Colors.indigo[700]!,
+                                  fontSize: 32.sp,
+                                )),
+                            Text(controller.parentemail,
+                                style: AppTextStyle.small.copyWith(
+                                  color: Colors.indigo[700]!,
+                                  fontSize: 14.sp,
+                                )),
+                          ],
+                        ),
+                        Container(
+                            height: 90.r,
+                            width: 90.r,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                              image: DecorationImage(
+                                image: NetworkImage(controller.parentimage),
+                                fit: BoxFit.cover,
+                              ),
+                            )),
+                      ],
+                    );
+                  }),
+              40.h.verticalSpace,
               GestureDetector(
                 onTap: () {
                   bottomController.navBarChange(0);
@@ -82,9 +119,8 @@ class _DrawerScreenState extends State<DrawerScreen> {
                       child: Center(
                         child: Text(
                           "Logout",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w600,
+                          style: AppTextStyle.small.copyWith(
+                            color: Colors.indigo[700]!,
                             fontSize: 20.sp,
                           ),
                         ),
@@ -116,9 +152,8 @@ class _DrawerScreenState extends State<DrawerScreen> {
               children: [
                 Text(
                   txt,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
+                  style: AppTextStyle.small.copyWith(
+                    color: Colors.indigo[700]!,
                     fontSize: 20.sp,
                   ),
                 ),

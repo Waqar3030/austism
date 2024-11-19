@@ -37,71 +37,73 @@ class _VisualScreenState extends State<VisualScreen> {
             height: 340.r,
             width: 400.r,
             child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  GestureDetector(
-                    onTap: () async {
-                      imageFile = await ImagePicker()
-                          .pickImage(source: ImageSource.gallery);
-                      setState(
-                          () {}); // Refresh the dialog to show image preview
-                    },
-                    child: imageFile != null
-                        ? Image.file(
-                            File(imageFile!.path),
-                            height: 100.r,
-                            width: 150.r,
-                            fit: BoxFit.cover,
-                          )
-                        : Container(
-                            height: 100.r,
-                            width: 150.r,
-                            color: Colors.grey[200],
-                            child: Icon(Icons.add_a_photo),
-                          ),
-                  ),
-                  SizedBox(height: 10.r),
-                  TextField(
-                    controller: dateController,
-                    readOnly: true,
-                    decoration: InputDecoration(labelText: "Select Date"),
-                    onTap: () async {
-                      DateTime? selectedDate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(2000),
-                        lastDate: DateTime(2100),
-                      );
-                      if (selectedDate != null) {
-                        dateController.text =
-                            "${selectedDate.toLocal()}".split(' ')[0];
-                      }
-                    },
-                  ),
-                  SizedBox(height: 10.r),
-                  TextField(
-                    controller: timeController,
-                    readOnly: true,
-                    decoration: InputDecoration(labelText: "Select Time"),
-                    onTap: () async {
-                      TimeOfDay? selectedTime = await showTimePicker(
-                        context: context,
-                        initialTime: TimeOfDay.now(),
-                      );
-                      if (selectedTime != null) {
-                        timeController.text = selectedTime.format(context);
-                      }
-                    },
-                  ),
-                  SizedBox(height: 10.r),
-                  TextField(
-                    maxLines: 2,
-                    controller: routineController,
-                    decoration: InputDecoration(labelText: "Enter Routine"),
-                  ),
-                  SizedBox(height: 10.r),
-                ],
-              ),
+              child: StatefulBuilder(builder: (context, _setState) {
+                return Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () async {
+                        imageFile = await ImagePicker()
+                            .pickImage(source: ImageSource.gallery);
+                        _setState(
+                            () {}); // Refresh the dialog to show image preview
+                      },
+                      child: imageFile != null
+                          ? Image.file(
+                              File(imageFile!.path),
+                              height: 100.r,
+                              width: 150.r,
+                              fit: BoxFit.cover,
+                            )
+                          : Container(
+                              height: 100.r,
+                              width: 150.r,
+                              color: Colors.grey[200],
+                              child: Icon(Icons.add_a_photo),
+                            ),
+                    ),
+                    SizedBox(height: 10.r),
+                    TextField(
+                      controller: dateController,
+                      readOnly: true,
+                      decoration: InputDecoration(labelText: "Select Date"),
+                      onTap: () async {
+                        DateTime? selectedDate = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime(2100),
+                        );
+                        if (selectedDate != null) {
+                          dateController.text =
+                              "${selectedDate.toLocal()}".split(' ')[0];
+                        }
+                      },
+                    ),
+                    SizedBox(height: 10.r),
+                    TextField(
+                      controller: timeController,
+                      readOnly: true,
+                      decoration: InputDecoration(labelText: "Select Time"),
+                      onTap: () async {
+                        TimeOfDay? selectedTime = await showTimePicker(
+                          context: context,
+                          initialTime: TimeOfDay.now(),
+                        );
+                        if (selectedTime != null) {
+                          timeController.text = selectedTime.format(context);
+                        }
+                      },
+                    ),
+                    SizedBox(height: 10.r),
+                    TextField(
+                      maxLines: 2,
+                      controller: routineController,
+                      decoration: InputDecoration(labelText: "Enter Routine"),
+                    ),
+                    SizedBox(height: 10.r),
+                  ],
+                );
+              }),
             ),
           ),
           actions: [
@@ -236,50 +238,59 @@ class _VisualScreenState extends State<VisualScreen> {
                                 ],
                               ),
                               child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  // Image section
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.r),
-                                    child: Image.file(
-                                      File(scheduless["image"]),
-                                      height: 80.r,
-                                      width: 80.r,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  SizedBox(width: 16.r),
-
-                                  // Text section
-                                  Column(
+                                  Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        scheduless["routine"],
-                                        style: TextStyle(
-                                          color: Color(0xff121137),
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 22.sp,
+                                      // Image section
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.r),
+                                        child: Image.file(
+                                          File(scheduless["image"]),
+                                          height: 80.r,
+                                          width: 80.r,
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
-                                      SizedBox(height: 8.r),
-                                      Text(
-                                        scheduless["date"],
-                                        style: TextStyle(
-                                          color: Color(0xff121137),
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 16.sp,
-                                        ),
-                                      ),
-                                      SizedBox(height: 4.r),
-                                      Text(
-                                        scheduless["time"],
-                                        style: TextStyle(
-                                          color: Color(0xff757575),
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 16.sp,
-                                        ),
+                                      SizedBox(width: 16.r),
+
+                                      // Text section
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            scheduless["routine"],
+                                            style: TextStyle(
+                                              color: Color(0xff121137),
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 22.sp,
+                                            ),
+                                          ),
+                                          SizedBox(height: 8.r),
+                                          Text(
+                                            scheduless["date"],
+                                            style: TextStyle(
+                                              color: Color(0xff121137),
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 16.sp,
+                                            ),
+                                          ),
+                                          SizedBox(height: 4.r),
+                                          Text(
+                                            scheduless["time"],
+                                            style: TextStyle(
+                                              color: Color(0xff757575),
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 16.sp,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),

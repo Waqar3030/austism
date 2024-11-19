@@ -1,4 +1,3 @@
-import 'package:austism/components/button.dart';
 import 'package:austism/components/primary_button.dart';
 import 'package:austism/resources/colors.dart';
 import 'package:austism/resources/local_storage.dart';

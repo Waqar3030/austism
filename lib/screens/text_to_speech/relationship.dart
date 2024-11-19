@@ -1,12 +1,10 @@
-import 'package:austism/components/custom_cart.dart';
 import 'package:austism/components/speech.dart';
 import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/apptext.dart';
-import 'package:austism/resources/colors.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class RelationshipScreen extends StatelessWidget {
   RelationshipScreen({super.key});

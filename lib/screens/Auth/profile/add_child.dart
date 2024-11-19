@@ -5,7 +5,7 @@ import 'package:austism/resources/appAssets.dart';
 import 'package:austism/resources/appColors.dart';
 import 'package:austism/resources/app_loader.dart';
 import 'package:austism/resources/apptext.dart';
-import 'package:austism/screens/Auth/navigator.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -195,10 +195,6 @@ class _AddChildScreenState extends State<AddChildScreen> {
                               borderRadius: BorderRadius.circular(15.r),
                             )),
                       ),
-                      // AuthField(
-                      //     title: "Date of Birth",
-                      //     hintText: "Enter Date Birth",
-                      //     controller: controller.dobController),
                       SizedBox(
                         height: 5.h,
                       ),

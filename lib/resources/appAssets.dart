@@ -70,16 +70,7 @@ class Appassets {
   static const String violet = "assets/images/violet.png";
   static const String white = "assets/images/white.png";
   static const String yellow = "assets/images/yellow.png";
-  //-------------------------Animals-------------------------
-  static const String animal = "assets/images/animal.png";
-  static const String cat = "assets/images/cat.png";
-  static const String cow = "assets/images/cow.png";
-  static const String dog = "assets/images/dog.png";
-  static const String elephant = "assets/images/elephant.png";
-  static const String hen = "assets/images/hen.png";
-  static const String horse = "assets/images/horse.png";
-  static const String rabbit = "assets/images/rabbit.png";
-  static const String sheep = "assets/images/sheep.png";
+
   //-------------------------Numbers-------------------------
   static const String one = "assets/images/one.png";
   static const String two = "assets/images/two.png";
