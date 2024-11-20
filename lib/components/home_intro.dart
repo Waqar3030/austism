@@ -44,12 +44,9 @@ class IntroCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Hi, ${controller.childname}",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 32,
-                                height: 1.25,
-                                fontFamily: "BigBottom",
-                                fontWeight: FontWeight.bold)),
+                            style: AppTextStyle.heading.copyWith(
+                              color: Colors.white,
+                            )),
                         Text(controller.parentemail,
                             style: AppTextStyle.small.copyWith(
                               color: Colors.white.withOpacity(.75),
