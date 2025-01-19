@@ -57,7 +57,7 @@ class EmailVerificationScreen extends StatelessWidget {
                     "Check your email for a verification link",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 14.h,
+                      fontSize: 18.h,
                       fontWeight: FontWeight.w300,
                     ),
                   ),

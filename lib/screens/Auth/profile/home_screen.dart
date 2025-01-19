@@ -89,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             horizontal: 25.w, vertical: 15.h),
                         child: Column(
                           children: [
-                            // 5.r.verticalSpace,
+                            
                             Text(
                                 textAlign: TextAlign.center,
                                 "Autistic individuals are not puzzles. They are complex and wonderful people.",
@@ -156,9 +156,7 @@ Widget speechCards(
     onTap: ontap,
     child: Container(
       margin: EdgeInsets.only(right: 10.r),
-      // padding: EdgeInsets.symmetric(horizontal: 15.r, vertical: 15.r),
       width: 250.r,
-      // height: 250.r,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50.0),
           boxShadow: [
@@ -206,171 +204,10 @@ Widget speechCards(
               size: 30,
             ),
           ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.end,
-          //   children: [
-          //     Container(
-          //         width: 40.r,
-          //         height: 40.r,
-          //         decoration: BoxDecoration(
-          //           borderRadius: BorderRadius.circular(100.0),
-          //           gradient: const LinearGradient(
-          //               colors: [Colors.yellow, Colors.orange],
-          //               begin: Alignment.topCenter,
-          //               end: Alignment.bottomCenter),
-          //         ),
-          //         child: const Icon(
-          //           Icons.keyboard_arrow_right,
-          //           color: Colors.white,
-          //           size: 30,
-          //         )),
-          //   ],
-          // ),
+        
         ],
       ),
     ),
   );
 }
 
-// body: Column(
-//   children: [
-//     // Custom app bar
-
-//     30.h.verticalSpace, // Increased space for cleaner design
-
-//     // Child image with shadow for better appearance
-//     Container(
-//       decoration: BoxDecoration(
-//         borderRadius: BorderRadius.circular(20.r),
-//         boxShadow: [
-//           BoxShadow(
-//             color: Colors.black.withOpacity(0.1),
-//             blurRadius: 10,
-//             offset: Offset(0, 5),
-//           ),
-//         ],
-//       ),
-//       child: ClipRRect(
-//         borderRadius: BorderRadius.circular(20.r),
-//         child: Image.asset(
-//           Appassets.child1,
-//           height: 250.h,
-//           width: double.infinity,
-//           fit: BoxFit.cover,
-//         ),
-//       ),
-//     ),
-
-//     30.h.verticalSpace,
-
-//     // Informative text with better spacing, padding, and design
-//     Container(
-//       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-//       width: double.infinity,
-//       decoration: BoxDecoration(
-//         color: Colors.white,
-//         borderRadius: BorderRadius.circular(15.r),
-//         boxShadow: [
-//           BoxShadow(
-//             color: Colors.black.withOpacity(0.05),
-//             blurRadius: 10,
-//             offset: Offset(0, 5),
-//           ),
-//         ],
-//       ),
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           Text(
-//             "Understanding Autism Spectrum Disorder",
-//             style: TextStyle(
-//               fontSize: 24.sp,
-//               fontWeight: FontWeight.w700,
-//               color: kprimaryColor,
-//             ),
-//           ),
-//           10.h.verticalSpace,
-//           Text(
-//             "Autism Spectrum Disorder (ASD) is a neurodevelopmental condition affecting communication, social interaction, and behavior. People with autism experience the world differently, often struggling with sensory processing and routines.",
-//             style: TextStyle(
-//               fontSize: 18.sp,
-//               fontWeight: FontWeight.w400,
-//               color: Colors.black.withOpacity(0.7),
-//             ),
-//           ),
-//           10.h.verticalSpace,
-//           Text(
-//             "While there's no single cause, early intervention and support can significantly improve quality of life.",
-//             style: TextStyle(
-//               fontSize: 18.sp,
-//               fontWeight: FontWeight.w400,
-//               color: Colors.black.withOpacity(0.7),
-//             ),
-//           ),
-//         ],
-//       ),
-//     ),
-
-//     30.h.verticalSpace,
-
-//     // Second image with shadow
-//     Container(
-//       decoration: BoxDecoration(
-//         borderRadius: BorderRadius.circular(20.r),
-//         boxShadow: [
-//           BoxShadow(
-//             color: Colors.black.withOpacity(0.1),
-//             blurRadius: 10,
-//             offset: Offset(0, 5),
-//           ),
-//         ],
-//       ),
-//       child: ClipRRect(
-//         borderRadius: BorderRadius.circular(20.r),
-//         child: Image.asset(
-//           Appassets.austism1,
-//           height: 250.h,
-//           width: double.infinity,
-//           fit: BoxFit.cover,
-//         ),
-//       ),
-//     ),
-
-//     30.h.verticalSpace,
-
-//     // Custom button with animation
-//     GestureDetector(
-//       onTap: () {
-//         Get.to(() => AustismDetail());
-//       },
-//       child: AnimatedContainer(
-//         duration: Duration(milliseconds: 300),
-//         curve: Curves.easeInOut,
-//         width: 0.70.sw,
-//         height: 50.h,
-//         decoration: BoxDecoration(
-//           color: kprimaryColor,
-//           borderRadius: BorderRadius.circular(25.r),
-//           boxShadow: [
-//             BoxShadow(
-//               color: kprimaryColor.withOpacity(0.5),
-//               blurRadius: 10,
-//               offset: Offset(0, 5),
-//             ),
-//           ],
-//         ),
-//         alignment: Alignment.center,
-//         child: Text(
-//           "CLICK HERE",
-//           style: TextStyle(
-//             color: Colors.white,
-//             fontSize: 18.sp,
-//             fontWeight: FontWeight.w600,
-//           ),
-//         ),
-//       ),
-//     ),
-
-//     30.h.verticalSpace,
-//   ],
-// ).paddingSymmetric(horizontal: 20.w),

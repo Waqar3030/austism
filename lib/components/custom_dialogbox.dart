@@ -7,12 +7,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class CustomDialogbox {
-  // Function to show the logout dialog
   static void logout(BuildContext context) {
     showDialog(
       context: context,
       barrierDismissible:
-          false, // Set to true if you want the dialog to be dismissible by tapping outside
+          false, 
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text(

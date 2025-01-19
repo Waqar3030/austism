@@ -79,7 +79,7 @@ class _PrimaryButtonState extends State<PrimaryButton>
                   colors: [Colors.yellow, Colors.orange],
                   end: Alignment.topCenter,
                   begin: Alignment.bottomCenter),
-              // color: widget.color ?? const Color(0xFFD1A661),
+              
               borderRadius: BorderRadius.circular(widget.borderRadius ?? 20.r),
             ),
             child: Text(

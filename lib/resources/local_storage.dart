@@ -33,7 +33,7 @@ class LocalStorage {
   }
 }
 
-// ignore: camel_case_types
+
 class lsk {
   static const String token = "token";
   static const String userData = "userData";

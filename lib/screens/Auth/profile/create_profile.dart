@@ -58,11 +58,9 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                           children: [
                             CircleAvatar(
                               radius: 70.r,
-                              // backgroundImage: AssetImage(Appassets
-                              //     .parentPic), // Adjust the size as needed
                               backgroundImage: controller.selectedParentImage ==
                                       null
-                                  ? const AssetImage(Appassets.parentPic)
+                                  ? const AssetImage("assets/images/user.png")
                                   : FileImage(controller.selectedParentImage!),
                               backgroundColor: Colors.transparent,
                             ),

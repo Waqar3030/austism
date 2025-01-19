@@ -32,7 +32,6 @@ class SportsScreen extends StatelessWidget {
     {'name': 'Driving', 'image': Appassets.driving},
   ];
 
-  // final PageController _controller = PageController();
 
   @override
   Widget build(BuildContext context) {

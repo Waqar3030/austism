@@ -1,4 +1,3 @@
-import 'package:austism/components/appBar.dart';
 import 'package:austism/resources/appColors.dart';
 import 'package:austism/resources/apptext.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +50,6 @@ class _AuthFieldState extends State<AuthField> {
           controller: widget.controller,
           validator: widget.validator,
 
-          // ignore: avoid_bool_literals_in_conditional_expressions
           obscureText: widget.isPassword ? isObscure : false,
           textInputAction: widget.textInputAction,
           keyboardType: widget.keyboardType,

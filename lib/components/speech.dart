@@ -5,7 +5,7 @@ import 'package:flutter_tts/flutter_tts.dart';
 
 class ProductGrid extends StatefulWidget {
   final List<Map<String, String>> products;
-  final double? imageHeight; // Dynamic products list
+  final double? imageHeight; 
 
   const ProductGrid({
     Key? key,
@@ -38,10 +38,10 @@ class _ProductGridState extends State<ProductGrid> {
   Widget build(BuildContext context) {
     return GridView.builder(
       shrinkWrap: true,
-      // padding: EdgeInsets.all(15.w),
+      
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        mainAxisExtent: 280.h,
+        mainAxisExtent: 291.h,
       ),
       itemCount: widget.products.length,
       itemBuilder: (context, index) {
@@ -51,12 +51,12 @@ class _ProductGridState extends State<ProductGrid> {
         return MouseRegion(
           onEnter: (_) {
             setState(() {
-              cardScale = 1.05; // Scale up slightly on hover
+              cardScale = 1.05; 
             });
           },
           onExit: (_) {
             setState(() {
-              cardScale = 1.0; // Scale back to normal when not hovered
+              cardScale = 1.0; 
             });
           },
           child: GestureDetector(
@@ -80,7 +80,7 @@ class _ProductGridState extends State<ProductGrid> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // Image with rounded corners
+                    
                     Container(
                       margin: EdgeInsets.all(15.w),
                       decoration: BoxDecoration(
@@ -97,29 +97,19 @@ class _ProductGridState extends State<ProductGrid> {
                         borderRadius: BorderRadius.circular(15.r),
                         child: Image.asset(
                           productImage,
-                          height: widget.imageHeight ?? 170.r,
+                          height: widget.imageHeight ?? 193.r,
                           width: double.infinity,
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
-                    // Product name with speaker icon
+                    
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // Text(
-                        //   productName,
-                        //   textAlign: TextAlign.center,
-                        //   style: TextStyle(
-                        //     fontSize: 18.sp,
-                        //     fontWeight: FontWeight.bold,
-                        //     color: selectedProduct == productName
-                        //         ? Colors.blueAccent
-                        //         : Colors.black.withOpacity(0.7),
-                        //   ),
-                        // ),
+                        
                         SizedBox(width: 5.w),
-                        // Speaker icon for TTS indication
+                        
                         Icon(
                           Icons.volume_up,
                           color: selectedProduct == productName
@@ -129,7 +119,7 @@ class _ProductGridState extends State<ProductGrid> {
                         ),
                       ],
                     ),
-                    // Speaking indicator text
+                    
                     if (selectedProduct == productName)
                       Padding(
                         padding: EdgeInsets.only(top: 5.h),

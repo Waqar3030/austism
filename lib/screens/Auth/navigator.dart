@@ -40,7 +40,6 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                 ? LinearGradient(colors: [Colors.yellow, Colors.orange])
                 : LinearGradient(
                     colors: [Colors.transparent, Colors.transparent])),
-        // color: isSelected ? Colors.yellow : Colors.transparent,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -48,9 +47,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    // color: isSelected
-                    //     ? const Color.fromARGB(33, 255, 255, 255)
-                    //     : Colors.transparent,
+                    
                     shape: BoxShape.circle,
                   ),
                   child: item.image,
@@ -66,7 +63,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
               ],
             ),
             2.h.verticalSpace,
-            // if (!isSelected) SizedBox(height: 15.h),
+            
           ],
         ),
       ),
@@ -84,7 +81,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              // height: 140.h,
+            
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(

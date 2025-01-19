@@ -1,6 +1,5 @@
 import 'package:austism/resources/appColors.dart';
 import 'package:austism/resources/apptext.dart';
-import 'package:austism/resources/colors.dart';
 import 'package:austism/screens/text_to_speech/alphabets.dart';
 import 'package:austism/screens/text_to_speech/clothes.dart';
 import 'package:austism/screens/text_to_speech/color_Image.dart';
@@ -53,14 +52,12 @@ class _LearningScreenState extends State<LearningScreen> {
                   onTap: () {
                     Get.to(() => const EnglishAlphabets());
                   },
-                  // image: Appassets.cricket
                 ),
                 item(
                   text: "Sports",
                   onTap: () {
                     Get.to(() => SportsScreen());
                   },
-                  // image: Appassets.cricket
                 ),
                 item(
                   text: "Fruit",
@@ -68,50 +65,42 @@ class _LearningScreenState extends State<LearningScreen> {
                     Get.to(() => FruitsScreen());
                   },
 
-                  // image: Appassets.fruits
                 ),
                 item(
                   text: "Vegetables",
                   onTap: () {
                     Get.to(() => VegetablesScreen());
                   },
-                  // image: Appassets.vegetables
                 ),
                 item(
                   text: "Dairy",
                   onTap: () {
                     Get.to(() => DairyScreen());
                   },
-                  // image: Appassets.dairy
                 ),
-                // item(text: "Animals", onTap: () {}, image: Appassets.animal),
                 item(
                   text: "Relationship",
                   onTap: () {
                     Get.to(() => RelationshipScreen());
                   },
-                  // image: Appassets.parents
                 ),
                 item(
                   text: "Colors",
                   onTap: () {
                     Get.to(() => ColoursScreen());
                   },
-                  // image: Appassets.pink
                 ),
                 item(
                   text: "Clothes",
                   onTap: () {
                     Get.to(() => ClothesScreen());
                   },
-                  // image: Appassets.cap
                 ),
                 item(
                   text: "Numbers",
                   onTap: () {
                     Get.to(() => NumbersScreen());
                   },
-                  // image: Appassets.cap
                 ),
               ],
             ).paddingSymmetric(horizontal: 10.r),
@@ -129,9 +118,6 @@ Widget item({
   return GestureDetector(
     onTap: onTap,
     child: Container(
-      // width: 250,
-      // height: 290,
-      // width: double.infinity,
       margin: EdgeInsets.symmetric(vertical: 8.r),
       padding: EdgeInsets.all(15.r),
       decoration: BoxDecoration(

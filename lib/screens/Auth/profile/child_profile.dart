@@ -109,7 +109,7 @@ class _ChildProfileState extends State<ChildProfile> {
                             backgroundImage: controller.childimage.isNotEmpty
                                 ? NetworkImage(controller
                                     .childimage) // Use parent image URL
-                                : const AssetImage(Appassets.parentPic)
+                                : const AssetImage("assets/images/user.png")
                                     as ImageProvider,
                           )
                         ],
@@ -124,15 +124,6 @@ class _ChildProfileState extends State<ChildProfile> {
                             color: Colors.black,
                             fontWeight: FontWeight.w600),
                       ),
-                      // Text(
-                      //   controller.parentloc.isNotEmpty
-                      //       ? controller.parentloc
-                      //       : "Location",
-                      //   style: TextStyle(
-                      //       fontSize: 18.sp,
-                      //       color: Colors.black,
-                      //       fontWeight: FontWeight.w400),
-                      // ),
                       20.r.verticalSpace,
                       Container(
                         padding: EdgeInsets.symmetric(
@@ -154,15 +145,11 @@ class _ChildProfileState extends State<ChildProfile> {
                             _buildDivider(),
                             _buildInfoRow("Parent Name", controller.parentname),
                             _buildDivider(),
-                            // _buildInfoRow(
-                            //     "Parent Contact", controller.parentcontact),
-
                             _buildInfoRow(
                                 "Parent Email", controller.parentemail),
                             _buildDivider(),
                             _buildInfoRow(
                                 "Child Location", controller.childloc),
-                            // Add more fields as needed
                           ],
                         ),
                       ),
@@ -186,7 +173,7 @@ class _ChildProfileState extends State<ChildProfile> {
           ),
         ),
         Text(
-          value.isNotEmpty ? value : "N/A", // Display "N/A" if value is empty
+          value.isNotEmpty ? value : "N/A",
           style: AppTextStyle.small.copyWith(
             fontSize: 14.sp,
             color: AppColors.kWhite,

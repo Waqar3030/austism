@@ -22,7 +22,7 @@ class ClothesScreen extends StatelessWidget {
     {'name': 'Backpack', 'image': Appassets.backpack},
   ];
 
-  // final PageController _controller = PageController();
+ 
 
   @override
   Widget build(BuildContext context) {

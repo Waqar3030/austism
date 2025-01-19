@@ -36,7 +36,7 @@ class ChildController extends GetxController {
         Map<String, dynamic> data = userDoc.data() as Map<String, dynamic>;
         parentname = data["name"] ?? "";
         childloc = data["location"] ?? "";
-        // parentcontact = data["contactInfo"] ?? "";
+        
         parentemail = data["email"] ?? "";
         childname = data["childName"] ?? "";
         dob = data["childdob"] ?? "";

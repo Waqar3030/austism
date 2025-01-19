@@ -49,7 +49,6 @@ class _SignupScreenState extends State<SignupScreen> {
           image: DecorationImage(
             image: AssetImage(Appassets.background),
             fit: BoxFit.cover,
-            // image: AssetImage(Appassets.background),
           ),
         ),
         child: GetBuilder<AuthController>(
@@ -72,56 +71,27 @@ class _SignupScreenState extends State<SignupScreen> {
                                 fontSize: 26.r,
                                 fontWeight: FontWeight.bold,
                                 color: AppColors.kWhite)),
-
                         10.r.verticalSpace,
-                        // FullName.
                         AuthField(
                           title: 'Full Name',
                           hintText: 'Enter your name',
                           controller: _nameController,
-                          // validator: (value) {
-                          //   if (value == null || value.isEmpty) {
-                          //     return 'Name is required';
-                          //   } else if (!RegExp(r'^[a-zA-Z ]+ $')
-                          //       .hasMatch(value)) {
-                          //     return 'Please enter a valid name';
-                          //   }
-                          //   return null;
-                          // },
                           keyboardType: TextInputType.name,
                           textInputAction: TextInputAction.next,
                         ),
                         10.r.verticalSpace,
-                        // Email Field.
                         AuthField(
-                          title: 'E-mail',
+                          title: 'Email',
                           hintText: 'Enter your email address',
                           controller: emailController,
-                          // validator: (value) {
-                          //   if (value == null || value.isEmpty) {
-                          //     return 'Email is required';
-                          //   } else if (!value.isEmail) {
-                          //     return 'Invalid email address';
-                          //   }
-                          //   return null;
-                          // },
                           keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
                         ),
                         10.r.verticalSpace,
-                        // Password Field.
                         AuthField(
                           title: 'Password',
                           hintText: 'Enter your password',
                           controller: passController,
-                          // validator: (value) {
-                          //   if (value == null || value.isEmpty) {
-                          //     return 'Password is required';
-                          //   } else if (value.length < 8) {
-                          //     return 'Password should be at least 8 characters long';
-                          //   }
-                          //   return null;
-                          // },
                           isPassword: true,
                           keyboardType: TextInputType.visiblePassword,
                           textInputAction: TextInputAction.done,

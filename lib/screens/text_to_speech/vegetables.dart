@@ -15,7 +15,6 @@ class VegetablesScreen extends StatelessWidget {
     Appassets.corn,
     Appassets.potato,
     Appassets.tomato,
-    // Appassets.orangef,
   ];
   List<Map<String, String>> products = [
     {'name': 'Broccoli', 'image': Appassets.brocoli},
@@ -25,7 +24,6 @@ class VegetablesScreen extends StatelessWidget {
     {'name': 'Tomato', 'image': Appassets.tomato},
   ];
 
-  // final PageController _controller = PageController();
 
   @override
   Widget build(BuildContext context) {

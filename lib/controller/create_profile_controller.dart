@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'dart:io';
-import 'package:austism/components/appBar.dart';
 import 'package:austism/controller/auth_controller.dart';
 import 'package:austism/screens/Auth/navigator.dart';
 import 'package:flutter/material.dart';
@@ -106,14 +105,14 @@ class UserController extends GetxController {
         final taskSnapshot = await uploadTask;
         final imageURL = await taskSnapshot.ref.getDownloadURL();
         update();
-        return imageURL; // Return the uploaded image URL
+        return imageURL; 
       } catch (e) {
         log('Error uploading image: ${e.toString()}');
-        return null; // Return null on error
+        return null; 
       }
     } else {
       log('No image selected');
-      return null; // Return null if no image is selected
+      return null; 
     }
   }
 
@@ -165,10 +164,7 @@ class UserController extends GetxController {
     try {
       setLoading(true);
 
-      // Upload new parent and child images if selected
-      // if (selectedParentImage != null) {
-      //   parentimage = await uploadImage(selectedImage: selectedParentImage);
-      // }
+      
       if (selectedChildImage != null) {
         childimage = await uploadImage(selectedImage: selectedChildImage);
       } else {}

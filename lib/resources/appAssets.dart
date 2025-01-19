@@ -1,5 +1,4 @@
 class Appassets {
-  // static const String splash1 = "assets/images/file.png";
   static const String splash = "assets/images/178.png";
   static const String austismLogo = "assets/images/Autism logo-01.png";
   static const String background = "assets/images/184.png";

@@ -45,7 +45,7 @@ class _VisualScreenState extends State<VisualScreen> {
                         imageFile = await ImagePicker()
                             .pickImage(source: ImageSource.gallery);
                         _setState(
-                            () {}); // Refresh the dialog to show image preview
+                            () {}); 
                       },
                       child: imageFile != null
                           ? Image.file(
@@ -127,26 +127,11 @@ class _VisualScreenState extends State<VisualScreen> {
                         dateController.text,
                         timeController.text,
                         routineController.text);
-                    Navigator.of(context).pop(); // Close dialog after saving
+                    Navigator.of(context).pop(); 
                   }
                 },
                 text: "Save"),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     if (imageFile != null &&
-            //         dateController.text.isNotEmpty &&
-            //         timeController.text.isNotEmpty &&
-            //         routineController.text.isNotEmpty) {
-            //       scheduleController.addSchedule(
-            //           imageFile!,
-            //           dateController.text,
-            //           timeController.text,
-            //           routineController.text);
-            //       Navigator.of(context).pop(); // Close dialog after saving
-            //     }
-            //   },
-            //   child: Text("Save"),
-            // ),
+            
           ],
         );
       },
@@ -308,8 +293,8 @@ class _VisualScreenState extends State<VisualScreen> {
                         },
                       );
                     }),
-                SizedBox(height: 20), // Add space above the button if needed
-                PrimaryButton(
+                SizedBox(height: 20), 
+                                PrimaryButton(
                   onTap: _openCreateScheduleDialog,
                   text: "Create Schedule",
                 ),

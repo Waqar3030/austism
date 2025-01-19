@@ -1,7 +1,5 @@
 import 'package:austism/components/drawer.dart';
-import 'package:austism/resources/appColors.dart';
 import 'package:austism/resources/apptext.dart';
-import 'package:austism/resources/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -26,11 +24,7 @@ class CustomAppbar extends StatelessWidget {
           color: Colors.indigo[700]!,
         ),
       ),
-      // leading: Image.asset(
-      //   Appassets.arrowback,
-      //   scale: 1.5,
-      //   color: kprimaryColor,
-      // ),
+      
       centerTitle: true,
       title: Text(
         text,

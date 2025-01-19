@@ -32,7 +32,6 @@ class RelationshipScreen extends StatelessWidget {
     {'name': 'Siblings', 'image': Appassets.siblings},
   ];
 
-  // final PageController _controller = PageController();
 
   @override
   Widget build(BuildContext context) {

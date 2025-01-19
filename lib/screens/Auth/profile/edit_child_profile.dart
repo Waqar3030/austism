@@ -211,11 +211,7 @@ class _EditChildProfileState extends State<EditChildProfile> {
                               )),
                         ),
                       ),
-                      // AuthField(
-                      //   title: "Date of Birth",
-                      //   hintText: "Enter Date of Birth",
-                      //   controller: birthController,
-                      // ),
+           
                       10.r.verticalSpace,
                       AuthField(
                         title: "Guardian Contact",
@@ -223,12 +219,7 @@ class _EditChildProfileState extends State<EditChildProfile> {
                         controller: guardianNumController,
                         keyboardType: TextInputType.phone,
                       ),
-                      // 10.r.verticalSpace,
-                      // AuthField(
-                      //   title: "Parent Email",
-                      //   hintText: "Enter Email",
-                      //   controller: parentEmailController,
-                      // ),
+              
                       10.r.verticalSpace,
                       AuthField(
                         title: "Child Location",

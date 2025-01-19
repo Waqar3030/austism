@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:austism/components/auth_field.dart';
 import 'package:austism/components/primary_button.dart';
 import 'package:austism/controller/auth_controller.dart';
@@ -37,7 +36,6 @@ class _LoginScreenState extends State<LoginScreen> {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/184.png"),
-            // filterQuality: FilterQuality.low,
             fit: BoxFit.fill,
           ),
         ),
@@ -66,31 +64,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       title: 'Email Address',
                       hintText: 'Enter your email address',
                       controller: emailController,
-                      // validator: (value) {
-                      //   if (value == null || value.isEmpty) {
-                      //     return 'Email is required';
-                      //   } else if (!value.isEmail) {
-                      //     return 'Invalid email address';
-                      //   }
-                      //   return null;
-                      // },
+                      
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                     ),
                     15.r.verticalSpace,
-                    // Password Field.
+                    
                     AuthField(
                       title: 'Password',
                       hintText: 'Enter your password',
                       controller: passController,
-                      // validator: (value) {
-                      //   if (value == null || value.isEmpty) {
-                      //     return 'Password is required';
-                      //   } else if (value.length < 8) {
-                      //     return 'Password should be at least 8 characters long';
-                      //   }
-                      //   return null;
-                      // },
+                      
                       isPassword: true,
                       keyboardType: TextInputType.visiblePassword,
                       textInputAction: TextInputAction.done,
